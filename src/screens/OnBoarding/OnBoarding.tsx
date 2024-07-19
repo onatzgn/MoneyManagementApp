@@ -1,8 +1,8 @@
 import React from 'react'
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import Swiper from 'react-native-swiper'
-import { styles } from './styles';
-import { slides }  from './slides';
+import { styles } from './onBoarding.styles';
+import { slides }  from './onBoarding.slides';
 
 export default function OnBoarding() {
 
