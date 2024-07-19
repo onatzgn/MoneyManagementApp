@@ -3,7 +3,7 @@ export const slides = [
         id: 1,
         title: "Merhaba",
         context:"Deneme",
-        image: require("../../assets/Animations/Crocodile.png")
+        image: require("../assets/Animations/Crocodile.png")
     },
     {
         id: 2,
