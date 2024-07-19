@@ -1,21 +1,18 @@
 import React from 'react'
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import Swiper from 'react-native-swiper'
-import { styles } from './styles';
-import { slides }  from './slides';
+import { styles } from './onBoarding.styles';
+import { slides }  from '../../utils/onBoarding.slides';
 
 export default function OnBoarding() {
 
   return (
-    <View style={{flex:1}}>
+    <View style={styles.viewStyle}>
         <Swiper
-            paginationStyle={{
-                position:"absolute",
-                bottom: '20%',
-        }}
-        dotStyle={{borderWidth:1,borderBottomWidth:2}}
+        paginationStyle={styles.paginationStyle}
+        dotStyle={styles.dotStyle}
         activeDotColor='#B0E3CF'
-        activeDotStyle={{width:20, height:8, borderWidth:1, borderBottomWidth:2}}
+        activeDotStyle={styles.activeDotStyle}
         >
             {slides.map((i)=>{
                 return(
@@ -32,7 +29,7 @@ export default function OnBoarding() {
                 <Text style={styles.getStartedText}>Get Started</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={{fontSize:18,color:'grey'}}>Skip</Text>
+                <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
         </View>
     </View>

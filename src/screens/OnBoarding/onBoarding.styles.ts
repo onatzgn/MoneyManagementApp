@@ -40,6 +40,27 @@ export const styles = StyleSheet.create({
     getStartedText: {
         fontWeight: 'bold',
         color: '#433D3C'
+    },
+    paginationStyle: {
+        position:"absolute",
+        bottom: '20%',
+    },
+    dotStyle: {
+        borderWidth:1,
+        borderBottomWidth:2
+    },
+    activeDotStyle: {
+        width:20,
+        height:8,
+        borderWidth:1, 
+        borderBottomWidth:2
+    },
+    skipText: {
+        fontSize:18,
+        color:'grey'
+    },
+    viewStyle: {
+        flex:1
     }
 
 });
