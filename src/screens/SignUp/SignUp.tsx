@@ -8,15 +8,18 @@ import GenericButton from '../../components/GenericButton/GenericButton';
 import GenericTextInput from '../../components/GenericTextInput/GenericTextInput';
 import { Controller, useForm } from 'react-hook-form';
 import GenericLogo from '../../components/GenericLogo/GenericLogo';
+import GenericText from '../../components/GenericText/GenericText';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<any>();
   const theme = useSelector((state: RootState) => state.theme.theme);
   const themeColors = getThemeColor(theme);
-  const { control, handleSubmit, reset, formState: { errors } } = useForm({
+  const { control, formState: { errors } } = useForm({
     defaultValues: {
       fullName: '',
-      userName: '',
+      email: '',
       password: '',
       phone: ''
     }
@@ -28,7 +31,7 @@ const SignUp = () => {
       dispatch(ToggleTheme('light'));
     }
   };
-
+  const handleSignIn = () => navigation.navigate('SignIn')
   return (
     <SafeAreaView
       style={[
@@ -49,6 +52,7 @@ const SignUp = () => {
             }}
             render={({ field: { onBlur, onChange, value } }) => (
               <GenericTextInput
+                iconName='person-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -70,16 +74,18 @@ const SignUp = () => {
             }}
             render={({ field: { onBlur, onChange, value } }) => (
               <GenericTextInput
+                iconName='mail-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={false}
-                placeholder='Kullanıcı Adı'
-                keyboardType='numeric' />
+                placeholder='Email'
+                keyboardType='numeric'
+              />
             )}
-            name="userName"
+            name="email"
           />
-          {errors.userName && (<Text></Text>)}
+          {errors.email && (<Text></Text>)}
           <Controller
             control={control}
             rules={{
@@ -91,6 +97,7 @@ const SignUp = () => {
             }}
             render={({ field: { onBlur, onChange, value } }) => (
               <GenericTextInput
+                iconName='key-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -112,6 +119,7 @@ const SignUp = () => {
             }}
             render={({ field: { onBlur, onChange, value } }) => (
               <GenericTextInput
+                iconName='call-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -124,15 +132,21 @@ const SignUp = () => {
           {errors.phone && (<Text></Text>)}
 
           <GenericButton
-            onPress={() => { }}
-            text="Kayıt Ol >"
+            onPress={() => { console.log('dd') }}
+            text="Kayıt Ol"
             backgroundColor={themeColors.signInUpButton}
             textColor={themeColors.signInUpButtonTextColor}
           />
         </View>
-      </View>
-
-      <View style={styles.buttonContainer}>
+        <View style={styles.signInButton}>
+          <GenericText style={[{ color: themeColors.titleDefault }]} text='Ya da' />
+          <GenericButton
+            onPress={() => { handleSignIn() }}
+            text="Giriş Yap"
+            backgroundColor={themeColors.signInUpButton}
+            textColor={themeColors.signInUpButtonTextColor}
+          />
+        </View>
       </View>
       <Switch
         trackColor={{ true: themeColors.titleDefault }}

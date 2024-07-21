@@ -4,14 +4,6 @@ export const styles = StyleSheet.create({
   signUpContainer: {
     flex: 1,
   },
-  button: {
-  },
-  buttonContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: '5%',
-  },
   inputContainer: {
     position: 'absolute',
     left: 0,
@@ -21,6 +13,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   formContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    fontFamily: 'Open Sans'
+  },
+  signInButton:{
+   alignItems: 'center'
   }
 });

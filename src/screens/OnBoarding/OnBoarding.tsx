@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, Image, TouchableOpacity} from 'react-native'
 import Swiper from 'react-native-swiper'
 import { styles } from './onBoarding.styles';
 import { slides }  from '../../utils/onBoarding.slides';
@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function OnBoarding() {
     const navigation = useNavigation<any>();
+    const handleSignUp = () => navigation.navigate('SignUp')
   return (
     <View style={styles.viewStyle}>
       <Swiper
@@ -29,7 +30,7 @@ export default function OnBoarding() {
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.getStartedText}>Get Started</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>{navigation.navigate('SignUp')}}>
+            <TouchableOpacity onPress={handleSignUp}>
                 <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
         </View>

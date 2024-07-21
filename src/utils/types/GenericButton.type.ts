@@ -1,6 +1,6 @@
 export interface GenericButtonType {
     text: string;
-    onPress: () => {};
+    onPress: () => void;
     backgroundColor: string;
     textColor: string,
 }
