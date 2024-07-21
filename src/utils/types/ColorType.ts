@@ -3,4 +3,7 @@ export interface ColorTypes {
   containerBackground: string;
   titleGreen: string;
   titleDefault: string;
+  signInUpButton: string
+  signInUpButtonTextColor: string,
+  placeholder: string
 }

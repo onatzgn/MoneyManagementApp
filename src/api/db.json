@@ -2,80 +2,70 @@
     "users": [
     {
       "id": "1",
-      "firstName": "admin",
-      "lastName": "admin",
+      "fullName": "Admin Admin",
       "userName": "admin",
       "password": "admin",
       "phone": "+05392424560"
     },
     {
         "id": "2",
-        "firstName": "Fatma",
-        "lastName": "Yilmaz",
+        "fullName": "Fatma Yılmaz",
         "userName": "fatma",
         "password": "fatma",
         "phone": "+905392424565"
     },
     {
         "id": "3",
-        "firstName": "Onat",
-        "lastName": "Ozgen",
+        "fullName": "Onat Ozgen",
         "userName": "onat",
         "password": "onat",
         "phone": "+905392424565"
     },
     {
       "id": "4",
-      "firstName": "Onur",
-      "lastName": "Yılmaz",
+      "fullName": "Onut Yilmaz",
       "userName": "onur",
       "password": "onur",
       "phone": "+05392424561"
     },
     {
       "id": "5",
-      "firstName": "Nagihan",
-      "lastName": "Üstün",
+      "fullName": "Nagihan Ustun",
       "userName": "nagihan",
       "password": "nagihan",
       "phone": "+05392424562"
     },
     {
         "id": "6",
-        "firstName": "Yiğit",
-        "lastName": "Leblebicier",
+        "fullName": "Yigit Leblebicier",
         "userName": "yigit",
         "password": "yigit",
         "phone": "+05392424563"
       },
       {
         "id": "7",
-        "firstName": "Edanur",
-        "lastName": "Çalışkan",
+        "fullName": "Edanur Caliskan",
         "userName": "eda",
         "password": "eda",
         "phone": "+05392424564"
       },
       {
         "id": "8",
-        "firstName": "Tunahan",
-        "lastName": "Yılmaz",
+        "fullName": "Tunahan Yilmaz",
         "userName": "tadaa",
         "password": "tadaa",
         "phone": "+05392424566"
       },
       {
         "id": "9",
-        "firstName": "Hüseyin",
-        "lastName": "Yılmaz",
+        "fullName": "Huseyin Yilmaz",
         "userName": "huseyin",
         "password": "huseyin",
         "phone": "+05392424567"
       },
       {
         "id": "10",
-        "firstName": "Nuran",
-        "lastName": "Üstün",
+        "fullName": "Nuran Ustun",
         "userName": "nuran",
         "password": "nuran",
         "phone": "+05392424569"

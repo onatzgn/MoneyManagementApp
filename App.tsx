@@ -3,14 +3,17 @@ import React from 'react';
 import {View} from 'react-native';
 import StackNavigator from './src/navigation/StackNavigator';
 import {Provider} from 'react-redux';
-import store from './src/redux/store';
+import store, { persistor } from './src/redux/store';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <View style={{flex: 1}}>
-        <StackNavigator />
-      </View>
+      <PersistGate persistor={persistor}>
+        <View style={{flex: 1}}>
+          <StackNavigator />
+        </View>
+      </PersistGate>
     </Provider>
   );
 };

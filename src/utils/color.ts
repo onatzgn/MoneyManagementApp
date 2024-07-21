@@ -5,6 +5,9 @@ export const LightTheme: ColorTypes = {
   containerBackground: '#FFFFFF',
   titleGreen: '#89E3B5',
   titleDefault: 'black',
+  signInUpButton: 'black',
+  signInUpButtonTextColor: 'white',
+  placeholder: 'gray'
 };
 
 export const DarkTheme: ColorTypes = {
@@ -12,6 +15,9 @@ export const DarkTheme: ColorTypes = {
   containerBackground: '#404040',
   titleGreen: '#89E3B5',
   titleDefault: 'white',
+  signInUpButton: 'white',
+  signInUpButtonTextColor: 'black',
+  placeholder: 'white'
 };
 
 const themes = {
