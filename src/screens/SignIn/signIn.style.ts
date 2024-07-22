@@ -15,6 +15,9 @@ export const styles = StyleSheet.create({
   formContainer: {
     alignItems: 'center',
     fontFamily: 'Open Sans'
+  },
+  rememberMeText: {
+    alignSelf: 'center'
   }
 
 });

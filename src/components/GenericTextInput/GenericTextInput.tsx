@@ -8,11 +8,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { View } from "react-native"
 
 const GenericTextInput = ({ iconName, onBlur, onChangeText, value, secureTextEntry, placeholder, keyboardType }: GenericTextInputType) => {
-    const theme = useSelector((state: RootState) => state.theme.theme);
+    const theme = useSelector((state: RootState) => state.persistedReducer.theme.theme);
     const themeColors = getThemeColor(theme);
     return (
-        <View style={{ width: '100%', alignItems: 'center' }}>
-            <Icon name={iconName} size={20} color={themeColors.titleDefault} style={styles.icon} />
+        <View style={styles.inputContainer}>
+            <Icon name={iconName} size={25} color={themeColors.titleDefault} style={styles.icon} />
             <TextInput
                 onBlur={onBlur}
                 onChangeText={onChangeText}

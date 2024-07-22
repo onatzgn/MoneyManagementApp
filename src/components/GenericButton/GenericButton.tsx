@@ -4,15 +4,27 @@ import {styles} from './genericButton.style';
 import { GenericButtonType } from '../../utils/types/GenericButton.type';
 import GenericText from '../GenericText/GenericText';
 
-const GenericButton = ({text, onPress, backgroundColor, textColor}: GenericButtonType) => {
-  return (
-    <View style={[styles.buttonContainer,{backgroundColor: backgroundColor}]}>
-      <TouchableOpacity
-        onPress={onPress}
-        style={styles.button}>
-        <GenericText text={text} style={[styles.buttonText,{color: textColor, textAlign: 'center'}]}></GenericText>
-      </TouchableOpacity>
-    </View>
-  );
-};
-export default GenericButton;
+const DefaultButton = ({text, onPress, backgroundColor, textColor}: GenericButtonType) => {
+  return(
+    <View style={[styles.defaultButtonContainer,{backgroundColor: backgroundColor}]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.defaultButton}>
+      <GenericText text={text} style={[styles.defaultButtonText,{color: textColor}]}></GenericText>
+    </TouchableOpacity>
+  </View>
+  
+  )
+}
+const LinkButton = ({text, onPress, backgroundColor, textColor}: GenericButtonType) => {
+  return(
+    <View style={[styles.linkButtonContainer]}>
+    <TouchableOpacity
+      onPress={onPress}>
+      <GenericText text={text} style={[styles.linkButtonText,{color: textColor}]}></GenericText>
+    </TouchableOpacity>
+  </View>  
+  )
+}
+
+export {DefaultButton, LinkButton};

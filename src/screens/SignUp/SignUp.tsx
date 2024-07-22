@@ -4,19 +4,22 @@ import { useSelector } from 'react-redux';
 import { getThemeColor } from '../../utils/color';
 import { ToggleTheme } from '../../redux/Actions/themeAction';
 import { RootState, useAppDispatch } from '../../redux/store';
-import GenericButton from '../../components/GenericButton/GenericButton';
+import {DefaultButton, LinkButton} from '../../components/GenericButton/GenericButton';
 import GenericTextInput from '../../components/GenericTextInput/GenericTextInput';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import GenericLogo from '../../components/GenericLogo/GenericLogo';
 import GenericText from '../../components/GenericText/GenericText';
 import { useNavigation } from '@react-navigation/native';
+import { UserSignUpType } from '../../utils/types/UserSignUpType';
+import { signUpUser, signUpRequest } from '../../redux/Actions/userAction';
+import { SIGNUP_FAILURE } from '../../redux/types/user.types';
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
-  const theme = useSelector((state: RootState) => state.theme.theme);
+  const theme = useSelector((state: RootState) => state.persistedReducer.theme.theme);
   const themeColors = getThemeColor(theme);
-  const { control, formState: { errors } } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       fullName: '',
       email: '',
@@ -24,6 +27,14 @@ const SignUp = () => {
       phone: ''
     }
   })
+  const onSubmit: SubmitHandler<UserSignUpType> = async data => {
+    dispatch(signUpRequest())
+    try{
+      dispatch(signUpUser(data))
+    } catch(error){
+      dispatch({type: SIGNUP_FAILURE, payload: error})
+    }
+  }
   const toggleSwitch = (value: boolean) => {
     if (value) {
       dispatch(ToggleTheme('dark'));
@@ -80,7 +91,7 @@ const SignUp = () => {
                 value={value}
                 secureTextEntry={false}
                 placeholder='Email'
-                keyboardType='numeric'
+                keyboardType='email-address'
               />
             )}
             name="email"
@@ -103,7 +114,7 @@ const SignUp = () => {
                 value={value}
                 secureTextEntry={true}
                 placeholder='Şifre'
-                keyboardType='numeric' />
+                keyboardType='default' />
             )}
             name="password"
           />
@@ -125,26 +136,26 @@ const SignUp = () => {
                 value={value}
                 secureTextEntry={false}
                 placeholder='Cep Telefonu'
-                keyboardType='numeric' />
+                keyboardType='name-phone-pad' />
             )}
             name="phone"
           />
           {errors.phone && (<Text></Text>)}
 
-          <GenericButton
-            onPress={() => { console.log('dd') }}
+          <DefaultButton
+            onPress={handleSubmit(onSubmit)}
             text="Kayıt Ol"
             backgroundColor={themeColors.signInUpButton}
             textColor={themeColors.signInUpButtonTextColor}
           />
         </View>
         <View style={styles.signInButton}>
-          <GenericText style={[{ color: themeColors.titleDefault }]} text='Ya da' />
-          <GenericButton
+          <GenericText style={[{ color: themeColors.titleDefault }]} text='Hesabınız varsa' />
+          <LinkButton
             onPress={() => { handleSignIn() }}
-            text="Giriş Yap"
+            text="Giriş Yapın"
             backgroundColor={themeColors.signInUpButton}
-            textColor={themeColors.signInUpButtonTextColor}
+            textColor={themeColors.titleDefault}
           />
         </View>
       </View>

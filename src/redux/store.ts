@@ -1,19 +1,23 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {useDispatch} from 'react-redux';
 import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE} from 'redux-persist';
 import themeReducer from './Reducers/themeReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import userReducer from './Reducers/userReducer';
 
 const persistConfig = {
   key: 'root',
   storage : AsyncStorage
 };
-
-const persistedThemeReducer = persistReducer(persistConfig, themeReducer);
+const rootReducer = combineReducers({
+  theme: themeReducer,
+  user: userReducer
+})
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: {
-    theme: persistedThemeReducer,
+    persistedReducer
   },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

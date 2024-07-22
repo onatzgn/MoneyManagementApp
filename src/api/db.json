@@ -1,5 +1,5 @@
 {
-    "users": [
+  "users": [
     {
       "id": "1",
       "fullName": "Admin Admin",
@@ -8,18 +8,18 @@
       "phone": "+05392424560"
     },
     {
-        "id": "2",
-        "fullName": "Fatma Yılmaz",
-        "email": "fatma",
-        "password": "fatma",
-        "phone": "+905392424565"
+      "id": "2",
+      "fullName": "Fatma Yılmaz",
+      "email": "fatma",
+      "password": "fatma",
+      "phone": "+905392424565"
     },
     {
-        "id": "3",
-        "fullName": "Onat Ozgen",
-        "email": "onat",
-        "password": "onat",
-        "phone": "+905392424565"
+      "id": "3",
+      "fullName": "Onat Ozgen",
+      "email": "onat",
+      "password": "onat",
+      "phone": "+905392424565"
     },
     {
       "id": "4",
@@ -36,39 +36,46 @@
       "phone": "+05392424562"
     },
     {
-        "id": "6",
-        "fullName": "Yigit Leblebicier",
-        "email": "yigit",
-        "password": "yigit",
-        "phone": "+05392424563"
-      },
-      {
-        "id": "7",
-        "fullName": "Edanur Caliskan",
-        "email": "eda",
-        "password": "eda",
-        "phone": "+05392424564"
-      },
-      {
-        "id": "8",
-        "fullName": "Tunahan Yilmaz",
-        "email": "tadaa",
-        "password": "tadaa",
-        "phone": "+05392424566"
-      },
-      {
-        "id": "9",
-        "fullName": "Huseyin Yilmaz",
-        "email": "huseyin",
-        "password": "huseyin",
-        "phone": "+05392424567"
-      },
-      {
-        "id": "10",
-        "fullName": "Nuran Ustun",
-        "email": "nuran",
-        "password": "nuran",
-        "phone": "+05392424569"
-      }
-]
+      "id": "6",
+      "fullName": "Yigit Leblebicier",
+      "email": "yigit",
+      "password": "yigit",
+      "phone": "+05392424563"
+    },
+    {
+      "id": "7",
+      "fullName": "Edanur Caliskan",
+      "email": "eda",
+      "password": "eda",
+      "phone": "+05392424564"
+    },
+    {
+      "id": "8",
+      "fullName": "Tunahan Yilmaz",
+      "email": "tadaa",
+      "password": "tadaa",
+      "phone": "+05392424566"
+    },
+    {
+      "id": "9",
+      "fullName": "Huseyin Yilmaz",
+      "email": "huseyin",
+      "password": "huseyin",
+      "phone": "+05392424567"
+    },
+    {
+      "id": "10",
+      "fullName": "Nuran Ustun",
+      "email": "nuran",
+      "password": "nuran",
+      "phone": "+05392424569"
+    },
+    {
+      "id": "1c24",
+      "fullName": "Deneme Deneme",
+      "email": "deneme@gmail.com",
+      "password": "deneme",
+      "phone": "05392424565"
+    }
+  ]
 }

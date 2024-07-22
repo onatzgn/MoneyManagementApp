@@ -15,5 +15,9 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         left: '13%',
         top: '34%',
+      },
+      inputContainer: { 
+        width: '100%', 
+        alignItems: 'center' 
       }
 })

@@ -14,7 +14,7 @@ av.addListener(() => {return});
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
         <View style={{flex: 1}}>
           <StackNavigator />
         </View>

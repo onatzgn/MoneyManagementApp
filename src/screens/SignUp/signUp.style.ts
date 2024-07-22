@@ -17,6 +17,8 @@ export const styles = StyleSheet.create({
     fontFamily: 'Open Sans'
   },
   signInButton:{
-   alignItems: 'center'
+   flexDirection: 'row',
+   justifyContent: 'center',
+   marginVertical: '5%',
   }
 });
