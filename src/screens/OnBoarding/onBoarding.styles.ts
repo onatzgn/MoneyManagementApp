@@ -1,22 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    title:{
-        fontSize: 25,
-        fontWeight:'bold',
-        width: '40%',
-        textAlign: 'center'
-    },
-    context: {
-        fontSize: 16,
-        textAlign: 'center',
-        marginHorizontal: 20,
-    },
-    textContainer: {
-        justifyContent:'center',
-        alignItems:'center',
-        height:'100%'
-    },
     buttonContainer: {
         position: 'absolute',
         bottom: '5%',
@@ -26,7 +10,7 @@ export const styles = StyleSheet.create({
         alignItems:'center'
     },
     button: {
-        backgroundColor: '#61E4C5',
+        backgroundColor: '#B0E3CF',
         paddingHorizontal: 100,
         justifyContent: 'center',
         alignItems: 'center',
@@ -37,13 +21,13 @@ export const styles = StyleSheet.create({
         borderColor: 'black',
         borderBottomWidth: 5,
     },
-    getStartedText: {
+    nextText: {
         fontWeight: 'bold',
-        color: '#433D3C'
+        color: '#30444E'
     },
     paginationStyle: {
         position:"absolute",
-        bottom: '20%',
+        bottom: '10%',
     },
     dotStyle: {
         borderWidth:1,
@@ -55,12 +39,60 @@ export const styles = StyleSheet.create({
         borderWidth:1, 
         borderBottomWidth:2
     },
-    skipText: {
-        fontSize:18,
-        color:'grey'
-    },
     viewStyle: {
-        flex:1
-    }
-
+        flex:1,
+        backgroundColor:'#FFBD12',
+    },
+    newContainer: {
+        width:'auto',
+        height:'65%',
+        backgroundColor: '#EFEFEF',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:15,
+        borderWidth:1,
+        borderTopWidth:7,
+        marginTop:'80%',
+    },
+    logoWrapper: {
+        position:'absolute',
+        top:50,
+        justifyContent:'center',
+        alignItems:'center',
+        width:'100%',
+        height:'50%'
+    },
+    logo:{
+        width:300,
+        height:300
+    },
+    timoIcon:{
+        width:40,
+        height:40,
+        position:'absolute',
+        top:40,
+        right:90
+    },
+    notificationButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5,
+        backgroundColor: '#2C14DD',
+        borderWidth: 2,
+        borderRadius: 10,
+        width: "50%",
+        height: "30%",
+        position: 'relative',
+        marginLeft: "30%",
+        marginTop: "10%",
+        borderBottomWidth: 5,
+    },
+    notificationText:{
+        alignSelf: 'auto',
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 0,
+        fontWeight: 'bold',
+        color:'white'
+    },
 });
