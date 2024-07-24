@@ -14,10 +14,15 @@ export const styles = StyleSheet.create({
   },
   formContainer: {
     alignItems: 'center',
-    fontFamily: 'Open Sans'
+    fontFamily: 'Open Sans',
   },
   rememberMeText: {
-    alignSelf: 'center'
-  }
-
+    alignSelf: 'center',
+  },
+  toolTipContainer: {
+    position: 'absolute',
+    right: '15%',
+    bottom: '15%',
+    top: '35%',
+  },
 });

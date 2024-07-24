@@ -1,9 +1,10 @@
-import { SafeAreaView, Text } from "react-native"
+import { SafeAreaView } from "react-native"
 import { styles } from "./Home.style"
+import Text from "@components/text/Text"
 const Home = () => {
     return (
         <SafeAreaView>
-            <Text>Home Screen</Text>
+            <Text text="Home Screen"></Text>
         </SafeAreaView>
     )
 }

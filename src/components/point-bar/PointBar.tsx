@@ -1,13 +1,14 @@
 import React from 'react';
-import { Image, View, Text } from 'react-native';
+import { Image, View } from 'react-native';
 import { styles } from './PointBar.styles';
+import Text from '@components/text/Text';
 
-interface GenericPointBarProps {
+interface PointBarProps {
   text: string;
   containerStyle?: object;
 }
 
-const GenericPointBar: React.FC<GenericPointBarProps> = ({ text, containerStyle }) => {
+const PointBar: React.FC<PointBarProps> = ({ text, containerStyle }) => {
   return (
     <View style={[styles.logoContainer, containerStyle]}>
       <Image
@@ -15,9 +16,9 @@ const GenericPointBar: React.FC<GenericPointBarProps> = ({ text, containerStyle 
         style={styles.logo}
         resizeMode="contain"
       />
-      <Text style={styles.pointText}>{text}</Text>
+      <Text text={text} style={styles.pointText}></Text>
     </View>
   );
 };
 
-export default GenericPointBar;
+export default PointBar;

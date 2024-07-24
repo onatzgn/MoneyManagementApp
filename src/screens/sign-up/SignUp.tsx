@@ -1,13 +1,13 @@
-import { SafeAreaView, Switch, Text, View } from 'react-native';
+import { SafeAreaView, Switch, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { getThemeColor } from '@utils/Color';
 import { ToggleTheme } from '@redux/actions/ThemeAction';
 import { RootState, useAppDispatch } from '@redux/Store';
 import { DefaultButton, LinkButton } from '@components/button/Button';
-import GenericTextInput from '@components/text-input/TextInput';
-import GenericLogo from '@components/logo/Logo';
-import GenericText from '@components/text/Text';
+import TextInput from '@components/text-input/TextInput';
+import Logo from '@components/logo/Logo';
+import Text from '@components/text/Text';
 import { useNavigation } from '@react-navigation/native';
 import { UserSignUpType } from '@utils/types/UserSignUpType';
 import { signUpUser } from '@redux/actions/UserAction';
@@ -49,7 +49,7 @@ const SignUp = () => {
         { backgroundColor: themeColors.background },
       ]}>
       <View style={styles.inputContainer}>
-        <GenericLogo text='Aramıza Hoşgeldin' color={themeColors.titleDefault} />
+        <Logo text='Aramıza Hoşgeldin' color={themeColors.titleDefault} />
         <View style={styles.formContainer}>
           <Controller
             control={control}
@@ -61,7 +61,7 @@ const SignUp = () => {
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <GenericTextInput
+              <TextInput
                 iconName='person-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -72,7 +72,7 @@ const SignUp = () => {
             )}
             name="fullName"
           />
-          {errors?.fullName && (<Text></Text>)}
+          {errors?.fullName && (<Text text=''></Text>)}
           <Controller
             control={control}
             rules={{
@@ -83,7 +83,7 @@ const SignUp = () => {
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <GenericTextInput
+              <TextInput
                 iconName='mail-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -95,7 +95,7 @@ const SignUp = () => {
             )}
             name="email"
           />
-          {errors?.email && (<Text></Text>)}
+          {errors?.email && (<Text text=''></Text>)}
           <Controller
             control={control}
             rules={{
@@ -106,7 +106,7 @@ const SignUp = () => {
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <GenericTextInput
+              <TextInput
                 iconName='key-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -117,7 +117,7 @@ const SignUp = () => {
             )}
             name="password"
           />
-          {errors?.password && (<Text></Text>)}
+          {errors?.password && (<Text text=''></Text>)}
           <Controller
             control={control}
             rules={{
@@ -128,7 +128,7 @@ const SignUp = () => {
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <GenericTextInput
+              <TextInput
                 iconName='call-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -139,7 +139,7 @@ const SignUp = () => {
             )}
             name="phone"
           />
-          {errors?.phone && (<Text></Text>)}
+          {errors?.phone && (<Text text=''></Text>)}
 
           <DefaultButton
             onPress={handleSubmit(onSubmit)}
@@ -149,7 +149,7 @@ const SignUp = () => {
           />
         </View>
         <View style={styles.signInButton}>
-          <GenericText style={[{ color: themeColors.titleDefault }]} text='Hesabınız varsa' />
+          <Text style={[{ color: themeColors.titleDefault }]} text='Hesabınız varsa' />
           <LinkButton
             onPress={() => { handleSignIn() }}
             text="Giriş Yapın"

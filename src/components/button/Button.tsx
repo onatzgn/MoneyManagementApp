@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './Button.style';
-import GenericText from '../text/Text';
+import Text from '../text/Text';
 
 export interface ButtonType {
   text: string;
@@ -16,7 +16,7 @@ const DefaultButton = ({ text, onPress, backgroundColor, textColor }: ButtonType
       <TouchableOpacity
         onPress={onPress}
         style={styles.defaultButton}>
-        <GenericText text={text} style={[styles.defaultButtonText, { color: textColor }]}></GenericText>
+        <Text text={text} style={[styles.defaultButtonText, { color: textColor }]}></Text>
       </TouchableOpacity>
     </View>
 
@@ -27,7 +27,7 @@ const LinkButton = ({ text, onPress, backgroundColor, textColor }: ButtonType) =
     <View style={[styles.linkButtonContainer]}>
       <TouchableOpacity
         onPress={onPress}>
-        <GenericText text={text} style={[styles.linkButtonText, { color: textColor }]}></GenericText>
+        <Text text={text} style={[styles.linkButtonText, { color: textColor }]}></Text>
       </TouchableOpacity>
     </View>
   )

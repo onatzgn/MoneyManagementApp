@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { styles } from './TextAnimation.styles'
+import Text from '@components/text/Text';
 
 export default function AnimatedTyping(props: { text: string | any[]; onComplete: () => void; }) {
     const [text, setText] = useState("");
@@ -85,9 +86,9 @@ export default function AnimatedTyping(props: { text: string | any[]; onComplete
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>
-                {text}
-                <Text style={{ color: cursorColor, fontSize: 15 }}>|</Text>
+            <Text text={text} style={styles.text}>
+
+                <Text text='|' style={{ color: cursorColor, fontSize: 15 }}></Text>
             </Text>
         </View>
     );

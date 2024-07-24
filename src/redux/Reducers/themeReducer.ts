@@ -7,7 +7,7 @@ export const InitialState: ThemeState = {
   theme: 'light',
 };
 
-const themeReducer = (
+const ThemeReducer = (
   state = InitialState,
   action: {type: string; payload?: any},
 ): ThemeState => {
@@ -18,4 +18,4 @@ const themeReducer = (
       return state;
   }
 };
-export default themeReducer;
+export default ThemeReducer;

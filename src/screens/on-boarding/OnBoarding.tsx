@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { slides } from '@utils/OnBoarding.slides';
 import { useNavigation } from '@react-navigation/native';
 import TextAnimation from '@components/text-animation/TextAnimation';
-import GenericPointBar from '@components/point-bar/PointBar';
+import PointBar from '@components/point-bar/PointBar';
 import { styles } from './OnBoarding.styles';
+import Text from '@components/text/Text';
 
 export default function OnBoarding() {
   const navigation = useNavigation<any>();
@@ -88,9 +89,9 @@ export default function OnBoarding() {
               {secondMessageCompleted && getButtonText() && (
                 <View>
                   <TouchableOpacity style={styles.notificationButton}>
-                    <Text style={styles.notificationText}>{getButtonText()}</Text>
+                    <Text text={getButtonText()} style={styles.notificationText}></Text>
                   </TouchableOpacity>
-                  <GenericPointBar
+                  <PointBar
                     text="200"
                     containerStyle={{ marginLeft: 85 }}
                   />
@@ -103,7 +104,7 @@ export default function OnBoarding() {
       <View style={styles.buttonContainer}>
         {secondMessageCompleted && (
           <TouchableOpacity onPress={handleBigButtonPress} style={styles.button}>
-            <Text style={styles.nextText}>{getBigButtonText()}</Text>
+            <Text text={getBigButtonText()} style={styles.nextText}></Text>
           </TouchableOpacity>
         )}
       </View>

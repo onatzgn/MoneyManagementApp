@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
-import { SafeAreaView, Switch, Text, View } from 'react-native';
+import { SafeAreaView, Switch, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { getThemeColor } from '@utils/Color';
 import { ToggleTheme } from '@redux/actions/ThemeAction';
 import { RootState, useAppDispatch } from '@redux/Store';
 import { DefaultButton } from '@components/button/Button';
-import GenericTextInput from '@components/text-input/TextInput';
-import GenericLogo from '@components/logo/Logo';
+import TextInput from '@components/text-input/TextInput';
+import Logo from '@components/logo/Logo';
 import { UserSignInType } from '@utils/types/UserSignInType';
 import { signInUser } from '@redux/actions/UserAction';
 import { SIGNIN_FAILURE } from '@redux/types/User.types';
 import { useNavigation } from '@react-navigation/native';
-import GenericText from '@components/text/Text';
+import Text from '@components/text/Text';
 import { styles } from './SignIn.style';
 
 const SignIn = () => {
@@ -62,7 +62,6 @@ const SignIn = () => {
       dispatch(ToggleTheme('light'));
     }
   };
-
   return (
     <SafeAreaView
       style={[
@@ -70,19 +69,19 @@ const SignIn = () => {
         { backgroundColor: themeColors.background },
       ]}>
       <View style={styles.inputContainer}>
-        <GenericLogo text='Merhaba' color={themeColors.titleDefault} />
+        <Logo text='Merhaba' color={themeColors.titleDefault} />
         <View style={styles.formContainer}>
           <Controller
             control={control}
             rules={{
-              required: '',
+              required: 'E-posta boş bırakılamaz',
               minLength: {
                 value: 5,
-                message: ''
+                message: 'E-posta en az 5 karakter uzunluğunda olmalıdır'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <GenericTextInput
+              <TextInput
                 iconName='mail-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -94,18 +93,19 @@ const SignIn = () => {
             )}
             name="email"
           />
-          {errors?.email && (<Text></Text>)}
+          {errors?.email && (<Text text=''></Text>)}
+          {errors.email && (<Text text='' />)}
           <Controller
             control={control}
             rules={{
-              required: '',
+              required: 'warn',
               minLength: {
                 value: 5,
-                message: ''
+                message: 'warn'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <GenericTextInput
+              <TextInput
                 iconName='key-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -116,15 +116,19 @@ const SignIn = () => {
             )}
             name="password"
           />
-          {errors?.password && (<Text></Text>)}
+          {errors?.password && (<Text text=''></Text>)}
+
           <View style={{ flexDirection: 'row' }}>
-            <GenericText style={[styles.rememberMeText, { color: themeColors.titleDefault }]} text='Beni hatırla ' />
-            <Switch
-              trackColor={{ true: themeColors.titleGreen }}
-              ios_backgroundColor={themeColors.titleDefault}
-              onValueChange={toggleSwitchRememberMe}
-              value={rememberMe}
-            />
+            {errors.password && (<Text text=''></Text>)}
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={[styles.rememberMeText, { color: themeColors.titleDefault }]} text='Beni hatırla ' />
+              <Switch
+                trackColor={{ true: themeColors.titleGreen }}
+                ios_backgroundColor={themeColors.titleDefault}
+                onValueChange={toggleSwitchRememberMe}
+                value={rememberMe}
+              />
+            </View>
           </View>
           <DefaultButton
             onPress={handleSubmit(onSubmit)}
@@ -143,4 +147,5 @@ const SignIn = () => {
     </SafeAreaView>
   );
 };
+
 export default SignIn;

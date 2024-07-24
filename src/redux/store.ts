@@ -10,21 +10,21 @@ import {
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
-import themeReducer from './reducers/ThemeReducer';
+import ThemeReducer from './reducers/ThemeReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import userReducer from './reducers/UserReducer';
+import UserReducer from './reducers/UserReducer';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
 };
 const rootReducer = combineReducers({
-  theme: themeReducer,
-  user: userReducer,
+  theme: ThemeReducer,
+  user: UserReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
+const Store = configureStore({
   reducer: {
     persistedReducer,
   },
@@ -35,10 +35,10 @@ const store = configureStore({
       },
     }),
 });
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof Store.getState>;
+export type AppDispatch = typeof Store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(Store);
 
-export default store;
+export default Store;
