@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import { styles } from './textAnimation.styles'
+import { styles } from './TextAnimation.styles'
 
 export default function AnimatedTyping(props: { text: string | any[]; onComplete: () => void; }) {
     const [text, setText] = useState("");
@@ -10,11 +10,11 @@ export default function AnimatedTyping(props: { text: string | any[]; onComplete
     const [timeouts, setTimeouts] = useState<{
         cursorTimeout: NodeJS.Timeout | undefined,
         typingTimeout: NodeJS.Timeout | undefined,
-      }>({
+    }>({
         cursorTimeout: undefined,
         typingTimeout: undefined,
-      });
-      
+    });
+
 
     const textRef = useRef(text);
     const cursorColorRef = useRef(cursorColor);

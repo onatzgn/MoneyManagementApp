@@ -1,13 +1,23 @@
-import { styles } from "./genericTextInput.style"
-import { TextInput } from "react-native-gesture-handler"
-import { getThemeColor } from "../../utils/color"
-import { useSelector } from "react-redux"
-import { RootState } from "../../redux/store"
-import { GenericTextInputType } from "../../utils/types/GenericTextInput.type"
-import Icon from "react-native-vector-icons/Ionicons";
 import { View } from "react-native"
+import { useSelector } from "react-redux"
+import { TextInput } from "react-native-gesture-handler"
+import Icon from "react-native-vector-icons/Ionicons";
+import { getThemeColor } from "@utils/Color"
+import { RootState } from "@redux/Store"
+import { styles } from "./TextInput.style"
 
-const GenericTextInput = ({ iconName, onBlur, onChangeText, value, secureTextEntry, placeholder, keyboardType }: GenericTextInputType) => {
+import { KeyboardTypeOptions } from "react-native";
+export interface TextInputType {
+    iconName: string,
+    onBlur: () => void,
+    onChangeText: (text: string) => void,
+    value: string,
+    secureTextEntry: boolean,
+    placeholder: string,
+    keyboardType: KeyboardTypeOptions,
+}
+
+const GenericTextInput = ({ iconName, onBlur, onChangeText, value, secureTextEntry, placeholder, keyboardType }: TextInputType) => {
     const theme = useSelector((state: RootState) => state.persistedReducer.theme.theme);
     const themeColors = getThemeColor(theme);
     return (

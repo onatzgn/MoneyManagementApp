@@ -19,6 +19,7 @@
     "@react-navigation/stack": "^6.4.1",
     "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",
+    "babel-plugin-module-resolver": "^5.0.2",
     "json-server": "^1.0.0-beta.1",
     "react": "18.2.0",
     "react-hook-form": "^7.52.1",

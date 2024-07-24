@@ -1,4 +1,12 @@
-import {ColorTypes} from './types/ColorType';
+export interface ColorTypes {
+  background: string;
+  containerBackground: string;
+  titleGreen: string;
+  titleDefault: string;
+  signInUpButton: string;
+  signInUpButtonTextColor: string;
+  placeholder: string;
+}
 
 export const LightTheme: ColorTypes = {
   background: '#EFEFEF',
@@ -7,7 +15,7 @@ export const LightTheme: ColorTypes = {
   titleDefault: 'black',
   signInUpButton: 'black',
   signInUpButtonTextColor: 'white',
-  placeholder: 'gray'
+  placeholder: 'gray',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -17,7 +25,7 @@ export const DarkTheme: ColorTypes = {
   titleDefault: 'white',
   signInUpButton: 'white',
   signInUpButtonTextColor: 'black',
-  placeholder: 'white'
+  placeholder: 'white',
 };
 
 const themes = {

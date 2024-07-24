@@ -1,4 +1,11 @@
-import {InitialState, ThemeState, TOGGLE_THEME} from '../types/theme.types';
+import {TOGGLE_THEME} from '../types/Theme.types';
+
+export interface ThemeState {
+  theme: 'light' | 'dark';
+}
+export const InitialState: ThemeState = {
+  theme: 'light',
+};
 
 const themeReducer = (
   state = InitialState,

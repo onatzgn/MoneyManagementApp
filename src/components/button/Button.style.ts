@@ -1,11 +1,10 @@
 import {StyleSheet} from 'react-native';
-import { LinkButton } from './GenericButton';
 
 export const styles = StyleSheet.create({
-  defaultButton:{
-    width: '100%', 
-    paddingVertical: 20,    
-    borderRadius: 15
+  defaultButton: {
+    width: '100%',
+    paddingVertical: 20,
+    borderRadius: 15,
   },
   defaultButtonContainer: {
     borderRadius: 15,
@@ -18,13 +17,13 @@ export const styles = StyleSheet.create({
   },
   defaultButtonText: {
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   linkButtonContainer: {
     justifyContent: 'center',
   },
   linkButtonText: {
     fontWeight: 'bold',
-    marginLeft: 5
+    marginLeft: 5,
   },
 });

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
-import {View, Text, Image, TouchableOpacity, Button} from 'react-native';
+import { View, Text, Image, TouchableOpacity, Button } from 'react-native';
 import Swiper from 'react-native-swiper';
-import {styles} from './onBoarding.styles';
-import {slides} from '../../utils/onBoarding.slides';
-import {useNavigation} from '@react-navigation/native';
-import TextAnimation from '../../components/TextAnimation/TextAnimation';
-import GenericPointBar from '../../components/GenericPointBar/GenericPointBar';
+import { slides } from '@utils/OnBoarding.slides';
+import { useNavigation } from '@react-navigation/native';
+import TextAnimation from '@components/text-animation/TextAnimation';
+import GenericPointBar from '@components/point-bar/PointBar';
+import { styles } from './OnBoarding.styles';
 
 export default function OnBoarding() {
   const navigation = useNavigation<any>();
@@ -26,7 +26,7 @@ export default function OnBoarding() {
   };
 
   const getButtonText = () => {
-    return slides[slideIndex]?.button || ''; 
+    return slides[slideIndex]?.button || '';
   };
 
   const getBigButtonText = () => {
@@ -35,7 +35,7 @@ export default function OnBoarding() {
     }
     return 'Devam';
   };
-  
+
   const handleBigButtonPress = () => {
     if (slideIndex >= 2) {
       onPressSignUp();
@@ -53,15 +53,15 @@ export default function OnBoarding() {
           resizeMode="contain"
         />
       </View>
-      
+
       <View style={styles.newContainer}>
-      <View >
-        <Image
-         source={require('../../assets/Animations/timoProfileIcon.png')}
-         style={styles.timoIcon}
-         resizeMode="contain"
-        />
-      </View>
+        <View >
+          <Image
+            source={require('../../assets/Animations/timoProfileIcon.png')}
+            style={styles.timoIcon}
+            resizeMode="contain"
+          />
+        </View>
         <Swiper
           ref={swiperRef}
           paginationStyle={styles.paginationStyle}
@@ -87,13 +87,13 @@ export default function OnBoarding() {
               )}
               {secondMessageCompleted && getButtonText() && (
                 <View>
-                <TouchableOpacity style = {styles.notificationButton}>
-                  <Text style = {styles.notificationText}>{getButtonText()}</Text>
-                </TouchableOpacity>
-                <GenericPointBar
-                  text="200"
-                  containerStyle={{ marginLeft: 85 }}
-                />
+                  <TouchableOpacity style={styles.notificationButton}>
+                    <Text style={styles.notificationText}>{getButtonText()}</Text>
+                  </TouchableOpacity>
+                  <GenericPointBar
+                    text="200"
+                    containerStyle={{ marginLeft: 85 }}
+                  />
                 </View>
               )}
             </View>
@@ -102,9 +102,9 @@ export default function OnBoarding() {
       </View>
       <View style={styles.buttonContainer}>
         {secondMessageCompleted && (
-        <TouchableOpacity onPress={handleBigButtonPress} style={styles.button}>
-          <Text style={styles.nextText}>{getBigButtonText()}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={handleBigButtonPress} style={styles.button}>
+            <Text style={styles.nextText}>{getBigButtonText()}</Text>
+          </TouchableOpacity>
         )}
       </View>
     </View>

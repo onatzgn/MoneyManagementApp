@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View, Text } from 'react-native';
-import { styles } from './genericPointBar.styles';
+import { styles } from './PointBar.styles';
 
 interface GenericPointBarProps {
   text: string;

@@ -1,32 +1,39 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {useDispatch} from 'react-redux';
-import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE} from 'redux-persist';
-import themeReducer from './Reducers/themeReducer';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
+import themeReducer from './reducers/ThemeReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import userReducer from './Reducers/userReducer';
+import userReducer from './reducers/UserReducer';
 
 const persistConfig = {
   key: 'root',
-  storage : AsyncStorage
+  storage: AsyncStorage,
 };
 const rootReducer = combineReducers({
   theme: themeReducer,
-  user: userReducer
-})
+  user: userReducer,
+});
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: {
-    persistedReducer
+    persistedReducer,
   },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }),
-  
-  
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

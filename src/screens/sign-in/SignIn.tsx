@@ -1,19 +1,19 @@
-import { SafeAreaView, Switch, Text, View } from 'react-native';
-import { styles } from './signIn.style';
-import { useSelector } from 'react-redux';
-import { getThemeColor } from '../../utils/color';
-import { ToggleTheme } from '../../redux/Actions/themeAction';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { DefaultButton } from '../../components/GenericButton/GenericButton';
-import GenericTextInput from '../../components/GenericTextInput/GenericTextInput';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import GenericLogo from '../../components/GenericLogo/GenericLogo';
-import { UserSignInType } from '../../utils/types/UserSignInType';
-import { signInRequest, signInUser } from '../../redux/Actions/userAction';
-import { SIGNIN_FAILURE } from '../../redux/types/user.types';
-import { useNavigation } from '@react-navigation/native';
-import GenericText from '../../components/GenericText/GenericText';
 import { useEffect, useState } from 'react';
+import { SafeAreaView, Switch, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import { getThemeColor } from '@utils/Color';
+import { ToggleTheme } from '@redux/actions/ThemeAction';
+import { RootState, useAppDispatch } from '@redux/Store';
+import { DefaultButton } from '@components/button/Button';
+import GenericTextInput from '@components/text-input/TextInput';
+import GenericLogo from '@components/logo/Logo';
+import { UserSignInType } from '@utils/types/UserSignInType';
+import { signInUser } from '@redux/actions/UserAction';
+import { SIGNIN_FAILURE } from '@redux/types/User.types';
+import { useNavigation } from '@react-navigation/native';
+import GenericText from '@components/text/Text';
+import { styles } from './SignIn.style';
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -27,30 +27,29 @@ const SignIn = () => {
       password: '',
     }
   })
-  const signIn = useSelector((state:RootState)=> state.persistedReducer.user.signIn)
-  useEffect(()=>{
-    if(signIn && rememberMe && !errors){
+  const signIn = useSelector((state: RootState) => state.persistedReducer.user.signIn)
+  useEffect(() => {
+    if (signIn && rememberMe && !errors) {
       reset({
         email: signIn.email,
         password: signIn.password
-      })  
+      })
     }
-    else if(!rememberMe){
+    else if (!rememberMe) {
       reset({
         email: '',
         password: ''
-      })  
+      })
     }
   }, [navigation, signIn])
-  const onSubmit: SubmitHandler<UserSignInType> = async data => {
-    dispatch(signInRequest())
-    try{
+  const onSubmit = async (data: UserSignInType) => {
+    try {
       dispatch(signInUser(data))
-    } catch(error){
-      dispatch({type: SIGNIN_FAILURE, payload: error})
+    } catch (error) {
+      dispatch({ type: SIGNIN_FAILURE, payload: error })
     }
-    if(signIn){
-      navigation.navigate('Home') 
+    if (signIn) {
+      navigation.navigate('Home')
     }
   }
   const toggleSwitchRememberMe = (value: boolean) => {
@@ -95,7 +94,7 @@ const SignIn = () => {
             )}
             name="email"
           />
-          {errors.email && (<Text></Text>)}
+          {errors?.email && (<Text></Text>)}
           <Controller
             control={control}
             rules={{
@@ -115,18 +114,18 @@ const SignIn = () => {
                 placeholder='Şifre'
                 keyboardType='default' />
             )}
-            name="password"  
+            name="password"
           />
-          {errors.password && (<Text></Text>)}
-            <View style={{flexDirection: 'row'}}>
-              <GenericText style={[styles.rememberMeText,{color: themeColors.titleDefault}]} text='Beni hatırla '/>
-              <Switch
+          {errors?.password && (<Text></Text>)}
+          <View style={{ flexDirection: 'row' }}>
+            <GenericText style={[styles.rememberMeText, { color: themeColors.titleDefault }]} text='Beni hatırla ' />
+            <Switch
               trackColor={{ true: themeColors.titleGreen }}
               ios_backgroundColor={themeColors.titleDefault}
               onValueChange={toggleSwitchRememberMe}
               value={rememberMe}
-              />
-            </View>
+            />
+          </View>
           <DefaultButton
             onPress={handleSubmit(onSubmit)}
             text="Giriş Yap"

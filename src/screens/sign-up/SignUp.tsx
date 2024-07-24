@@ -1,18 +1,18 @@
 import { SafeAreaView, Switch, Text, View } from 'react-native';
-import { styles } from './signUp.style';
 import { useSelector } from 'react-redux';
-import { getThemeColor } from '../../utils/color';
-import { ToggleTheme } from '../../redux/Actions/themeAction';
-import { RootState, useAppDispatch } from '../../redux/store';
-import {DefaultButton, LinkButton} from '../../components/GenericButton/GenericButton';
-import GenericTextInput from '../../components/GenericTextInput/GenericTextInput';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import GenericLogo from '../../components/GenericLogo/GenericLogo';
-import GenericText from '../../components/GenericText/GenericText';
+import { Controller, useForm } from 'react-hook-form';
+import { getThemeColor } from '@utils/Color';
+import { ToggleTheme } from '@redux/actions/ThemeAction';
+import { RootState, useAppDispatch } from '@redux/Store';
+import { DefaultButton, LinkButton } from '@components/button/Button';
+import GenericTextInput from '@components/text-input/TextInput';
+import GenericLogo from '@components/logo/Logo';
+import GenericText from '@components/text/Text';
 import { useNavigation } from '@react-navigation/native';
-import { UserSignUpType } from '../../utils/types/UserSignUpType';
-import { signUpUser, signUpRequest } from '../../redux/Actions/userAction';
-import { SIGNUP_FAILURE } from '../../redux/types/user.types';
+import { UserSignUpType } from '@utils/types/UserSignUpType';
+import { signUpUser } from '@redux/actions/UserAction';
+import { SIGNUP_FAILURE } from '@redux/types/User.types';
+import { styles } from './SignUp.style';
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -27,12 +27,11 @@ const SignUp = () => {
       phone: ''
     }
   })
-  const onSubmit: SubmitHandler<UserSignUpType> = async data => {
-    dispatch(signUpRequest())
-    try{
+  const onSubmit = async (data: UserSignUpType) => {
+    try {
       dispatch(signUpUser(data))
-    } catch(error){
-      dispatch({type: SIGNUP_FAILURE, payload: error})
+    } catch (error) {
+      dispatch({ type: SIGNUP_FAILURE, payload: error })
     }
   }
   const toggleSwitch = (value: boolean) => {
@@ -73,7 +72,7 @@ const SignUp = () => {
             )}
             name="fullName"
           />
-          {errors.fullName && (<Text></Text>)}
+          {errors?.fullName && (<Text></Text>)}
           <Controller
             control={control}
             rules={{
@@ -96,7 +95,7 @@ const SignUp = () => {
             )}
             name="email"
           />
-          {errors.email && (<Text></Text>)}
+          {errors?.email && (<Text></Text>)}
           <Controller
             control={control}
             rules={{
@@ -118,7 +117,7 @@ const SignUp = () => {
             )}
             name="password"
           />
-          {errors.password && (<Text></Text>)}
+          {errors?.password && (<Text></Text>)}
           <Controller
             control={control}
             rules={{
@@ -140,7 +139,7 @@ const SignUp = () => {
             )}
             name="phone"
           />
-          {errors.phone && (<Text></Text>)}
+          {errors?.phone && (<Text></Text>)}
 
           <DefaultButton
             onPress={handleSubmit(onSubmit)}
