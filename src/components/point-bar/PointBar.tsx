@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, View } from 'react-native';
 import { styles } from './PointBar.styles';
 import Text from '@components/text/Text';
+import Images from '@assets/Images/Images';
 
 interface PointBarProps {
   text: string;
@@ -12,7 +13,7 @@ const PointBar: React.FC<PointBarProps> = ({ text, containerStyle }) => {
   return (
     <View style={[styles.logoContainer, containerStyle]}>
       <Image
-        source={require('../../assets/Animations/starIcon.png')}
+        source={Images.starIcon}
         style={styles.logo}
         resizeMode="contain"
       />

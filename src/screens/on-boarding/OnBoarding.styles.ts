@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
     height: 8,
     borderWidth: 1,
     borderBottomWidth: 2,
+    backgroundColor:'#B0E3CF'
   },
   viewStyle: {
     flex: 1,

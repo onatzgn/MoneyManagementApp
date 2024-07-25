@@ -32,7 +32,7 @@ export const signUpUser =
   (newUser: UserSignUpType) => async (dispatch: AppDispatch) => {
     try {
       axios
-        .post('http://localhost:3000/users', newUser)
+        .post('http://10.0.2.2:3000/users', newUser)
         .then(response => console.log(response));
       dispatch({type: SIGNUP_SUCCESS, payload: newUser});
     } catch (error) {
@@ -43,7 +43,7 @@ export const signInUser = (user: UserSignInType) => {
   return async (dispatch: AppDispatch) => {
     {
       axios
-        .get('http://localhost:3000/users')
+        .get('http://10.0.2.2:3000/users')
         .then(response => {
           const users = response.data;
           const currentUser = users.find(

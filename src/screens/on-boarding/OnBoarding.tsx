@@ -7,6 +7,7 @@ import TextAnimation from '@components/text-animation/TextAnimation';
 import PointBar from '@components/point-bar/PointBar';
 import { styles } from './OnBoarding.styles';
 import Text from '@components/text/Text';
+import Images from '@assets/Images/Images';
 
 export default function OnBoarding() {
   const navigation = useNavigation<any>();
@@ -49,7 +50,7 @@ export default function OnBoarding() {
     <View style={styles.viewStyle}>
       <View style={styles.logoWrapper}>
         <Image
-          source={require('../../assets/Animations/timoLogo.png')}
+          source={Images.timoLogo}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -58,7 +59,7 @@ export default function OnBoarding() {
       <View style={styles.newContainer}>
         <View >
           <Image
-            source={require('../../assets/Animations/timoProfileIcon.png')}
+            source={Images.timoChatIcon}
             style={styles.timoIcon}
             resizeMode="contain"
           />
@@ -67,7 +68,6 @@ export default function OnBoarding() {
           ref={swiperRef}
           paginationStyle={styles.paginationStyle}
           dotStyle={styles.dotStyle}
-          activeDotColor="#B0E3CF"
           activeDotStyle={styles.activeDotStyle}
           loop={false}
           scrollEnabled={false}
