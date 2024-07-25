@@ -1,12 +1,13 @@
-import React, { useRef, useState } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import React, {useRef, useState} from 'react';
+import {View, Image, TouchableOpacity} from 'react-native';
 import Swiper from 'react-native-swiper';
-import { slides } from '@utils/OnBoarding.slides';
-import { useNavigation } from '@react-navigation/native';
+import {slides} from '@utils/OnBoarding.slides';
+import {useNavigation} from '@react-navigation/native';
 import TextAnimation from '@components/text-animation/TextAnimation';
 import PointBar from '@components/point-bar/PointBar';
-import { styles } from './OnBoarding.styles';
+import {styles} from './OnBoarding.styles';
 import Text from '@components/text/Text';
+import Images from '@assets/Images/Images';
 
 export default function OnBoarding() {
   const navigation = useNavigation<any>();
@@ -49,16 +50,16 @@ export default function OnBoarding() {
     <View style={styles.viewStyle}>
       <View style={styles.logoWrapper}>
         <Image
-          source={require('../../assets/Animations/timoLogo.png')}
+          source={Images.timoLogo}
           style={styles.logo}
           resizeMode="contain"
         />
       </View>
 
       <View style={styles.newContainer}>
-        <View >
+        <View>
           <Image
-            source={require('../../assets/Animations/timoProfileIcon.png')}
+            source={Images.timoChatIcon}
             style={styles.timoIcon}
             resizeMode="contain"
           />
@@ -67,11 +68,9 @@ export default function OnBoarding() {
           ref={swiperRef}
           paginationStyle={styles.paginationStyle}
           dotStyle={styles.dotStyle}
-          activeDotColor="#B0E3CF"
           activeDotStyle={styles.activeDotStyle}
           loop={false}
-          scrollEnabled={false}
-        >
+          scrollEnabled={false}>
           {slides.map((slide, index) => (
             <View key={slide.id}>
               {index === slideIndex && (
@@ -89,12 +88,11 @@ export default function OnBoarding() {
               {secondMessageCompleted && getButtonText() && (
                 <View>
                   <TouchableOpacity style={styles.notificationButton}>
-                    <Text text={getButtonText()} style={styles.notificationText}></Text>
+                    <Text
+                      text={getButtonText()}
+                      style={styles.notificationText}></Text>
                   </TouchableOpacity>
-                  <PointBar
-                    text="200"
-                    containerStyle={{ marginLeft: 85 }}
-                  />
+                  <PointBar text="200" containerStyle={styles.pointBarStyle} />
                 </View>
               )}
             </View>
@@ -103,7 +101,9 @@ export default function OnBoarding() {
       </View>
       <View style={styles.buttonContainer}>
         {secondMessageCompleted && (
-          <TouchableOpacity onPress={handleBigButtonPress} style={styles.button}>
+          <TouchableOpacity
+            onPress={handleBigButtonPress}
+            style={styles.button}>
             <Text text={getBigButtonText()} style={styles.nextText}></Text>
           </TouchableOpacity>
         )}

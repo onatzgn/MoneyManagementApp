@@ -1,22 +1,23 @@
 import {StyleSheet} from 'react-native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
+    padding: moderateScale(5),
     backgroundColor: '#00C6AE',
-    borderWidth: 2,
-    borderRadius: 10,
+    borderWidth: moderateScale(2),
+    borderRadius: moderateScale(10),
     width: '50%',
     position: 'relative',
     marginLeft: '30%',
     marginTop: '10%',
-    margin: -30,
+    margin: moderateScale(-30),
   },
   text: {
     alignSelf: 'auto',
-    fontSize: 16,
+    fontSize: scale(14),
     textAlign: 'center',
     marginTop: 0,
     fontWeight: 'bold',

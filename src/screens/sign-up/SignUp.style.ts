@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
   },
   formContainer: {
     alignItems: 'center',
-    fontFamily: 'Open Sans'
+    fontFamily: 'Open Sans',
   },
-  signInButton:{
-   flexDirection: 'row',
-   justifyContent: 'center',
-   marginVertical: '5%',
-  }
+  signInButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: '5%',
+  },
 });

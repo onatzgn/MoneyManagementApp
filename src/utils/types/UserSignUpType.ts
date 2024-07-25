@@ -1,8 +1,7 @@
-import { UserSignInType } from "./UserSignInType";
+import {UserSignInType} from './UserSignInType';
 
 export interface UserSignUpType extends UserSignInType {
-    id?: string;
-    fullName: string;
-    phone: string;
-  }
-  
+  id?: string;
+  fullName: string;
+  phone: string;
+}
