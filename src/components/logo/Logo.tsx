@@ -1,6 +1,7 @@
 import { Image, View } from "react-native"
 import { styles } from "./Logo.styles"
 import Text from "../text/Text"
+import Images from "@assets/Images/Images"
 
 export interface LogoType {
     text: string,
@@ -10,7 +11,7 @@ export interface LogoType {
 const Logo = ({ text, color }: LogoType) => {
     return (
         <View style={styles.logoContainer}>
-            <Image source={require('../../assets/Animations/Crocodile.png')} />
+            <Image source={Images.crocodile} />
             <Text text={text} style={[styles.text, { color: color }]} />
         </View>
     )

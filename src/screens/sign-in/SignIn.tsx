@@ -1,60 +1,68 @@
-import { useEffect, useState } from 'react';
-import { SafeAreaView, Switch, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { Controller, useForm } from 'react-hook-form';
-import { getThemeColor } from '@utils/Color';
-import { ToggleTheme } from '@redux/actions/ThemeAction';
-import { RootState, useAppDispatch } from '@redux/Store';
-import { DefaultButton } from '@components/button/Button';
+import {useEffect, useState} from 'react';
+import {SafeAreaView, Switch, View} from 'react-native';
+import {useSelector} from 'react-redux';
+import {Controller, useForm} from 'react-hook-form';
+import {getThemeColor} from '@utils/Color';
+import {ToggleTheme} from '@redux/actions/ThemeAction';
+import {RootState, useAppDispatch} from '@redux/Store';
+import {DefaultButton} from '@components/button/Button';
 import TextInput from '@components/text-input/TextInput';
 import Logo from '@components/logo/Logo';
-import { UserSignInType } from '@utils/types/UserSignInType';
-import { signInUser } from '@redux/actions/UserAction';
-import { SIGNIN_FAILURE } from '@redux/types/User.types';
-import { useNavigation } from '@react-navigation/native';
+import {UserSignInType} from '@utils/types/UserSignInType';
+import {signInUser} from '@redux/actions/UserAction';
+import {SIGNIN_FAILURE} from '@redux/types/User.types';
+import {useNavigation} from '@react-navigation/native';
 import Text from '@components/text/Text';
-import { styles } from './SignIn.style';
+import {styles} from './SignIn.style';
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
-  const navigation = useNavigation<any>()
-  const theme = useSelector((state: RootState) => state.persistedReducer.theme.theme);
+  const navigation = useNavigation<any>();
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
   const themeColors = getThemeColor(theme);
-  const [rememberMe, setRememberMe] = useState<boolean>(false)
-  const { control, handleSubmit, reset, formState: { errors } } = useForm({
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: {errors},
+  } = useForm({
     defaultValues: {
       email: '',
       password: '',
-    }
-  })
-  const signIn = useSelector((state: RootState) => state.persistedReducer.user.signIn)
+    },
+  });
+  const signIn = useSelector(
+    (state: RootState) => state.persistedReducer.user.signIn,
+  );
   useEffect(() => {
     if (signIn && rememberMe && !errors) {
       reset({
         email: signIn.email,
-        password: signIn.password
-      })
-    }
-    else if (!rememberMe) {
+        password: signIn.password,
+      });
+    } else if (!rememberMe) {
       reset({
         email: '',
-        password: ''
-      })
+        password: '',
+      });
     }
-  }, [navigation, signIn])
+  }, [navigation, signIn]);
   const onSubmit = async (data: UserSignInType) => {
     try {
-      dispatch(signInUser(data))
+      dispatch(signInUser(data));
     } catch (error) {
-      dispatch({ type: SIGNIN_FAILURE, payload: error })
+      dispatch({type: SIGNIN_FAILURE, payload: error});
     }
     if (signIn) {
-      navigation.navigate('Home')
+      navigation.navigate('Home');
     }
-  }
+  };
   const toggleSwitchRememberMe = (value: boolean) => {
-    setRememberMe(value)
-  }
+    setRememberMe(value);
+  };
   const toggleSwitchTheme = (value: boolean) => {
     if (value) {
       dispatch(ToggleTheme('dark'));
@@ -66,10 +74,10 @@ const SignIn = () => {
     <SafeAreaView
       style={[
         styles.signInContainer,
-        { backgroundColor: themeColors.background },
+        {backgroundColor: themeColors.background},
       ]}>
       <View style={styles.inputContainer}>
-        <Logo text='Merhaba' color={themeColors.titleDefault} />
+        <Logo text="Merhaba" color={themeColors.titleDefault} />
         <View style={styles.formContainer}>
           <Controller
             control={control}
@@ -77,53 +85,60 @@ const SignIn = () => {
               required: 'E-posta boş bırakılamaz',
               minLength: {
                 value: 5,
-                message: 'E-posta en az 5 karakter uzunluğunda olmalıdır'
-              }
+                message: 'E-posta en az 5 karakter uzunluğunda olmalıdır',
+              },
             }}
-            render={({ field: { onBlur, onChange, value } }) => (
+            render={({field: {onBlur, onChange, value}}) => (
               <TextInput
-                iconName='mail-outline'
+                iconName="mail-outline"
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={false}
-                placeholder='Email'
-                keyboardType='email-address'
+                placeholder="Email"
+                keyboardType="email-address"
               />
             )}
             name="email"
           />
-          {errors?.email && (<Text text=''></Text>)}
-          {errors.email && (<Text text='' />)}
+          {errors?.email && <Text text=""></Text>}
+          {errors.email && <Text text="" />}
           <Controller
             control={control}
             rules={{
               required: 'warn',
               minLength: {
                 value: 5,
-                message: 'warn'
-              }
+                message: 'warn',
+              },
             }}
-            render={({ field: { onBlur, onChange, value } }) => (
+            render={({field: {onBlur, onChange, value}}) => (
               <TextInput
-                iconName='key-outline'
+                iconName="key-outline"
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={true}
-                placeholder='Şifre'
-                keyboardType='default' />
+                placeholder="Şifre"
+                keyboardType="default"
+              />
             )}
             name="password"
           />
-          {errors?.password && (<Text text=''></Text>)}
+          {errors?.password && <Text text=""></Text>}
 
-          <View style={{ flexDirection: 'row' }}>
-            {errors.password && (<Text text=''></Text>)}
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={[styles.rememberMeText, { color: themeColors.titleDefault }]} text='Beni hatırla ' />
+          <View style={{flexDirection: 'row'}}>
+            {errors.password && <Text text=""></Text>}
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={[
+                  styles.rememberMeText,
+                  {color: themeColors.titleDefault},
+                ]}
+                text="Beni hatırla "
+              />
               <Switch
-                trackColor={{ true: themeColors.titleGreen }}
+                trackColor={{true: themeColors.titleGreen}}
                 ios_backgroundColor={themeColors.titleDefault}
                 onValueChange={toggleSwitchRememberMe}
                 value={rememberMe}
@@ -139,7 +154,7 @@ const SignIn = () => {
         </View>
       </View>
       <Switch
-        trackColor={{ true: themeColors.titleDefault }}
+        trackColor={{true: themeColors.titleDefault}}
         ios_backgroundColor={themeColors.titleDefault}
         onValueChange={toggleSwitchTheme}
         value={theme === 'dark'}
