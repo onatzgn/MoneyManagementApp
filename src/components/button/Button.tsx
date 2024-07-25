@@ -19,7 +19,6 @@ const DefaultButton = ({ text, onPress, backgroundColor, textColor }: ButtonType
         <Text text={text} style={[styles.defaultButtonText, { color: textColor }]}></Text>
       </TouchableOpacity>
     </View>
-
   )
 }
 const LinkButton = ({ text, onPress, backgroundColor, textColor }: ButtonType) => {

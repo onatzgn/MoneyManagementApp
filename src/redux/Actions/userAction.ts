@@ -8,6 +8,15 @@ import {
   SIGNIN_FAILURE,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
+import {Platform} from 'react-native';
+
+const baseUrl = () => {
+  console.log('os', Platform.OS);
+  if (Platform.OS === 'android') {
+    return 'http://10.0.2.2:4000';
+  }
+  return 'http://localhost:4000';
+};
 //Sign Up Actions
 export const signUpSuccess = (user: UserSignUpType) => ({
   type: SIGNUP_SUCCESS,
@@ -20,7 +29,6 @@ export const signUpFailure = (error: any) => ({
 //Sign In  Actions
 export const signInSuccess = (currentUser: UserSignInType) => ({
   type: SIGNIN_SUCCESS,
-
   payload: currentUser,
 });
 export const signInFailure = (error: any) => ({
@@ -32,7 +40,7 @@ export const signUpUser =
   (newUser: UserSignUpType) => async (dispatch: AppDispatch) => {
     try {
       axios
-        .post('http://localhost:3000/users', newUser)
+        .post(`${baseUrl()}/users`, newUser)
         .then(response => console.log(response));
       dispatch({type: SIGNUP_SUCCESS, payload: newUser});
     } catch (error) {
@@ -42,19 +50,26 @@ export const signUpUser =
 export const signInUser = (user: UserSignInType) => {
   return async (dispatch: AppDispatch) => {
     {
-      axios
-        .get('http://localhost:3000/users')
-        .then(response => {
-          const users = response.data;
-          const currentUser = users.find(
-            (u: UserSignInType) =>
-              u.email === user.email && u.password === user.password,
-          );
-          dispatch(signInSuccess(currentUser));
-        })
-        .catch(reason => {
-          dispatch({type: SIGNIN_FAILURE, payload: reason});
-        });
+      try {
+        console.log('user: ', user);
+        axios
+          .get(`${baseUrl()}/users`)
+          .then(response => {
+            const users = response.data;
+            const currentUser = users.find(
+              (u: UserSignInType) =>
+                u.email === user.email && u.password === user.password,
+            );
+            dispatch(signInSuccess(currentUser));
+            console.log('currentuser: ', currentUser);
+          })
+          .catch(reason => {
+            dispatch({type: SIGNIN_FAILURE, payload: reason});
+            console.log('reason: ', reason);
+          });
+      } catch (error) {
+        console.log('catch: ', error);
+      }
     }
   };
 };

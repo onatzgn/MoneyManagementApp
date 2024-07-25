@@ -5,7 +5,7 @@ import { getThemeColor } from '@utils/Color';
 import { ToggleTheme } from '@redux/actions/ThemeAction';
 import { RootState, useAppDispatch } from '@redux/Store';
 import { DefaultButton, LinkButton } from '@components/button/Button';
-import TextInput from '@components/text-input/TextInput';
+import { GenericMaskInput, GenericTextInput } from '@components/text-input/TextInput';
 import Logo from '@components/logo/Logo';
 import Text from '@components/text/Text';
 import { useNavigation } from '@react-navigation/native';
@@ -54,36 +54,37 @@ const SignUp = () => {
           <Controller
             control={control}
             rules={{
-              required: '',
+              required: 'Ad Soyad boş bırakılamaz',
               minLength: {
-                value: 5,
-                message: ''
+                value: 2,
+                message: 'Ad Soyad en az 5 karakter uzunluğunda olmalıdır'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <TextInput
+              <GenericTextInput
                 iconName='person-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={false}
                 placeholder='Ad Soyad'
-                keyboardType='numeric' />
+                keyboardType='numeric'
+                errorMessage={errors.fullName?.message}
+              />
             )}
             name="fullName"
           />
-          {errors?.fullName && (<Text text=''></Text>)}
           <Controller
             control={control}
             rules={{
-              required: '',
+              required: 'E-posta boş bırakılamaz',
               minLength: {
-                value: 5,
-                message: ''
+                value: 8,
+                message: 'E posta en az 8 karakter uzunluğunda olmalıdır'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <TextInput
+              <GenericTextInput
                 iconName='mail-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -91,56 +92,57 @@ const SignUp = () => {
                 secureTextEntry={false}
                 placeholder='Email'
                 keyboardType='email-address'
+                errorMessage={errors.email?.message}
               />
             )}
             name="email"
           />
-          {errors?.email && (<Text text=''></Text>)}
           <Controller
             control={control}
             rules={{
-              required: '',
+              required: 'Şifre boş bırakılamaz',
               minLength: {
-                value: 5,
-                message: ''
+                value: 4,
+                message: 'Şifre en az 4 karakter uzunluğunda olmalıdır'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <TextInput
+              <GenericTextInput
                 iconName='key-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={true}
                 placeholder='Şifre'
-                keyboardType='default' />
+                keyboardType='default'
+                errorMessage={errors.password?.message}
+              />
             )}
             name="password"
           />
-          {errors?.password && (<Text text=''></Text>)}
           <Controller
             control={control}
             rules={{
-              required: '',
+              required: 'Cep Telefonu boş bırakılamaz',
               minLength: {
-                value: 5,
-                message: ''
+                value: 17,
+                message: 'Cep Telefonu en az 11 karakter olmalıdır'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <TextInput
+              <GenericMaskInput
                 iconName='call-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={false}
-                placeholder='Cep Telefonu'
-                keyboardType='name-phone-pad' />
+                placeholder='+90-5XX-XXX-XX-XX'
+                keyboardType='name-phone-pad'
+                errorMessage={errors.phone?.message}
+              />
             )}
             name="phone"
           />
-          {errors?.phone && (<Text text=''></Text>)}
-
           <DefaultButton
             onPress={handleSubmit(onSubmit)}
             text="Kayıt Ol"

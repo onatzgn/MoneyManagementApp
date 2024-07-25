@@ -19,10 +19,10 @@ export const styles = StyleSheet.create({
   rememberMeText: {
     alignSelf: 'center',
   },
-  toolTipContainer: {
+  warningIcon: {
+    width: '10%',
     position: 'absolute',
-    right: '15%',
-    bottom: '15%',
-    top: '35%',
+    right: 10,
+    bottom: 0,
   },
 });

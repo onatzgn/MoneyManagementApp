@@ -6,7 +6,7 @@ import { getThemeColor } from '@utils/Color';
 import { ToggleTheme } from '@redux/actions/ThemeAction';
 import { RootState, useAppDispatch } from '@redux/Store';
 import { DefaultButton } from '@components/button/Button';
-import TextInput from '@components/text-input/TextInput';
+import { GenericTextInput } from '@components/text-input/TextInput';
 import Logo from '@components/logo/Logo';
 import { UserSignInType } from '@utils/types/UserSignInType';
 import { signInUser } from '@redux/actions/UserAction';
@@ -68,6 +68,7 @@ const SignIn = () => {
         styles.signInContainer,
         { backgroundColor: themeColors.background },
       ]}>
+
       <View style={styles.inputContainer}>
         <Logo text='Merhaba' color={themeColors.titleDefault} />
         <View style={styles.formContainer}>
@@ -81,7 +82,7 @@ const SignIn = () => {
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <TextInput
+              <GenericTextInput
                 iconName='mail-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -89,46 +90,41 @@ const SignIn = () => {
                 secureTextEntry={false}
                 placeholder='Email'
                 keyboardType='email-address'
+                errorMessage={errors.email?.message}
               />
             )}
             name="email"
           />
-          {errors?.email && (<Text text=''></Text>)}
-          {errors.email && (<Text text='' />)}
           <Controller
             control={control}
             rules={{
-              required: 'warn',
+              required: 'Şifre boş kalamaz',
               minLength: {
                 value: 5,
-                message: 'warn'
+                message: 'Minimum 5 karakter'
               }
             }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <TextInput
+              <GenericTextInput
                 iconName='key-outline'
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry={true}
                 placeholder='Şifre'
-                keyboardType='default' />
+                keyboardType='default'
+                errorMessage={errors.password?.message} />
             )}
             name="password"
           />
-          {errors?.password && (<Text text=''></Text>)}
-
           <View style={{ flexDirection: 'row' }}>
-            {errors.password && (<Text text=''></Text>)}
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={[styles.rememberMeText, { color: themeColors.titleDefault }]} text='Beni hatırla ' />
-              <Switch
-                trackColor={{ true: themeColors.titleGreen }}
-                ios_backgroundColor={themeColors.titleDefault}
-                onValueChange={toggleSwitchRememberMe}
-                value={rememberMe}
-              />
-            </View>
+            <Text style={[styles.rememberMeText, { color: themeColors.titleDefault }]} text='Beni hatırla ' />
+            <Switch
+              trackColor={{ true: themeColors.titleGreen }}
+              ios_backgroundColor={themeColors.titleDefault}
+              onValueChange={toggleSwitchRememberMe}
+              value={rememberMe}
+            />
           </View>
           <DefaultButton
             onPress={handleSubmit(onSubmit)}

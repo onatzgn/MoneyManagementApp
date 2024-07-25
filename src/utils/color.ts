@@ -6,6 +6,7 @@ export interface ColorTypes {
   signInUpButton: string;
   signInUpButtonTextColor: string;
   placeholder: string;
+  warning: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -16,6 +17,7 @@ export const LightTheme: ColorTypes = {
   signInUpButton: 'black',
   signInUpButtonTextColor: 'white',
   placeholder: 'gray',
+  warning: 'orange',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -26,6 +28,7 @@ export const DarkTheme: ColorTypes = {
   signInUpButton: 'white',
   signInUpButtonTextColor: 'black',
   placeholder: 'white',
+  warning: 'orange',
 };
 
 const themes = {

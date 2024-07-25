@@ -1,15 +1,6 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {useDispatch} from 'react-redux';
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  persistReducer,
-  persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-} from 'redux-persist';
+import {persistReducer, persistStore} from 'redux-persist';
 import ThemeReducer from './reducers/ThemeReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserReducer from './reducers/UserReducer';
@@ -30,9 +21,7 @@ const Store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }),
 });
 export type RootState = ReturnType<typeof Store.getState>;
