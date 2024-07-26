@@ -6,6 +6,7 @@ import OnBoarding from '@screens/on-boarding/OnBoarding';
 import SignUp from '@screens/sign-up/SignUp';
 import SignIn from '@screens/sign-in/SignIn';
 import Home from '@screens/home/Home';
+import Profile from '@screens/profile/Profile';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ const StackNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
