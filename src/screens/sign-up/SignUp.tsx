@@ -1,21 +1,23 @@
+import React from 'react';
 import {SafeAreaView, Switch, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
 import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
-import {DefaultButton, LinkButton} from '@components/button/Button';
 import {
+  Text,
+  Logo,
   GenericMaskInput,
   GenericTextInput,
-} from '@components/text-input/TextInput';
-import Logo from '@components/logo/Logo';
-import Text from '@components/text/Text';
+  DefaultButton,
+  LinkButton,
+} from '@components';
 import {useNavigation} from '@react-navigation/native';
 import {UserSignUpType} from '@utils/types/UserSignUpType';
 import {signUpUser} from '@redux/actions/UserAction';
 import {SIGNUP_FAILURE} from '@redux/types/User.types';
-import {styles} from './SignUp.style';
+import styles from './SignUp.style';
 
 const SignUp = () => {
   const dispatch = useAppDispatch();

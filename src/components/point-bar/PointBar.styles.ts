@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   pointText: {
     fontSize: scale(10),
     textAlign: 'center',
-    marginTop: verticalScale(3),
+    marginTop: verticalScale(2),
     fontWeight: '800',
   },
   logoContainer: {

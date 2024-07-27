@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, View} from 'react-native';
 import {styles} from './PointBar.styles';
-import Text from '@components/text/Text';
+import {Text} from '@components';
 import Images from '@assets/Images/Images';
 
 interface PointBarProps {
@@ -9,7 +9,7 @@ interface PointBarProps {
   containerStyle?: object;
 }
 
-const PointBar: React.FC<PointBarProps> = ({text, containerStyle}) => {
+export const PointBar: React.FC<PointBarProps> = ({text, containerStyle}) => {
   return (
     <View style={[styles.logoContainer, containerStyle]}>
       <Image
@@ -21,5 +21,3 @@ const PointBar: React.FC<PointBarProps> = ({text, containerStyle}) => {
     </View>
   );
 };
-
-export default PointBar;

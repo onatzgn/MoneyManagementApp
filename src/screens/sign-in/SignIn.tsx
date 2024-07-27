@@ -1,18 +1,15 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, Switch, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
 import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
-import {DefaultButton} from '@components/button/Button';
-import {GenericTextInput} from '@components/text-input/TextInput';
-import Logo from '@components/logo/Logo';
+import {DefaultButton, GenericTextInput, Logo, Text} from '@components';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {signInUser} from '@redux/actions/UserAction';
 import {SIGNIN_FAILURE} from '@redux/types/User.types';
 import {useNavigation} from '@react-navigation/native';
-import Text from '@components/text/Text';
 import {styles} from './SignIn.style';
 
 const SignIn = () => {

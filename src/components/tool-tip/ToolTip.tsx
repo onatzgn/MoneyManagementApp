@@ -1,3 +1,4 @@
+import React, {useEffect, useState} from 'react';
 import {
   GestureResponderEvent,
   StyleProp,
@@ -6,8 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import {styles} from './ToolTip.style';
-import {useEffect, useState} from 'react';
-import Text from '@components/text/Text';
+import {Text} from '@components';
 
 export interface ToolTipType {
   content: string | undefined;
@@ -16,7 +16,7 @@ export interface ToolTipType {
   onPress?: (event: GestureResponderEvent) => void;
 }
 
-const Tooltip = ({style, children, content}: ToolTipType) => {
+export const Tooltip = ({style, children, content}: ToolTipType) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -44,4 +44,3 @@ const Tooltip = ({style, children, content}: ToolTipType) => {
     </View>
   );
 };
-export default Tooltip;
