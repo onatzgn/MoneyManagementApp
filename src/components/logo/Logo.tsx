@@ -1,6 +1,7 @@
+import React from 'react';
 import {Image, View} from 'react-native';
 import {styles} from './Logo.styles';
-import Text from '../text/Text';
+import {Text} from '../text/Text';
 import Images from '@assets/Images/Images';
 
 export interface LogoType {
@@ -8,7 +9,7 @@ export interface LogoType {
   color: string;
 }
 
-const Logo = ({text, color}: LogoType) => {
+export const Logo = ({text, color}: LogoType) => {
   return (
     <View style={styles.logoContainer}>
       <Image source={Images.crocodile} />
@@ -16,4 +17,3 @@ const Logo = ({text, color}: LogoType) => {
     </View>
   );
 };
-export default Logo;

@@ -1,10 +1,12 @@
-import GenericText from '@components/text/Text';
+import React from 'react';
+import {Text} from '@components';
 import {SafeAreaView} from 'react-native';
 import {styles} from './Profile.style';
+
 const Profile = () => {
   return (
     <SafeAreaView>
-      <GenericText text="Profile screen" />
+      <Text text="Profile screen" />
     </SafeAreaView>
   );
 };

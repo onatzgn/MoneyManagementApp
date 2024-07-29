@@ -1,3 +1,4 @@
+import React from 'react';
 import {View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {TextInput} from 'react-native-gesture-handler';
@@ -7,7 +8,8 @@ import {RootState} from '@redux/Store';
 import {styles} from './TextInput.style';
 import MaskInput from 'react-native-mask-input';
 import {KeyboardTypeOptions} from 'react-native';
-import Tooltip from '@components/tool-tip/ToolTip';
+import {Tooltip} from '@components';
+
 const phoneMask = [
   '+',
   '9',
@@ -38,7 +40,7 @@ export interface TextInputType {
   errorMessage: string | undefined;
 }
 
-const GenericTextInput = ({
+export const GenericTextInput = ({
   iconName,
   onBlur,
   onChangeText,
@@ -86,7 +88,7 @@ const GenericTextInput = ({
     </View>
   );
 };
-const GenericMaskInput = ({
+export const GenericMaskInput = ({
   iconName,
   onBlur,
   onChangeText,
@@ -135,5 +137,3 @@ const GenericMaskInput = ({
     </View>
   );
 };
-
-export {GenericTextInput, GenericMaskInput};

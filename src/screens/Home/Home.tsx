@@ -1,6 +1,8 @@
+import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {styles} from './Home.style';
-import Text from '@components/text/Text';
+import {Text, Logo} from '@components';
+
 const Home = () => {
   return (
     <SafeAreaView>
