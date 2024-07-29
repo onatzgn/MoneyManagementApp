@@ -60,7 +60,11 @@ export const signInUser = (user: UserSignInType) => {
               (u: UserSignInType) =>
                 u.email === user.email && u.password === user.password,
             );
-            dispatch(signInSuccess(currentUser));
+            if (currentUser) {
+              dispatch(signInSuccess(currentUser));
+            } else {
+              dispatch(signInFailure('Kullanıcı bulunamadı.'));
+            }
             console.log('currentuser: ', currentUser);
           })
           .catch(reason => {

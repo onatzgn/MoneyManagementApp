@@ -5,98 +5,300 @@
       "fullName": "Admin Admin",
       "email": "admin",
       "password": "admin",
-      "phone": "+05392424560"
+      "phone": "+05392424560",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "2",
       "fullName": "Fatma Yılmaz",
       "email": "fatma@gmail.com",
       "password": "fatma",
-      "phone": "+905392424565"
+      "phone": "+905392424565",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "3",
       "fullName": "Onat Ozgen",
       "email": "onat",
       "password": "onat",
-      "phone": "+905392424565"
+      "phone": "+905392424565",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "4",
       "fullName": "Onut Yilmaz",
       "email": "onur",
       "password": "onur",
-      "phone": "+05392424561"
+      "phone": "+05392424561",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "5",
       "fullName": "Nagihan Ustun",
       "email": "nagihan",
       "password": "nagihan",
-      "phone": "+05392424562"
+      "phone": "+05392424562",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "6",
       "fullName": "Yigit Leblebicier",
       "email": "yigit",
       "password": "yigit",
-      "phone": "+05392424563"
+      "phone": "+05392424563",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "7",
       "fullName": "Edanur Caliskan",
       "email": "eda",
       "password": "eda",
-      "phone": "+05392424564"
+      "phone": "+05392424564",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "8",
       "fullName": "Tunahan Yilmaz",
       "email": "tadaa",
       "password": "tadaa",
-      "phone": "+05392424566"
+      "phone": "+05392424566",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "9",
       "fullName": "Huseyin Yilmaz",
       "email": "huseyin",
       "password": "huseyin",
-      "phone": "+05392424567"
+      "phone": "+05392424567",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "10",
       "fullName": "Nuran Ustun",
       "email": "nuran",
       "password": "nuran",
-      "phone": "+05392424569"
+      "phone": "+05392424569",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "1c24",
       "fullName": "Deneme Deneme",
       "email": "deneme@gmail.com",
       "password": "deneme",
-      "phone": "05392424565"
+      "phone": "05392424565",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     },
     {
       "id": "6671",
       "fullName": "ayse",
       "email": "ayse@gmail.com",
       "password": "ayses",
-      "phone": "905392424565"
-    },
-    {
-      "id": "a4e0",
-      "fullName": "",
-      "email": "",
-      "password": "",
-      "phone": ""
-    },
-    {
-      "id": "8ffc",
-      "fullName": "",
-      "email": "",
-      "password": "",
-      "phone": ""
+      "phone": "905392424565",
+      "budget": 10000,
+      "expenses": [
+        {
+          "category": "Market",
+          "amount": 264,
+          "date": "2024-07-01"
+        },
+        {
+          "category": "Elektronik",
+          "amount": 1264,
+          "date": "2024-07-15"
+        },
+        {
+          "category": "Yemek",
+          "amount": 126,
+          "date": "2024-07-20"
+        }
+      ]
     }
   ]
 }

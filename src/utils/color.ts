@@ -7,6 +7,13 @@ export interface ColorTypes {
   signInUpButtonTextColor: string;
   placeholder: string;
   warning: string;
+  profileBackground: string;
+  profilePanel: string;
+  profileButton: string;
+  profileTitle: string;
+  profileContainer: string;
+  profileIcon: string;
+  budgetTitle: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -18,6 +25,13 @@ export const LightTheme: ColorTypes = {
   signInUpButtonTextColor: 'white',
   placeholder: 'gray',
   warning: 'orange',
+  profileBackground: '#EFEFEF',
+  profilePanel: '#62E4C6',
+  profileButton: 'white',
+  profileTitle: 'white',
+  profileContainer: 'white',
+  profileIcon: 'black',
+  budgetTitle: '#3CD598',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -29,6 +43,13 @@ export const DarkTheme: ColorTypes = {
   signInUpButtonTextColor: 'black',
   placeholder: 'white',
   warning: 'orange',
+  profileBackground: '#27282E',
+  profilePanel: '#3A8A77',
+  profileButton: '#404040',
+  profileTitle: 'white',
+  profileContainer: '#404040',
+  profileIcon: 'white',
+  budgetTitle: '#3CD598',
 };
 
 const themes = {

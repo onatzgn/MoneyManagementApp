@@ -5,8 +5,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 import OnBoarding from '@screens/on-boarding/OnBoarding';
 import SignUp from '@screens/sign-up/SignUp';
 import SignIn from '@screens/sign-in/SignIn';
-import Home from '@screens/home/Home';
+import Home from '@screens/budget/Budget';
 import Profile from '@screens/profile/Profile';
+import Budget from '@screens/budget/Budget';
 
 const Stack = createStackNavigator();
 
@@ -30,7 +31,16 @@ const StackNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Budget"
+          component={Budget}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
