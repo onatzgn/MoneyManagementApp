@@ -1,7 +1,7 @@
-import {Text} from 'react-native';
+import React from 'react';
+import {Text as RNText, TextStyle, StyleProp} from 'react-native';
 import {styles} from './Text.style';
 
-import {TextStyle, StyleProp} from 'react-native';
 import {ReactNode} from 'react';
 export interface TextType {
   text: string | undefined;
@@ -9,12 +9,11 @@ export interface TextType {
   style?: StyleProp<TextStyle> | undefined;
 }
 
-const GenericText = ({text, style, children}: TextType) => {
+export const Text = ({text, style, children}: TextType) => {
   return (
-    <Text style={[style, styles.text]}>
+    <RNText style={[style, styles.text]}>
       {text}
       {children}
-    </Text>
+    </RNText>
   );
 };
-export default GenericText;

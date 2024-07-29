@@ -103,4 +103,18 @@ export const styles = StyleSheet.create({
   pointBarStyle: {
     marginLeft: scale(70),
   },
+  skipButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: moderateScale(5),
+    width: '170%',
+    height: '75%',
+    position: 'absolute',
+    marginLeft: moderateScale(20),
+    marginTop: moderateScale(20),
+  },
+  skipText: {
+    fontSize: scale(14),
+    color: '#474A57',
+  },
 });

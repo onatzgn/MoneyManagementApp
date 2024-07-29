@@ -16,11 +16,11 @@ module.exports = {
           '.ts',
           '.tsx',
         ],
-        root: ['.'],
+        root: ['./src'],
         alias: {
           '@api': './src/api',
           '@assets': './src/assets',
-          '@components': './src/components',
+          '@components': './src/components/index',
           '@navigations': './src/navigations',
           '@redux': './src/redux',
           '@screens': './src/screens',

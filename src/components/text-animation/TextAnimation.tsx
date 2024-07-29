@@ -1,11 +1,12 @@
+import React from 'react';
 import {useRef, useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {styles} from './TextAnimation.styles';
 
-export default function AnimatedTyping(props: {
+export const TextAnimation = (props: {
   text: string | any[];
   onComplete: () => void;
-}) {
+}) => {
   const [text, setText] = useState('');
   const [cursorColor, setCursorColor] = useState('transparent');
   const [messageIndex, setMessageIndex] = useState(0);
@@ -119,4 +120,4 @@ export default function AnimatedTyping(props: {
       </Text>
     </View>
   );
-}
+};

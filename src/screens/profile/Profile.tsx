@@ -1,23 +1,6 @@
 import GenericText from '@components/text/Text';
-import {Modal, Pressable, SafeAreaView, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {styles} from './Profile.style';
-import {useSelector} from 'react-redux';
-import {RootState} from '@redux/Store';
-import {getThemeColor} from '@utils/Color';
-import {DefaultButton} from '@components/button/Button';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
-import Avatar from '@components/avatar/Avatar';
-import Images from '@assets/Images/Images';
-import {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-
-const MenuDatas = [
-  {id: '1', title: 'Hesap', color: '#FFBD11'},
-  {id: '2', title: 'Tema', color: '#62E4C6'},
-  {id: '3', title: 'Item 3', color: '#FF9692'},
-];
-
 const Profile = () => {
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState(false);
