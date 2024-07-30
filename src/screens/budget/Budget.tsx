@@ -11,12 +11,11 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState} from '@redux/Store';
 import {getThemeColor} from '@utils/Color';
-import GenericText from '@components/text/Text';
 import {PieChart} from 'react-native-chart-kit';
 import React, {useState} from 'react';
 import Toggle from 'react-native-toggle-element';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Container from '@components/container/Container';
+import {Text, Container} from '@components';
 import {FlatList} from 'react-native-gesture-handler';
 
 const data = [
@@ -61,7 +60,7 @@ const chartConfig = {
 
 const screenWidth = Dimensions.get('window').width;
 
-const Budget = () => {
+export const Budget = () => {
   const navigation = useNavigation<any>();
   const [toggleValue, setToggleValue] = useState(false);
   const budget = useSelector(
@@ -120,7 +119,7 @@ const Budget = () => {
             />
           }
         />
-        <GenericText
+        <Text
           style={[styles.budgetTitle, {color: themeColors.titleDefault}]}
           text="Aylık Harcama"
         />
@@ -163,12 +162,12 @@ const Budget = () => {
             color={color}
             style={{marginRight: 10}}
           />
-          <GenericText
+          <Text
             style={{color: themeColors.titleDefault, fontWeight: 'bold'}}
             text={category}
           />
           <View style={styles.spendTextContainer}>
-            <GenericText
+            <Text
               style={[styles.spendText, {color: themeColors.titleDefault}]}
               text={`-${item.amount} ₺`}
             />
@@ -193,16 +192,16 @@ const Budget = () => {
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
-      <GenericText
+      <Text
         style={[styles.title, {color: themeColors.budgetTitle}]}
         text="Bütçe"
       />
-      <GenericText
+      <Text
         style={[styles.staticTitle, {color: themeColors.titleDefault}]}
         text="Aylık Toplam Gelir"
       />
       <View style={{flexDirection: 'row'}}>
-        <GenericText
+        <Text
           style={[styles.budgetsTitle, {color: themeColors.titleDefault}]}
           text={`${budget}₺`}
         />
@@ -241,12 +240,12 @@ const Budget = () => {
                 styles.modalView,
                 {backgroundColor: themeColors.background},
               ]}>
-              <GenericText
+              <Text
                 text="Gelir-Gider Ekleme modalı"
                 style={[
                   styles.modalText,
                   {color: themeColors.titleDefault},
-                ]}></GenericText>
+                ]}></Text>
               <Pressable
                 style={[
                   styles.button,
@@ -264,4 +263,3 @@ const Budget = () => {
   );
 };
 
-export default Budget;

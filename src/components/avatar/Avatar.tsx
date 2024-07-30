@@ -12,7 +12,7 @@ export interface AvatarProps {
     style?: StyleProp<ViewStyle>;
   }
   
-const GenericAvatar = ({size = 80, source, style}: AvatarProps) => {
+export const GenericAvatar = ({size = 80, source, style}: AvatarProps) => {
   return (
     <View style={style}>
       <Avatar.Image
@@ -23,5 +23,3 @@ const GenericAvatar = ({size = 80, source, style}: AvatarProps) => {
     </View>
   );
 };
-
-export default GenericAvatar;

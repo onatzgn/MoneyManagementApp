@@ -8,6 +8,7 @@ import {
 } from '../types/User.types';
 
 interface ExpenseType {
+  spend: any;
   category: string;
   amount: number;
   date: string;

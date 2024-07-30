@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, View} from 'react-native';
 import {styles} from './Logo.styles';
 import {Text} from '../text/Text';
-import Images from '@assets/Images/Images';
+import Images from '@assets/Images';
 
 export interface LogoType {
   text: string;
