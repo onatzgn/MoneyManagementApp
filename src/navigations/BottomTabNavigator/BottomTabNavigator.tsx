@@ -4,16 +4,27 @@ import {Budget, Savings, Timo, MissionCenter, Profile} from '../../screens';
 import {StyleSheet, View, Image} from 'react-native';
 import {styles} from './BottomTabNavigator.style';
 import Icons from '@assets/Icons';
+import {useSelector} from 'react-redux';
+import {getThemeColor} from '@utils/Color';
+import {RootState} from '@redux/Store';
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
+
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: {
+          ...styles.tabBar,
+          backgroundColor: themeColors.tabBar,
+        },
       }}>
       <Tab.Screen
         name="Budget"
@@ -23,7 +34,9 @@ const Tabs = () => {
             <View
               style={[
                 styles.iconContainer,
-                focused ? styles.focusedBackground : styles.defaultBackground,
+                focused
+                  ? {backgroundColor: themeColors.iconContainer}
+                  : {backgroundColor: themeColors.tabBar},
               ]}>
               <Image
                 source={Icons.budgetTab}
@@ -45,7 +58,9 @@ const Tabs = () => {
             <View
               style={[
                 styles.iconContainer,
-                focused ? styles.focusedBackground : styles.defaultBackground,
+                focused
+                  ? {backgroundColor: themeColors.iconContainer}
+                  : {backgroundColor: themeColors.tabBar},
               ]}>
               <Image
                 source={Icons.moneyBoxTab}
@@ -89,7 +104,9 @@ const Tabs = () => {
             <View
               style={[
                 styles.iconContainer,
-                focused ? styles.focusedBackground : styles.defaultBackground,
+                focused
+                  ? {backgroundColor: themeColors.iconContainer}
+                  : {backgroundColor: themeColors.tabBar},
               ]}>
               <Image
                 source={Icons.missionCenterTab}
@@ -111,7 +128,9 @@ const Tabs = () => {
             <View
               style={[
                 styles.iconContainer,
-                focused ? styles.focusedBackground : styles.defaultBackground,
+                focused
+                  ? {backgroundColor: themeColors.iconContainer}
+                  : {backgroundColor: themeColors.tabBar},
               ]}>
               <Image
                 source={Icons.profileTab}

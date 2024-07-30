@@ -6,6 +6,9 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from './OnBoarding.styles';
 import Images from '@assets/Images';
 import {TextAnimation, PointBar, Text} from '@components';
+import {useSelector} from 'react-redux';
+import {getThemeColor} from '@utils/Color';
+import {RootState} from '@redux/Store';
 
 export default function OnBoarding() {
   const navigation = useNavigation<any>();
@@ -14,6 +17,11 @@ export default function OnBoarding() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [firstMessageCompleted, setFirstMessageCompleted] = useState(false);
   const [secondMessageCompleted, setSecondMessageCompleted] = useState(false);
+
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
 
   const onPressNext = () => {
     if (swiperRef.current) {
@@ -74,7 +82,11 @@ export default function OnBoarding() {
   };
 
   return (
-    <View style={styles.viewStyle}>
+    <View
+      style={[
+        styles.viewStyle,
+        {backgroundColor: themeColors.onBoardingBackground},
+      ]}>
       <View style={styles.logoWrapper}>
         <Image
           source={Images.timoLogo}
@@ -83,7 +95,11 @@ export default function OnBoarding() {
         />
       </View>
 
-      <View style={styles.newContainer}>
+      <View
+        style={[
+          styles.newContainer,
+          {backgroundColor: themeColors.onBoardingContainer},
+        ]}>
         <View>
           <Image
             source={Images.timoChatIcon}
@@ -112,7 +128,12 @@ export default function OnBoarding() {
       </View>
       <View style={styles.skipButton}>
         <TouchableOpacity onPress={onPressSignUp}>
-          <Text text="Atla" style={styles.skipText}></Text>
+          <Text
+            text="Atla"
+            style={[
+              styles.skipText,
+              {color: themeColors.onBoardingSkip},
+            ]}></Text>
         </TouchableOpacity>
       </View>
     </View>

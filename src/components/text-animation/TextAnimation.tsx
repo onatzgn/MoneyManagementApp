@@ -2,6 +2,9 @@ import React from 'react';
 import {useRef, useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {styles} from './TextAnimation.styles';
+import {useSelector} from 'react-redux';
+import {getThemeColor} from '@utils/Color';
+import {RootState} from '@redux/Store';
 
 export const TextAnimation = (props: {
   text: string | any[];
@@ -26,6 +29,11 @@ export const TextAnimation = (props: {
   const messageIndexRef = useRef(messageIndex);
   const textIndexRef = useRef(textIndex);
   const timeoutsRef = useRef(timeouts);
+
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
 
   useEffect(() => {
     textRef.current = text;
@@ -113,8 +121,12 @@ export const TextAnimation = (props: {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: themeColors.onBoardingTextContainer},
+      ]}>
+      <Text style={[styles.text, {color: themeColors.onBoardingText}]}>
         {text}
         <Text style={{color: cursorColor, fontSize: 15}}>|</Text>
       </Text>

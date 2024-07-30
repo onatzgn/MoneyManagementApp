@@ -14,6 +14,13 @@ export interface ColorTypes {
   profileContainer: string;
   profileIcon: string;
   budgetTitle: string;
+  tabBar: string;
+  iconContainer: string;
+  onBoardingBackground: string;
+  onBoardingContainer: string;
+  onBoardingTextContainer: string;
+  onBoardingText: string;
+  onBoardingSkip: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -32,6 +39,13 @@ export const LightTheme: ColorTypes = {
   profileContainer: 'white',
   profileIcon: 'black',
   budgetTitle: '#3CD598',
+  tabBar: '#FFFFFF',
+  iconContainer: '#CEF4E5',
+  onBoardingBackground: '#FFBD12',
+  onBoardingContainer: '#FFFFFF',
+  onBoardingTextContainer: '#00C6AE',
+  onBoardingText: 'black',
+  onBoardingSkip: '#474A57',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -50,6 +64,13 @@ export const DarkTheme: ColorTypes = {
   profileContainer: '#404040',
   profileIcon: 'white',
   budgetTitle: '#3CD598',
+  tabBar: '#18191F',
+  iconContainer: '#1E3732',
+  onBoardingBackground: '#27282E',
+  onBoardingContainer: '#404040',
+  onBoardingTextContainer: '#638074',
+  onBoardingText: '#292929',
+  onBoardingSkip: '#ACACAC',
 };
 
 const themes = {

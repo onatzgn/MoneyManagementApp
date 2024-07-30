@@ -46,12 +46,10 @@ export const styles = StyleSheet.create({
   },
   viewStyle: {
     flex: 1,
-    backgroundColor: '#FFBD12',
   },
   newContainer: {
     width: 'auto',
     height: '65%',
-    backgroundColor: '#EFEFEF',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 15,
@@ -115,6 +113,5 @@ export const styles = StyleSheet.create({
   },
   skipText: {
     fontSize: scale(14),
-    color: '#474A57',
   },
 });

@@ -299,6 +299,20 @@
           "date": "2024-07-20"
         }
       ]
+    },
+    {
+      "id": "614b",
+      "fullName": "Onat Ozgen",
+      "email": "onatzgn@gmail.com",
+      "password": "onat",
+      "phone": "+90-538-950-88-99"
+    },
+    {
+      "id": "67eb",
+      "fullName": "Onat Ozgen",
+      "email": "onatzgn@gmail.com",
+      "password": "onatonat",
+      "phone": "+90-538-950-88-99"
     }
   ]
 }
