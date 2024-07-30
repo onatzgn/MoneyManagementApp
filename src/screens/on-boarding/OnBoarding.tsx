@@ -4,14 +4,13 @@ import Swiper from 'react-native-swiper';
 import {slides} from './components/OnBoarding.slides';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './OnBoarding.styles';
-import Images from '@assets/Images/Images';
+import Images from '@assets/Images';
 import {TextAnimation, PointBar, Text} from '@components';
 
 export default function OnBoarding() {
   const navigation = useNavigation<any>();
   const swiperRef = useRef<Swiper>(null);
   const onPressSignUp = () => navigation.navigate('SignUp');
-  const onPressSignIn = () => navigation.navigate('Home');
   const [slideIndex, setSlideIndex] = useState(0);
   const [firstMessageCompleted, setFirstMessageCompleted] = useState(false);
   const [secondMessageCompleted, setSecondMessageCompleted] = useState(false);

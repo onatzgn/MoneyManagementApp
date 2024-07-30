@@ -1,23 +1,29 @@
-import GenericText from '@components/text/Text';
-import {FlatList, Modal, Pressable, SafeAreaView, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Modal,
+  Pressable,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {styles} from './Profile.style';
-import { useEffect, useState } from 'react';
-import { RootState } from '@redux/Store';
-import { useSelector } from 'react-redux';
-import { getThemeColor } from '@utils/Color';
-import { useNavigation } from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import {RootState} from '@redux/Store';
+import {useSelector} from 'react-redux';
+import {getThemeColor} from '@utils/Color';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { DefaultButton } from '@components';
-import Images from '@assets/Images/Images';
-import Avatar from 'components/avatar/Avatar';
+import {DefaultButton, Text, GenericAvatar} from '@components';
+import Images from '@assets/Images';
+
 const MenuDatas = [
   {id: '1', title: 'Hesap', color: '#FFBD11'},
   {id: '2', title: 'Tema', color: '#62E4C6'},
   {id: '3', title: 'Item 3', color: '#FF9692'},
 ];
 
-const Profile = () => {
+export const Profile = () => {
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -39,7 +45,7 @@ const Profile = () => {
     return (
       <TouchableOpacity style={styles.item}>
         <View style={[styles.itemCircle, {backgroundColor: item.color}]}></View>
-        <GenericText
+        <Text
           style={{
             fontSize: 18,
             marginLeft: 15,
@@ -68,12 +74,12 @@ const Profile = () => {
           styles.profileContainer,
           {backgroundColor: themeColors.profilePanel},
         ]}>
-        <GenericText
+        <Text
           style={[styles.title, {color: themeColors.profileTitle}]}
           text="Profil"
         />
-        <Avatar style={styles.avatar} source={Images.crocodile} size={150} />
-        <GenericText
+        <GenericAvatar style={styles.avatar} source={Images.crocodile} size={150} />
+        <Text
           style={[styles.fullName, {color: themeColors.profileTitle}]}
           text="Fatma Yılmaz"
         />
@@ -122,14 +128,25 @@ const Profile = () => {
             setModalVisible(!modalVisible);
           }}>
           <View style={styles.centeredView}>
-            <View style={[styles.modalView,{backgroundColor: themeColors.background}]}>
-              <GenericText
+            <View
+              style={[
+                styles.modalView,
+                {backgroundColor: themeColors.background},
+              ]}>
+              <Text
                 text="Ebeveyn Bilgisi"
-                style={[styles.modalText,{color: themeColors.titleDefault,}]}></GenericText>
+                style={[
+                  styles.modalText,
+                  {color: themeColors.titleDefault},
+                ]}></Text>
               <Pressable
-                style={[styles.button, styles.buttonClose,{backgroundColor: themeColors.background}]}
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  {backgroundColor: themeColors.background},
+                ]}
                 onPress={() => setModalVisible(!modalVisible)}>
-                <Icon name='close' size={20}/>
+                <Icon name="close" size={20} />
               </Pressable>
             </View>
           </View>
@@ -138,4 +155,3 @@ const Profile = () => {
     </SafeAreaView>
   );
 };
-export default Profile;

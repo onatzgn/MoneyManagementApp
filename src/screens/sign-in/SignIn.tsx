@@ -54,7 +54,7 @@ const SignIn = () => {
       dispatch({type: SIGNIN_FAILURE, payload: error});
     }
     if (signIn) {
-      navigation.navigate('Home');
+      navigation.navigate('Tabs');
     }
   };
   const toggleSwitchRememberMe = (value: boolean) => {
