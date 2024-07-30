@@ -4,12 +4,12 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 export const styles = StyleSheet.create({
   tabBar: {
     position: 'absolute',
-    borderTopStartRadius:25,
-    borderTopEndRadius:25,
-    backgroundColor: '#FFFFFF',
+    borderTopStartRadius: 25,
+    borderTopEndRadius: 25,
     elevation: 0,
     height: verticalScale(75),
     paddingHorizontal: scale(10),
+    borderTopWidth: 0,
   },
   iconContainer: {
     alignItems: 'center',
@@ -37,9 +37,6 @@ export const styles = StyleSheet.create({
   },
   focusedBackground: {
     backgroundColor: '#CEF4E5',
-  },
-  defaultBackground: {
-    backgroundColor: '#FFFFFF',
   },
   timoDefaultBackground: {
     backgroundColor: '#30444E',
