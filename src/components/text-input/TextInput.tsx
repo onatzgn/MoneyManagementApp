@@ -8,7 +8,7 @@ import {RootState} from '@redux/Store';
 import {styles} from './TextInput.style';
 import MaskInput from 'react-native-mask-input';
 import {KeyboardTypeOptions} from 'react-native';
-import {Tooltip} from '@components';
+import {Tooltip} from 'components/Index';
 
 const phoneMask = [
   '+',

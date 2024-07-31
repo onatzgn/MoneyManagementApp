@@ -5,7 +5,7 @@ import {slides} from './components/OnBoarding.slides';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './OnBoarding.styles';
 import Images from '@assets/Images';
-import {TextAnimation, PointBar, Text} from '@components';
+import {TextAnimation, PointBar, Text} from 'components/Index';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import {RootState} from '@redux/Store';

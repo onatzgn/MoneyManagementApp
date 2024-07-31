@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import {styles} from './ToolTip.style';
-import {Text} from '@components';
+import {Text} from 'components/Index';
 
 export interface ToolTipType {
   content: string | undefined;

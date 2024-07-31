@@ -12,7 +12,7 @@ import {
   GenericTextInput,
   DefaultButton,
   LinkButton,
-} from '@components';
+} from 'components/Index';
 import {useNavigation} from '@react-navigation/native';
 import {UserSignUpType} from '@utils/types/UserSignUpType';
 import {signUpUser} from '@redux/actions/UserAction';

@@ -16,7 +16,12 @@ import {PieChart} from 'react-native-chart-kit';
 import React, {useState} from 'react';
 import Toggle from 'react-native-toggle-element';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Text, Container, GenericTextInput, DefaultButton} from '@components';
+import {
+  Text,
+  Container,
+  GenericTextInput,
+  DefaultButton,
+} from 'components/Index';
 import {Controller, useForm} from 'react-hook-form';
 import {addInCome} from '@redux/actions/UserAction';
 import {ExpenseListType} from '@redux/reducers/UserReducer';
