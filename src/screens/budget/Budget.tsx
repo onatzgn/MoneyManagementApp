@@ -5,18 +5,21 @@ import {
   SafeAreaView,
   TouchableOpacity,
   View,
+  FlatList,
 } from 'react-native';
 import {styles} from './Budget.style';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {RootState} from '@redux/Store';
+import {RootState, useAppDispatch} from '@redux/Store';
 import {getThemeColor} from '@utils/Color';
 import {PieChart} from 'react-native-chart-kit';
 import React, {useState} from 'react';
 import Toggle from 'react-native-toggle-element';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Text, Container} from '@components';
-import {FlatList} from 'react-native-gesture-handler';
+import {Text, Container, GenericTextInput, DefaultButton} from '@components';
+import {Controller, useForm} from 'react-hook-form';
+import {addInCome} from '@redux/actions/UserAction';
+import {ExpenseListType} from '@redux/reducers/UserReducer';
 
 const data = [
   {
@@ -62,19 +65,43 @@ const screenWidth = Dimensions.get('window').width;
 
 export const Budget = () => {
   const navigation = useNavigation<any>();
+  const dispatch = useAppDispatch();
   const [toggleValue, setToggleValue] = useState(false);
-  const budget = useSelector(
-    (state: RootState) => state.persistedReducer.user.spend?.budget ?? 0,
-  );
-  const expenses = useSelector(
-    (state: RootState) => state.persistedReducer.user.spend?.expenses ?? [],
-  );
   const [modalVisible, setModalVisible] = useState(false);
-
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+
+  const budget = useSelector(
+    (state: RootState) => state.persistedReducer.user.budget ?? 0,
+  );
+
+  const id = useSelector(
+    (state: RootState) => state.persistedReducer.user.signIn.id,
+  );
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    defaultValues: {
+      inCome: '',
+      expense: '',
+      category: '',
+    },
+  });
+
+  const onSubmit = async (data: {
+    inCome: string;
+    expense: string;
+    category: string;
+  }) => {
+    const numberInCome = parseInt(data.inCome, 10);
+
+    dispatch(addInCome(id, numberInCome));
+  };
 
   const Graphic = () => {
     return (
@@ -136,59 +163,16 @@ export const Budget = () => {
       </View>
     );
   };
-
-  const RenderSpending = ({
-    item,
-  }: {
-    item: {category: string; amount: number; date: string};
-  }) => {
-    const {category} = item;
-    const {iconName, color} = categoryData[category] || {
-      iconName: 'help',
-      color: 'grey',
-    };
-
-    return (
-      <View style={styles.flatListItem}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            width: '100%',
-          }}>
-          <Icon
-            name={iconName}
-            size={24}
-            color={color}
-            style={{marginRight: 10}}
-          />
-          <Text
-            style={{color: themeColors.titleDefault, fontWeight: 'bold'}}
-            text={category}
-          />
-          <View style={styles.spendTextContainer}>
-            <Text
-              style={[styles.spendText, {color: themeColors.titleDefault}]}
-              text={`-${item.amount} ₺`}
-            />
-          </View>
-        </View>
-      </View>
-    );
+  const ExpenseList = ({item}: {item: ExpenseListType}) => {
+    <View style={styles.flatListItem}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          width: '100%',
+        }}></View>
+    </View>;
   };
-
-  const Spending = () => {
-    return (
-      <View>
-        <FlatList
-          data={expenses}
-          renderItem={RenderSpending}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-    );
-  };
-
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
@@ -225,7 +209,7 @@ export const Budget = () => {
       </View>
 
       <Container children={Graphic()} />
-      <Container children={Spending()} />
+      {/* <Container children={ExpenseList()} /> */}
       <View style={styles.centeredView}>
         <Modal
           animationType="fade"
@@ -241,11 +225,82 @@ export const Budget = () => {
                 {backgroundColor: themeColors.background},
               ]}>
               <Text
-                text="Gelir-Gider Ekleme modalı"
-                style={[
-                  styles.modalText,
-                  {color: themeColors.titleDefault},
-                ]}></Text>
+                text="Gelir Ekle"
+                style={[styles.modalText, {color: themeColors.titleDefault}]}
+              />
+              <Controller
+                control={control}
+                rules={{
+                  minLength: {
+                    value: 1,
+                    message: 'Karakter uzunluğu en az 1 olmalıdır',
+                  },
+                }}
+                render={({field: {onBlur, onChange, value}}) => (
+                  <GenericTextInput
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    secureTextEntry={false}
+                    keyboardType="number-pad"
+                  />
+                )}
+                name="inCome"
+              />
+              <Text
+                text="Gider Ekle"
+                style={[styles.modalText, {color: themeColors.titleDefault}]}
+              />
+              <Controller
+                control={control}
+                rules={{
+                  minLength: {
+                    value: 1,
+                    message: 'Karakter uzunluğu en az 1 olmalıdır',
+                  },
+                }}
+                render={({field: {onBlur, onChange, value}}) => (
+                  <GenericTextInput
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    secureTextEntry={false}
+                    keyboardType="number-pad"
+                  />
+                )}
+                name="expense"
+              />
+              <Text
+                text="Gider Kategorisi Seç"
+                style={[styles.modalText, {color: themeColors.titleDefault}]}
+              />
+
+              <Controller
+                control={control}
+                rules={{
+                  minLength: {
+                    value: 1,
+                    message: 'Karakter uzunluğu en az 1 olmalıdır',
+                  },
+                }}
+                render={({field: {onBlur, onChange, value}}) => (
+                  <GenericTextInput
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    secureTextEntry={false}
+                    keyboardType="default"
+                  />
+                )}
+                name="category"
+              />
+              <DefaultButton
+                onPress={handleSubmit(onSubmit)}
+                text="Ekle"
+                backgroundColor={themeColors.signInUpButton}
+                textColor={themeColors.signInUpButtonTextColor}
+              />
+
               <Pressable
                 style={[
                   styles.button,
@@ -262,4 +317,3 @@ export const Budget = () => {
     </SafeAreaView>
   );
 };
-

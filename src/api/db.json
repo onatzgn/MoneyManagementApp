@@ -31,7 +31,7 @@
       "email": "fatma@gmail.com",
       "password": "fatma",
       "phone": "+905392424565",
-      "budget": 10000,
+      "budget": 640012,
       "expenses": [
         {
           "category": "Market",
@@ -256,7 +256,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 10000,
+      "budget": 4,
       "expenses": [
         {
           "category": "Market",

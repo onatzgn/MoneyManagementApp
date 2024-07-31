@@ -6,6 +6,8 @@ import {
   SIGNUP_FAILURE,
   SIGNIN_SUCCESS,
   SIGNIN_FAILURE,
+  UPDATEBUDGETSUCCESS,
+  UPDATEBUDGETFAILURE,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Platform} from 'react-native';
@@ -35,7 +37,34 @@ export const signInFailure = (error: any) => ({
   type: SIGNIN_FAILURE,
   payload: error,
 });
+//Budgets Actions
+export const updateBudgetSuccess = (budget: number) => ({
+  type: UPDATEBUDGETSUCCESS,
+  payload: budget,
+});
+export const updateBudgetFailure = (error: any) => ({
+  type: UPDATEBUDGETFAILURE,
+  payload: error,
+});
 
+export const addInCome =
+  (userId: string | undefined, amount: number) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.get(`${baseUrl()}/users/${userId}`);
+      const user = response.data;
+      const updatedBudget = user.budget + amount;
+      await axios
+        .patch(`${baseUrl()}/users/${userId}`, {
+          budget: updatedBudget,
+        })
+        .then(response => console.log(response));
+
+      dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
+    } catch (error) {
+      dispatch(updateBudgetFailure(error));
+    }
+  };
 export const signUpUser =
   (newUser: UserSignUpType) => async (dispatch: AppDispatch) => {
     try {

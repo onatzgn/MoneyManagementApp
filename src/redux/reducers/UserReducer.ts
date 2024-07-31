@@ -5,22 +5,20 @@ import {
   SIGNIN_SUCCESS,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
+  UPDATEBUDGETFAILURE,
+  UPDATEBUDGETSUCCESS,
 } from '../types/User.types';
 
-interface ExpenseType {
-  spend: any;
+export interface ExpenseListType {
   category: string;
   amount: number;
   date: string;
 }
-interface BudgetType {
-  budget: number;
-  expenses: ExpenseType[];
-}
 export interface UserSignUpState {
   signUp: UserSignUpType;
   signIn: UserSignInType;
-  spend: BudgetType;
+  spend: ExpenseListType[];
+  budget: string;
   isLoggedIn: boolean;
   error: string;
 }
@@ -28,7 +26,8 @@ export interface UserSignUpState {
 const initialState: UserSignUpState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
-  spend: {budget: 0, expenses: []},
+  spend: [],
+  budget: '',
   isLoggedIn: false,
   error: '',
 };
@@ -52,13 +51,20 @@ const userReducer = (
         signIn: action.payload,
         isLoggedIn: true,
         error: '',
-        spend: {
-          budget: action.payload.budget || 0,
-          expenses: action.payload.expenses || [],
-        },
+        spend: action.payload,
       };
     case SIGNIN_FAILURE:
       return {...state, error: action.payload};
+    case UPDATEBUDGETSUCCESS:
+      return {
+        ...state,
+        budget: action.payload,
+      };
+    case UPDATEBUDGETFAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }
