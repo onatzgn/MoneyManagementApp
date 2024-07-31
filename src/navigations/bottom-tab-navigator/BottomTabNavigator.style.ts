@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   icon: {
     width: '50%',
-    height: '48%',
+    height: '50%',
   },
   timoIcon: {
     width: scale(25),

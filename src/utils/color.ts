@@ -21,6 +21,8 @@ export interface ColorTypes {
   onBoardingTextContainer: string;
   onBoardingText: string;
   onBoardingSkip: string;
+  missionCenterBackground: string;
+  missionCenterTitle: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -46,6 +48,8 @@ export const LightTheme: ColorTypes = {
   onBoardingTextContainer: '#00C6AE',
   onBoardingText: 'black',
   onBoardingSkip: '#474A57',
+  missionCenterBackground: '#FFBD12',
+  missionCenterTitle: 'black',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -71,6 +75,8 @@ export const DarkTheme: ColorTypes = {
   onBoardingTextContainer: '#638074',
   onBoardingText: '#292929',
   onBoardingSkip: '#ACACAC',
+  missionCenterBackground: '#27282E',
+  missionCenterTitle: '#FFBD12',
 };
 
 const themes = {
