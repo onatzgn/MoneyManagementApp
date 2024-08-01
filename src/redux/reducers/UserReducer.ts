@@ -1,6 +1,8 @@
 import {UserSignUpType} from '@utils/types/UserSignUpType';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {
+  ADDEXPENSESSUCCESS,
+  ADDEXPENSESFAILURE,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS,
   SIGNUP_FAILURE,
@@ -10,23 +12,24 @@ import {
 } from '../types/User.types';
 
 export interface ExpenseListType {
+  id: string;
   category: string;
   amount: number;
-  date: string;
 }
-export interface UserSignUpState {
+export interface UserState {
   signUp: UserSignUpType;
   signIn: UserSignInType;
-  spend: ExpenseListType[];
-  budget: string;
   isLoggedIn: boolean;
   error: string;
+
+  expenses: ExpenseListType[];
+  budget: string;
 }
 
-const initialState: UserSignUpState = {
+const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
-  spend: [],
+  expenses: [],
   budget: '',
   isLoggedIn: false,
   error: '',
@@ -35,7 +38,7 @@ const initialState: UserSignUpState = {
 const userReducer = (
   state = initialState,
   action: {type: string; payload?: any},
-): UserSignUpState => {
+): UserState => {
   switch (action.type) {
     case SIGNUP_SUCCESS:
       return {
@@ -51,7 +54,6 @@ const userReducer = (
         signIn: action.payload,
         isLoggedIn: true,
         error: '',
-        spend: action.payload,
       };
     case SIGNIN_FAILURE:
       return {...state, error: action.payload};
@@ -65,6 +67,17 @@ const userReducer = (
         ...state,
         error: action.payload,
       };
+      case ADDEXPENSESSUCCESS:
+        return {
+          ...state,
+          expenses: action.payload as ExpenseListType[],
+        };
+      case ADDEXPENSESFAILURE:
+        return {
+          ...state,
+          error: action.payload,
+        };
+  
     default:
       return state;
   }

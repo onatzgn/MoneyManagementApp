@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Budget, Savings, Timo, MissionCenter, Profile} from '../../screens';
+import {Budget, Savings, Timo, MissionCenter, Profile} from '@screens/Index';
 import {StyleSheet, View, Image} from 'react-native';
 import {styles} from './BottomTabNavigator.style';
 import Icons from '@assets/Icons';

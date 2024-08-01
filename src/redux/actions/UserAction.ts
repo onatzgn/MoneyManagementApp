@@ -8,9 +8,12 @@ import {
   SIGNIN_FAILURE,
   UPDATEBUDGETSUCCESS,
   UPDATEBUDGETFAILURE,
+  ADDEXPENSESSUCCESS,
+  ADDEXPENSESFAILURE,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
-import {Platform} from 'react-native';
+import {Alert, Platform} from 'react-native';
+import {ExpenseListType} from '@redux/reducers/UserReducer';
 
 const baseUrl = () => {
   console.log('os', Platform.OS);
@@ -46,6 +49,14 @@ export const updateBudgetFailure = (error: any) => ({
   type: UPDATEBUDGETFAILURE,
   payload: error,
 });
+export const addExpensesSuccess = (expenses: ExpenseListType[]) => ({
+  type: ADDEXPENSESSUCCESS,
+  payload: expenses,
+});
+export const addExpensesFailure = (error: any) => ({
+  type: ADDEXPENSESFAILURE,
+  payload: error,
+});
 
 export const addInCome =
   (userId: string | undefined, amount: number) =>
@@ -54,16 +65,44 @@ export const addInCome =
       const response = await axios.get(`${baseUrl()}/users/${userId}`);
       const user = response.data;
       const updatedBudget = user.budget + amount;
-      await axios
-        .patch(`${baseUrl()}/users/${userId}`, {
-          budget: updatedBudget,
-        })
-        .then(response => console.log(response));
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        budget: updatedBudget,
+      });
 
       dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
+      dispatch({type: ADDEXPENSESSUCCESS, payload: user.expenses});
     } catch (error) {
       dispatch(updateBudgetFailure(error));
     }
+  };
+export const addExpense =
+  (userId: string | undefined, amount: number, category: string) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.get(`${baseUrl()}/users/${userId}`);
+      const user = response.data;
+      const currentExtenses: ExpenseListType[] = user.expenses;
+      const updatedBudget = user.budget - amount;
+      if (updatedBudget < 0) {
+        Alert.alert('Hata', 'Bütçe eksiye düşemez');
+        return;
+      }
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        budget: updatedBudget,
+      });
+      console.log(currentExtenses);
+      const max = Math.max(...currentExtenses.map(x => parseInt(x.id, 10)), 0) + 1;
+      console.log('1', max);
+
+      const expense = {amount, category, id: max.toString()};
+      const newExpenses = [...currentExtenses, expense];
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        expenses: newExpenses,
+      });
+
+      dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
+      dispatch({type: ADDEXPENSESSUCCESS, payload: newExpenses});
+    } catch (error) {}
   };
 export const signUpUser =
   (newUser: UserSignUpType) => async (dispatch: AppDispatch) => {

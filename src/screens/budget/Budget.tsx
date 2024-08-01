@@ -1,6 +1,5 @@
 import {
   Dimensions,
-  Modal,
   Pressable,
   SafeAreaView,
   TouchableOpacity,
@@ -23,9 +22,9 @@ import {
   DefaultButton,
 } from 'components/Index';
 import {Controller, useForm} from 'react-hook-form';
-import {addInCome} from '@redux/actions/UserAction';
+import {addExpense, addInCome} from '@redux/actions/UserAction';
 import {ExpenseListType} from '@redux/reducers/UserReducer';
-
+import {Modal} from 'components/modal/Modal';
 const data = [
   {
     name: 'Market',
@@ -72,7 +71,8 @@ export const Budget = () => {
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const [toggleValue, setToggleValue] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [inComeVisible, setInComeVisible] = useState(false);
+  const [expenseVisible, setExpenseVisible] = useState(false);
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
   );
@@ -82,10 +82,12 @@ export const Budget = () => {
     (state: RootState) => state.persistedReducer.user.budget ?? 0,
   );
 
-  const id = useSelector(
+  const userId = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn.id,
   );
-
+  const expenses = useSelector(
+    (state: RootState) => state.persistedReducer.user.expenses,
+  );
   const {
     control,
     handleSubmit,
@@ -98,14 +100,15 @@ export const Budget = () => {
     },
   });
 
-  const onSubmit = async (data: {
-    inCome: string;
-    expense: string;
-    category: string;
-  }) => {
+  const onSubmitInCome = async (data: {inCome: string}) => {
     const numberInCome = parseInt(data.inCome, 10);
-
-    dispatch(addInCome(id, numberInCome));
+    dispatch(addInCome(userId, numberInCome));
+    console.log(data);
+    console.log('expenses: ', expenses);
+  };
+  const onSubmitExpense = async (data: {expense: string; category: string}) => {
+    const numberExpense = parseInt(data.expense, 10);
+    dispatch(addExpense(userId, numberExpense, data.category)); //???????adincome
   };
 
   const Graphic = () => {
@@ -168,15 +171,174 @@ export const Budget = () => {
       </View>
     );
   };
+  const SpendList = () => {
+    return (
+      <FlatList
+        data={expenses}
+        keyExtractor={item => item.id}
+        renderItem={ExpenseList}
+      />
+    );
+  };
   const ExpenseList = ({item}: {item: ExpenseListType}) => {
-    <View style={styles.flatListItem}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          width: '100%',
-        }}></View>
-    </View>;
+    const {category} = item;
+    const {iconName, color} = categoryData[category] || {
+      iconName: 'help',
+      color: 'grey',
+    };
+    return (
+      <View style={styles.flatListItem}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: '100%',
+          }}>
+          <Icon
+            name={iconName}
+            size={24}
+            color={color}
+            style={{marginRight: 10}}
+          />
+          <Text
+            style={{color: themeColors.titleDefault, fontWeight: 'bold'}}
+            text={category}
+          />
+          <View style={styles.spendTextContainer}>
+            <Text
+              style={[styles.spendText, {color: themeColors.titleDefault}]}
+              text={`-${item.amount} ₺`}
+            />
+          </View>
+        </View>
+      </View>
+    );
+  };
+  const InComeModal = () => {
+    return (
+      <View style={{alignItems: 'center'}}>
+        <Text
+          text="Gelir Ekle"
+          style={[styles.modalText, {color: themeColors.titleDefault}]}
+        />
+        <Controller
+          control={control}
+          rules={{
+            min: {
+              value: 1,
+              message: 'MSG',
+            },
+            minLength: {
+              value: 1,
+              message: 'Karakter uzunluğu en az 1 olmalıdır',
+            },
+          }}
+          render={({field: {onBlur, onChange, value}}) => (
+            <GenericTextInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry={false}
+              keyboardType="number-pad"
+            />
+          )}
+          name="inCome"
+        />
+        <DefaultButton
+          onPress={handleSubmit(onSubmitInCome)}
+          text="Ekle"
+          backgroundColor={themeColors.signInUpButton}
+          textColor={themeColors.signInUpButtonTextColor}
+        />
+        <Pressable
+          style={[
+            styles.button,
+            styles.buttonClose,
+            {backgroundColor: themeColors.background},
+          ]}
+          onPress={() => setInComeVisible(!inComeVisible)}>
+          <Icon name="close" size={20} />
+        </Pressable>
+      </View>
+    );
+  };
+  const ExpenseModal = () => {
+    return (
+      <View style={{alignItems: 'center'}}>
+        <Text
+          text="Gider Ekle"
+          style={[styles.modalText, {color: themeColors.titleDefault}]}
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: 'Bu alan boş bırakılamaz',
+            min: {
+              value: 1,
+              message: 'MSG',
+            },
+            minLength: {
+              value: 1,
+              message: 'Karakter uzunluğu en az 1 olmalıdır',
+            },
+          }}
+          render={({field: {onBlur, onChange, value}}) => (
+            <GenericTextInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry={false}
+              keyboardType="number-pad"
+            />
+          )}
+          name="expense"
+        />
+        <Text
+          text="Gider Kategorisi Ekle"
+          style={[styles.modalText, {color: themeColors.titleDefault}]}
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: 'Bu alan boş bırakılamaz',
+            min: {
+              value: 1,
+              message: 'MSG',
+            },
+            minLength: {
+              value: 1,
+              message: 'Karakter uzunluğu en az 1 olmalıdır',
+            },
+          }}
+          render={({field: {onBlur, onChange, value}}) => (
+            <GenericTextInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry={false}
+              keyboardType="default"
+            />
+          )}
+          name="category"
+        />
+
+        <DefaultButton
+          onPress={handleSubmit(onSubmitExpense)}
+          text="Ekle"
+          backgroundColor={themeColors.signInUpButton}
+          textColor={themeColors.signInUpButtonTextColor}
+        />
+        <Pressable
+          style={[
+            styles.button,
+            styles.buttonClose,
+            {backgroundColor: themeColors.background},
+          ]}
+          onPress={() => setExpenseVisible(!expenseVisible)}>
+          <Icon name="close" size={20} />
+        </Pressable>
+      </View>
+    );
   };
   return (
     <SafeAreaView
@@ -203,9 +365,29 @@ export const Budget = () => {
             borderBottomWidth: 4,
             borderColor: themeColors.titleDefault,
           }}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <TouchableOpacity onPress={() => setInComeVisible(true)}>
             <Icon
               name="add-outline"
+              color={themeColors.titleDefault}
+              size={42}
+            />
+          </TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            borderWidth: 1,
+            position: 'absolute',
+            right: 90,
+            borderRadius: 25,
+            borderBottomWidth: 4,
+            borderColor: themeColors.titleDefault,
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              setExpenseVisible(true);
+            }}>
+            <Icon
+              name="remove-outline"
               color={themeColors.titleDefault}
               size={42}
             />
@@ -214,111 +396,15 @@ export const Budget = () => {
       </View>
 
       <Container children={Graphic()} />
-      {/* <Container children={ExpenseList()} /> */}
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.centeredView}>
-            <View
-              style={[
-                styles.modalView,
-                {backgroundColor: themeColors.background},
-              ]}>
-              <Text
-                text="Gelir Ekle"
-                style={[styles.modalText, {color: themeColors.titleDefault}]}
-              />
-              <Controller
-                control={control}
-                rules={{
-                  minLength: {
-                    value: 1,
-                    message: 'Karakter uzunluğu en az 1 olmalıdır',
-                  },
-                }}
-                render={({field: {onBlur, onChange, value}}) => (
-                  <GenericTextInput
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    secureTextEntry={false}
-                    keyboardType="number-pad"
-                  />
-                )}
-                name="inCome"
-              />
-              <Text
-                text="Gider Ekle"
-                style={[styles.modalText, {color: themeColors.titleDefault}]}
-              />
-              <Controller
-                control={control}
-                rules={{
-                  minLength: {
-                    value: 1,
-                    message: 'Karakter uzunluğu en az 1 olmalıdır',
-                  },
-                }}
-                render={({field: {onBlur, onChange, value}}) => (
-                  <GenericTextInput
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    secureTextEntry={false}
-                    keyboardType="number-pad"
-                  />
-                )}
-                name="expense"
-              />
-              <Text
-                text="Gider Kategorisi Seç"
-                style={[styles.modalText, {color: themeColors.titleDefault}]}
-              />
-
-              <Controller
-                control={control}
-                rules={{
-                  minLength: {
-                    value: 1,
-                    message: 'Karakter uzunluğu en az 1 olmalıdır',
-                  },
-                }}
-                render={({field: {onBlur, onChange, value}}) => (
-                  <GenericTextInput
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    secureTextEntry={false}
-                    keyboardType="default"
-                  />
-                )}
-                name="category"
-              />
-              <DefaultButton
-                onPress={handleSubmit(onSubmit)}
-                text="Ekle"
-                backgroundColor={themeColors.signInUpButton}
-                textColor={themeColors.signInUpButtonTextColor}
-              />
-
-              <Pressable
-                style={[
-                  styles.button,
-                  styles.buttonClose,
-                  {backgroundColor: themeColors.background},
-                ]}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Icon name="close" size={20} />
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
-      </View>
+      <Container children={SpendList()} />
+      <Modal
+        visible={inComeVisible}
+        onClose={() => setInComeVisible(!inComeVisible)}
+        children={InComeModal()}></Modal>
+      <Modal
+        visible={expenseVisible}
+        onClose={() => setExpenseVisible(!expenseVisible)}
+        children={ExpenseModal()}></Modal>
     </SafeAreaView>
   );
 };
