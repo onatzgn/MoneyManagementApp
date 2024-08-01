@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import OnBoarding from '@screens/on-boarding/OnBoarding';
 import SignUp from '@screens/sign-up/SignUp';
 import SignIn from '@screens/sign-in/SignIn';
-import Tabs from './BottomTabNavigator/BottomTabNavigator';
+import Tabs from '@navigations/bottom-tab-navigator/BottomTabNavigator';
 
 const Stack = createStackNavigator();
 
