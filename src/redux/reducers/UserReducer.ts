@@ -9,6 +9,8 @@ import {
   SIGNUP_SUCCESS,
   UPDATEBUDGETFAILURE,
   UPDATEBUDGETSUCCESS,
+  LOGOUT,
+  SETONBOARDINGSEEN,
 } from '../types/User.types';
 
 export interface ExpenseListType {
@@ -21,9 +23,9 @@ export interface UserState {
   signIn: UserSignInType;
   isLoggedIn: boolean;
   error: string;
-
   expenses: ExpenseListType[];
   budget: string;
+  hasSeenOnboarding: boolean;
 }
 
 const initialState: UserState = {
@@ -33,6 +35,7 @@ const initialState: UserState = {
   budget: '',
   isLoggedIn: false,
   error: '',
+  hasSeenOnboarding: false,
 };
 
 const userReducer = (
@@ -47,7 +50,10 @@ const userReducer = (
         error: '',
       };
     case SIGNUP_FAILURE:
-      return {...state, error: action.payload};
+      return {
+        ...state,
+        error: action.payload,
+      };
     case SIGNIN_SUCCESS:
       return {
         ...state,
@@ -56,7 +62,12 @@ const userReducer = (
         error: '',
       };
     case SIGNIN_FAILURE:
-      return {...state, error: action.payload};
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case LOGOUT:
+      return {...initialState};
     case UPDATEBUDGETSUCCESS:
       return {
         ...state,
@@ -67,15 +78,20 @@ const userReducer = (
         ...state,
         error: action.payload,
       };
-      case ADDEXPENSESSUCCESS:
+    case ADDEXPENSESSUCCESS:
+      return {
+        ...state,
+        expenses: action.payload as ExpenseListType[],
+      };
+    case ADDEXPENSESFAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+      case SETONBOARDINGSEEN:
         return {
           ...state,
-          expenses: action.payload as ExpenseListType[],
-        };
-      case ADDEXPENSESFAILURE:
-        return {
-          ...state,
-          error: action.payload,
+          hasSeenOnboarding: true,
         };
   
     default:

@@ -10,6 +10,8 @@ import {
   UPDATEBUDGETFAILURE,
   ADDEXPENSESSUCCESS,
   ADDEXPENSESFAILURE,
+  LOGOUT,
+  SETONBOARDINGSEEN,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
@@ -40,6 +42,13 @@ export const signInFailure = (error: any) => ({
   type: SIGNIN_FAILURE,
   payload: error,
 });
+export const logOut = () => ({
+  type: LOGOUT
+})
+export const setOnboardingSeen = () => ({
+  type: SETONBOARDINGSEEN,
+});
+
 //Budgets Actions
 export const updateBudgetSuccess = (budget: number) => ({
   type: UPDATEBUDGETSUCCESS,
@@ -91,7 +100,8 @@ export const addExpense =
         budget: updatedBudget,
       });
       console.log(currentExtenses);
-      const max = Math.max(...currentExtenses.map(x => parseInt(x.id, 10)), 0) + 1;
+      const max =
+        Math.max(...currentExtenses.map(x => parseInt(x.id, 10)), 0) + 1;
       console.log('1', max);
 
       const expense = {amount, category, id: max.toString()};
@@ -130,6 +140,7 @@ export const signInUser = (user: UserSignInType) => {
             );
             if (currentUser) {
               dispatch(signInSuccess(currentUser));
+              dispatch(signUpSuccess(currentUser));
             } else {
               dispatch(signInFailure('Kullanıcı bulunamadı.'));
             }

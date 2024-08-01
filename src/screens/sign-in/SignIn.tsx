@@ -3,7 +3,6 @@ import {SafeAreaView, Switch, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
-import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {DefaultButton, GenericTextInput, Logo, Text} from 'components/Index';
 import {UserSignInType} from '@utils/types/UserSignInType';
@@ -60,13 +59,6 @@ const SignIn = () => {
   const toggleSwitchRememberMe = (value: boolean) => {
     setRememberMe(value);
   };
-  const toggleSwitchTheme = (value: boolean) => {
-    if (value) {
-      dispatch(ToggleTheme('dark'));
-    } else {
-      dispatch(ToggleTheme('light'));
-    }
-  };
   return (
     <SafeAreaView
       style={[
@@ -99,8 +91,6 @@ const SignIn = () => {
             )}
             name="email"
           />
-          {errors?.email && <Text text=""></Text>}
-          {errors.email && <Text text="" />}
           <Controller
             control={control}
             rules={{
@@ -144,12 +134,6 @@ const SignIn = () => {
           />
         </View>
       </View>
-      <Switch
-        trackColor={{true: themeColors.titleDefault}}
-        ios_backgroundColor={themeColors.titleDefault}
-        onValueChange={toggleSwitchTheme}
-        value={theme === 'dark'}
-      />
     </SafeAreaView>
   );
 };

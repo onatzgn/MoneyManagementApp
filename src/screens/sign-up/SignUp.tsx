@@ -3,7 +3,6 @@ import {SafeAreaView, Switch, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
-import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {
   Text,
@@ -43,13 +42,6 @@ const SignUp = () => {
       dispatch(signUpUser(data));
     } catch (error) {
       dispatch({type: SIGNUP_FAILURE, payload: error});
-    }
-  };
-  const toggleSwitch = (value: boolean) => {
-    if (value) {
-      dispatch(ToggleTheme('dark'));
-    } else {
-      dispatch(ToggleTheme('light'));
     }
   };
   const handleSignIn = () => navigation.navigate('SignIn');
@@ -176,12 +168,6 @@ const SignUp = () => {
           />
         </View>
       </View>
-      <Switch
-        trackColor={{true: themeColors.titleDefault}}
-        ios_backgroundColor={themeColors.titleDefault}
-        onValueChange={toggleSwitch}
-        value={theme === 'dark'}
-      />
     </SafeAreaView>
   );
 };
