@@ -8,7 +8,7 @@ import {RootState} from '@redux/Store';
 import {styles} from './TextInput.style';
 import MaskInput from 'react-native-mask-input';
 import {KeyboardTypeOptions} from 'react-native';
-import {Tooltip} from '@components';
+import {Tooltip} from 'components/Index';
 
 const phoneMask = [
   '+',
@@ -30,14 +30,14 @@ const phoneMask = [
   /\d/,
 ];
 export interface TextInputType {
-  iconName: string;
+  iconName?: string;
   onBlur: () => void;
   onChangeText: (text: string) => void;
   value: string;
   secureTextEntry: boolean;
-  placeholder: string;
+  placeholder?: string;
   keyboardType: KeyboardTypeOptions;
-  errorMessage: string | undefined;
+  errorMessage?: string | undefined;
 }
 
 export const GenericTextInput = ({
@@ -56,12 +56,14 @@ export const GenericTextInput = ({
   const themeColors = getThemeColor(theme);
   return (
     <View style={styles.inputContainer}>
-      <Icon
-        name={iconName}
-        size={25}
-        color={themeColors.titleDefault}
-        style={styles.icon}
-      />
+      {iconName && (
+        <Icon
+          name={iconName}
+          size={25}
+          color={themeColors.titleDefault}
+          style={styles.icon}
+        />
+      )}
       <TextInput
         onBlur={onBlur}
         onChangeText={onChangeText}
@@ -104,12 +106,14 @@ export const GenericMaskInput = ({
   const themeColors = getThemeColor(theme);
   return (
     <View style={styles.inputContainer}>
-      <Icon
-        name={iconName}
-        size={25}
-        color={themeColors.titleDefault}
-        style={styles.icon}
-      />
+      {iconName && (
+        <Icon
+          name={iconName}
+          size={25}
+          color={themeColors.titleDefault}
+          style={styles.icon}
+        />
+      )}
       <MaskInput
         onBlur={onBlur}
         onChangeText={onChangeText}

@@ -4,6 +4,8 @@ const Icons = {
     crocodileTab: require('./crocodileTabIcon.png'),
     missionCenterTab: require('./missionCenterTabIcon.png'),
     profileTab: require('./profileTabIcon.png'),
+    moneySave: require('./moneySave.png'),
+    moneyReceive: require('./moneyReceive.png')
   };
   
   export default Icons;

@@ -101,8 +101,27 @@ export const styles = StyleSheet.create({
     top: 5,
   },
   modalText: {
-    textAlign: 'center',
-    justifyContent: 'center',
     top: 5,
+    left: 0
   },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  label: {
+    fontSize: 18,
+    marginBottom: 10,
+  },
+
+  optionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  optionText: {
+    fontSize: 16,
+    marginRight: 10,
+  },
+
 });

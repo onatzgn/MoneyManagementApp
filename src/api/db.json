@@ -9,16 +9,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -31,19 +34,22 @@
       "email": "fatma@gmail.com",
       "password": "fatma",
       "phone": "+905392424565",
-      "budget": 10000,
+      "budget": 640012,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -59,16 +65,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -84,16 +93,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -109,16 +121,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -134,16 +149,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -159,16 +177,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -184,16 +205,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -209,16 +233,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -234,16 +261,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"
@@ -256,22 +286,27 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 10000,
+      "budget": 1000,
       "expenses": [
         {
+          "amount": 29,
           "category": "Market",
-          "amount": 264,
-          "date": "2024-07-01"
+          "id": "1"
         },
         {
+          "amount": 29,
           "category": "Elektronik",
-          "amount": 1264,
-          "date": "2024-07-15"
+          "id": "2"
         },
         {
-          "category": "Yemek",
-          "amount": 126,
-          "date": "2024-07-20"
+          "amount": 29,
+          "category": "Market",
+          "id": "3"
+        },
+        {
+          "amount": 100,
+          "category": "Market",
+          "id": "4"
         }
       ]
     },
@@ -284,16 +319,19 @@
       "budget": 10000,
       "expenses": [
         {
+          "id": "1",
           "category": "Market",
           "amount": 264,
           "date": "2024-07-01"
         },
         {
+          "id": "2",
           "category": "Elektronik",
           "amount": 1264,
           "date": "2024-07-15"
         },
         {
+          "id": "3",
           "category": "Yemek",
           "amount": 126,
           "date": "2024-07-20"

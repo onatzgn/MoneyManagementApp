@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './Button.style';
 import {scale} from 'react-native-size-matters';
-import {Text} from '@components';
+import {Text} from 'components/Index';
 
 export interface ButtonType {
   text: string;

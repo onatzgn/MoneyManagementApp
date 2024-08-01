@@ -1,34 +1,36 @@
 import {UserSignUpType} from '@utils/types/UserSignUpType';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {
+  ADDEXPENSESSUCCESS,
+  ADDEXPENSESFAILURE,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
+  UPDATEBUDGETFAILURE,
+  UPDATEBUDGETSUCCESS,
 } from '../types/User.types';
 
-interface ExpenseType {
-  spend: any;
+export interface ExpenseListType {
+  id: string;
   category: string;
   amount: number;
-  date: string;
 }
-interface BudgetType {
-  budget: number;
-  expenses: ExpenseType[];
-}
-export interface UserSignUpState {
+export interface UserState {
   signUp: UserSignUpType;
   signIn: UserSignInType;
-  spend: BudgetType;
   isLoggedIn: boolean;
   error: string;
+
+  expenses: ExpenseListType[];
+  budget: string;
 }
 
-const initialState: UserSignUpState = {
+const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
-  spend: {budget: 0, expenses: []},
+  expenses: [],
+  budget: '',
   isLoggedIn: false,
   error: '',
 };
@@ -36,7 +38,7 @@ const initialState: UserSignUpState = {
 const userReducer = (
   state = initialState,
   action: {type: string; payload?: any},
-): UserSignUpState => {
+): UserState => {
   switch (action.type) {
     case SIGNUP_SUCCESS:
       return {
@@ -52,13 +54,30 @@ const userReducer = (
         signIn: action.payload,
         isLoggedIn: true,
         error: '',
-        spend: {
-          budget: action.payload.budget || 0,
-          expenses: action.payload.expenses || [],
-        },
       };
     case SIGNIN_FAILURE:
       return {...state, error: action.payload};
+    case UPDATEBUDGETSUCCESS:
+      return {
+        ...state,
+        budget: action.payload,
+      };
+    case UPDATEBUDGETFAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+      case ADDEXPENSESSUCCESS:
+        return {
+          ...state,
+          expenses: action.payload as ExpenseListType[],
+        };
+      case ADDEXPENSESFAILURE:
+        return {
+          ...state,
+          error: action.payload,
+        };
+  
     default:
       return state;
   }

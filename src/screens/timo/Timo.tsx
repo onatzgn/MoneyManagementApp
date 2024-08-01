@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, View, TouchableOpacity} from 'react-native';
 import {styles} from './Timo.style';
-import {Text} from '@components';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import {RootState} from '@redux/Store';
+import {Text, Logo} from 'components/Index';
 
 export const Timo = () => {
   const theme = useSelector(

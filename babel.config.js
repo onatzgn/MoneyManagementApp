@@ -20,7 +20,7 @@ module.exports = {
         alias: {
           '@api': './src/api',
           '@assets': './src/assets',
-          '@components': './src/components/index',
+          '@components': './src/components/Index',
           '@navigations': './src/navigations',
           '@redux': './src/redux',
           '@screens': './src/screens',

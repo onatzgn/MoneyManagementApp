@@ -14,7 +14,7 @@ import {getThemeColor} from '@utils/Color';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {DefaultButton, Text, GenericAvatar} from '@components';
+import {DefaultButton, Text, GenericAvatar} from 'components/Index';
 import Images from '@assets/Images';
 
 const MenuDatas = [
@@ -78,7 +78,11 @@ export const Profile = () => {
           style={[styles.title, {color: themeColors.profileTitle}]}
           text="Profil"
         />
-        <GenericAvatar style={styles.avatar} source={Images.crocodile} size={150} />
+        <GenericAvatar
+          style={styles.avatar}
+          source={Images.crocodile}
+          size={150}
+        />
         <Text
           style={[styles.fullName, {color: themeColors.profileTitle}]}
           text="Fatma Yılmaz"

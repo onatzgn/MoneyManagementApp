@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, View} from 'react-native';
 import {styles} from './PointBar.styles';
-import {Text} from '@components';
+import {Text} from 'components/Index';
 import Images from '@assets/Images';
 
 interface PointBarProps {

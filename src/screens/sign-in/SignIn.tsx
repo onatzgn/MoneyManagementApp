@@ -5,7 +5,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
 import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
-import {DefaultButton, GenericTextInput, Logo, Text} from '@components';
+import {DefaultButton, GenericTextInput, Logo, Text} from 'components/Index';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {signInUser} from '@redux/actions/UserAction';
 import {SIGNIN_FAILURE} from '@redux/types/User.types';
