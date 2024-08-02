@@ -11,19 +11,16 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: verticalScale(20),
     marginBottom: verticalScale(10),
-
   },
-  budgetsTitle:{
+  budgetsTitle: {
     fontSize: 35,
     fontWeight: 'bold',
     marginLeft: verticalScale(20),
     marginBottom: verticalScale(10),
-
   },
   staticTitle: {
     marginLeft: verticalScale(20),
     fontWeight: 'bold',
-
   },
   budgetTitle: {
     left: '50%',
@@ -42,12 +39,13 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     alignContent: 'center',
   },
-  flatListItem: {
+  flatListContainer: {
     height: 50,
     marginBottom: 10,
     flexDirection: 'row',
     paddingHorizontal: '5%',
     alignItems: 'center',
+    width: '100%',
   },
   iconContainer: {
     borderColor: 'black',
@@ -58,18 +56,12 @@ export const styles = StyleSheet.create({
   },
   spendText: {
     marginLeft: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   spendTextContainer: {
     position: 'absolute',
     right: 20,
   },
-
-
-
-
-
-
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -102,26 +94,22 @@ export const styles = StyleSheet.create({
   },
   modalText: {
     top: 5,
-    left: 0
+    left: 0,
   },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  modalContainer: {
     alignItems: 'center',
   },
-  label: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-
-  optionContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  optionText: {
-    fontSize: 16,
+  flatListIcon: {
     marginRight: 10,
   },
-
+  flatListText: {
+    fontWeight: 'bold',
+  },
+  containerStyle: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 20,
+    alignSelf: 'center',
+    top: -30,
+  },
 });

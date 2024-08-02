@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text as RNText, TextStyle, StyleProp} from 'react-native';
 import {styles} from './Text.style';
-
 import {ReactNode} from 'react';
-export interface TextType {
+
+interface TextType {
   text: string | undefined;
   children?: ReactNode;
   style?: StyleProp<TextStyle> | undefined;

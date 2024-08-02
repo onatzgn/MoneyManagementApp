@@ -3,9 +3,14 @@ import {SafeAreaView, Switch, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
-import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
-import {DefaultButton, GenericTextInput, Logo, Text} from 'components/Index';
+import {
+  DefaultButton,
+  GenericTextInput,
+  LinkButton,
+  Logo,
+  Text,
+} from 'components/Index';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {signInUser} from '@redux/actions/UserAction';
 import {SIGNIN_FAILURE} from '@redux/types/User.types';
@@ -31,6 +36,7 @@ const SignIn = () => {
       password: '',
     },
   });
+  const handleSignUp = () => navigation.navigate('SignUn');
   const signIn = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn,
   );
@@ -60,17 +66,10 @@ const SignIn = () => {
   const toggleSwitchRememberMe = (value: boolean) => {
     setRememberMe(value);
   };
-  const toggleSwitchTheme = (value: boolean) => {
-    if (value) {
-      dispatch(ToggleTheme('dark'));
-    } else {
-      dispatch(ToggleTheme('light'));
-    }
-  };
   return (
     <SafeAreaView
       style={[
-        styles.signInContainer,
+        styles.mainContainer,
         {backgroundColor: themeColors.background},
       ]}>
       <View style={styles.inputContainer}>
@@ -99,8 +98,6 @@ const SignIn = () => {
             )}
             name="email"
           />
-          {errors?.email && <Text text=""></Text>}
-          {errors.email && <Text text="" />}
           <Controller
             control={control}
             rules={{
@@ -124,7 +121,7 @@ const SignIn = () => {
             )}
             name="password"
           />
-          <View style={{flexDirection: 'row'}}>
+          <View style={styles.rememberMeSwitchContainer}>
             <Text
               style={[styles.rememberMeText, {color: themeColors.titleDefault}]}
               text="Beni hatırla "
@@ -144,12 +141,18 @@ const SignIn = () => {
           />
         </View>
       </View>
-      <Switch
-        trackColor={{true: themeColors.titleDefault}}
-        ios_backgroundColor={themeColors.titleDefault}
-        onValueChange={toggleSwitchTheme}
-        value={theme === 'dark'}
-      />
+      <View style={styles.signUpButton}>
+        <Text
+          style={[{color: themeColors.titleDefault}]}
+          text="Hesabınız varsa"
+        />
+        <LinkButton
+          onPress={handleSignUp}
+          text="Giriş Yapın"
+          backgroundColor={themeColors.signInUpButton}
+          textColor={themeColors.titleDefault}
+        />
+      </View>
     </SafeAreaView>
   );
 };

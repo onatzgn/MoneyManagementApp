@@ -23,6 +23,11 @@ export interface ColorTypes {
   onBoardingSkip: string;
   missionCenterBackground: string;
   missionCenterTitle: string;
+  gray: string;
+  activeBackgroundColor: string;
+  inActiveBackgroundColor: string;
+  borderActiveColor: string;
+  borderInActiveColor: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -50,6 +55,11 @@ export const LightTheme: ColorTypes = {
   onBoardingSkip: '#474A57',
   missionCenterBackground: '#FFBD12',
   missionCenterTitle: 'black',
+  gray: 'gray',
+  activeBackgroundColor: '#9ee3fb',
+  inActiveBackgroundColor: '#3c4145',
+  borderActiveColor: '#86c3d7',
+  borderInActiveColor: '#1c1c1c',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -77,6 +87,11 @@ export const DarkTheme: ColorTypes = {
   onBoardingSkip: '#ACACAC',
   missionCenterBackground: '#27282E',
   missionCenterTitle: '#FFBD12',
+  gray: 'gray',
+  activeBackgroundColor: '#9ee3fb',
+  inActiveBackgroundColor: '#3c4145',
+  borderActiveColor: '#86c3d7',
+  borderInActiveColor: '#1c1c1c',
 };
 
 const themes = {

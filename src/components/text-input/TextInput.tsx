@@ -29,7 +29,7 @@ const phoneMask = [
   /\d/,
   /\d/,
 ];
-export interface TextInputType {
+interface TextInputType {
   iconName?: string;
   onBlur: () => void;
   onChangeText: (text: string) => void;
@@ -54,6 +54,11 @@ export const GenericTextInput = ({
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+  const ToolTipChildren = () => {
+    return(
+      <Icon color={themeColors.warning} name="warning" size={30} />
+    )
+  }
   return (
     <View style={styles.inputContainer}>
       {iconName && (
@@ -84,7 +89,7 @@ export const GenericTextInput = ({
         <Tooltip
           content={errorMessage}
           style={styles.errorIcon}
-          children={<Icon color={'orange'} name="warning" size={30} />}
+          children={ToolTipChildren()}
         />
       )}
     </View>

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {slides} from './components/OnBoarding.slides';
@@ -8,9 +8,11 @@ import Images from '@assets/Images';
 import {TextAnimation, PointBar, Text} from 'components/Index';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
-import {RootState} from '@redux/Store';
+import {RootState, useAppDispatch} from '@redux/Store';
+import { setOnboardingSeen } from '@redux/actions/UserAction';
 
 export default function OnBoarding() {
+  const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
   const swiperRef = useRef<Swiper>(null);
   const onPressSignUp = () => navigation.navigate('SignUp');
@@ -22,6 +24,9 @@ export default function OnBoarding() {
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+  useEffect(() => {
+    dispatch(setOnboardingSeen());
+  }, [dispatch]);
 
   const onPressNext = () => {
     if (swiperRef.current) {

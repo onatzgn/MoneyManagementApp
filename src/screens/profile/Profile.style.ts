@@ -1,18 +1,17 @@
 import {StyleSheet} from 'react-native';
-import {scale, verticalScale, ScaledSheet} from 'react-native-size-matters';
+import {scale, verticalScale} from 'react-native-size-matters';
 
-export const styles = ScaledSheet.create({
+export const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   profileContainer: {
     width: '100%',
-    height: verticalScale(400),
+    height: verticalScale(360),
     borderBottomStartRadius: 30,
     borderBottomEndRadius: 30,
     position: 'absolute',
   },
-  mainContainer: {
-    flex: 1,
-  },
-  parentIntro: {},
   profileNav: {
     flexDirection: 'row',
     height: verticalScale(100),
@@ -46,18 +45,18 @@ export const styles = ScaledSheet.create({
   },
   avatar: {
     alignItems: 'center',
-    marginTop: verticalScale(30),
+    marginTop: verticalScale(0),
   },
   title: {
     fontSize: 30,
-    marginTop: verticalScale(40),
+    marginTop: verticalScale(45),
     fontWeight: 'bold',
     marginLeft: verticalScale(20),
   },
 
   menuContainer: {
     width: '80%',
-    marginTop: verticalScale(430),
+    marginTop: verticalScale(380),
     alignSelf: 'center',
     paddingVertical: 15,
     paddingHorizontal: 15,
@@ -79,39 +78,22 @@ export const styles = ScaledSheet.create({
     marginLeft: verticalScale(20),
   },
 
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    borderColor: 'black',
-    borderWidth: 2,
-  },
   button: {
     padding: 10,
   },
   buttonClose: {
     position: 'absolute',
-    right: 5,
-    top: 5,
+    right: -60,
+    top: -30,
   },
   modalText: {
     textAlign: 'center',
     justifyContent: 'center',
     top: 5,
+  },
+  menuText: {
+    fontSize: 18,
+    marginLeft: 15,
+    fontWeight: 'bold',
   },
 });

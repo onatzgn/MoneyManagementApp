@@ -9,7 +9,7 @@ import {
 import {styles} from './ToolTip.style';
 import {Text} from 'components/Index';
 
-export interface ToolTipType {
+interface ToolTipType {
   content: string | undefined;
   children: React.ReactNode;
   style: StyleProp<ViewStyle>;

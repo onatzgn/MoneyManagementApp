@@ -4,7 +4,7 @@ import {View, Animated} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/lib/integration/react';
 import store, {persistor} from '@redux/Store';
-import StackNavigator from '@navigations/StackNavigator';
+import StackNavigator from '@navigations/stack-navigator/StackNavigator';
 
 //WARN: Sending `onAnimatedValueUpdate` with no listeners registered
 const av = new Animated.Value(0);

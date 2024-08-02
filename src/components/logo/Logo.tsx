@@ -4,7 +4,7 @@ import {styles} from './Logo.styles';
 import {Text} from '../text/Text';
 import Images from '@assets/Images';
 
-export interface LogoType {
+interface LogoType {
   text: string;
   color: string;
 }

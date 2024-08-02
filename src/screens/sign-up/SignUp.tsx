@@ -1,9 +1,8 @@
 import React from 'react';
-import {SafeAreaView, Switch, View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
-import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {
   Text,
@@ -38,6 +37,7 @@ const SignUp = () => {
       phone: '',
     },
   });
+  const handleSignIn = () => navigation.navigate('SignIn');
   const onSubmit = async (data: UserSignUpType) => {
     try {
       dispatch(signUpUser(data));
@@ -45,20 +45,9 @@ const SignUp = () => {
       dispatch({type: SIGNUP_FAILURE, payload: error});
     }
   };
-  const toggleSwitch = (value: boolean) => {
-    if (value) {
-      dispatch(ToggleTheme('dark'));
-    } else {
-      dispatch(ToggleTheme('light'));
-    }
-  };
-  const handleSignIn = () => navigation.navigate('SignIn');
   return (
     <SafeAreaView
-      style={[
-        styles.signUpContainer,
-        {backgroundColor: themeColors.background},
-      ]}>
+      style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
       <View style={styles.inputContainer}>
         <Logo text="Aramıza Hoşgeldin" color={themeColors.titleDefault} />
         <View style={styles.formContainer}>
@@ -167,21 +156,13 @@ const SignUp = () => {
             text="Hesabınız varsa"
           />
           <LinkButton
-            onPress={() => {
-              handleSignIn();
-            }}
+            onPress={handleSignIn}
             text="Giriş Yapın"
             backgroundColor={themeColors.signInUpButton}
             textColor={themeColors.titleDefault}
           />
         </View>
       </View>
-      <Switch
-        trackColor={{true: themeColors.titleDefault}}
-        ios_backgroundColor={themeColors.titleDefault}
-        onValueChange={toggleSwitch}
-        value={theme === 'dark'}
-      />
     </SafeAreaView>
   );
 };

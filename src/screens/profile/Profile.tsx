@@ -1,13 +1,12 @@
 import {
   FlatList,
-  Modal,
   Pressable,
   SafeAreaView,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {styles} from './Profile.style';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {RootState} from '@redux/Store';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
@@ -16,11 +15,17 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {DefaultButton, Text, GenericAvatar} from 'components/Index';
 import Images from '@assets/Images';
+import {Modal} from 'components/modal/Modal';
 
 const MenuDatas = [
-  {id: '1', title: 'Hesap', color: '#FFBD11'},
-  {id: '2', title: 'Tema', color: '#62E4C6'},
-  {id: '3', title: 'Item 3', color: '#FF9692'},
+  {
+    id: '1',
+    title: 'Kişisel Bilgiler',
+    color: '#FFBD11',
+    onPress: 'PersonalInformation',
+  },
+  {id: '2', title: 'Tema', color: '#62E4C6', onPress: 'Theme'},
+  {id: '3', title: 'Item 3', color: '#FF9692', onPress: 'PersonalInformation'},
 ];
 
 export const Profile = () => {
@@ -31,27 +36,43 @@ export const Profile = () => {
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
-  const currentUser = useSelector(
-    (state: RootState) => state.persistedReducer.user.signIn,
+  const user = useSelector(
+    (state: RootState) => state.persistedReducer.user.signUp,
   );
-  useEffect(() => {
-    console.log('fullName: ', currentUser);
-  }, [navigation]);
+
+  const ParentModal = () => {
+    return (
+      <View style={{}}>
+        <Text
+          text="Ebeveyn Bilgisi"
+          style={[styles.modalText, {color: themeColors.titleDefault}]}></Text>
+        <Pressable
+          style={[
+            styles.button,
+            styles.buttonClose,
+            {backgroundColor: themeColors.background},
+          ]}
+          onPress={() => setModalVisible(!modalVisible)}>
+          <Icon name="close" size={20} />
+        </Pressable>
+      </View>
+    );
+  };
+
   const renderMenuItems = ({
     item,
   }: {
-    item: {id: string; title: string; color: string};
+    item: {id: string; title: string; color: string; onPress: string};
   }) => {
     return (
-      <TouchableOpacity style={styles.item}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate(item.onPress);
+        }}
+        style={styles.item}>
         <View style={[styles.itemCircle, {backgroundColor: item.color}]}></View>
         <Text
-          style={{
-            fontSize: 18,
-            marginLeft: 15,
-            fontWeight: 'bold',
-            color: themeColors.titleDefault,
-          }}
+          style={[styles.menuText, {color: themeColors.titleDefault}]}
           text={item.title}
         />
         <Icon
@@ -85,11 +106,10 @@ export const Profile = () => {
         />
         <Text
           style={[styles.fullName, {color: themeColors.profileTitle}]}
-          text="Fatma Yılmaz"
+          text={user.fullName}
         />
-
         <View style={styles.profileNav}>
-          <View style={styles.parentIntro}>
+          <View>
             <DefaultButton
               backgroundColor={themeColors.profileButton}
               buttonSize={150}
@@ -123,39 +143,13 @@ export const Profile = () => {
           keyExtractor={item => item.id}
         />
       </View>
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.centeredView}>
-            <View
-              style={[
-                styles.modalView,
-                {backgroundColor: themeColors.background},
-              ]}>
-              <Text
-                text="Ebeveyn Bilgisi"
-                style={[
-                  styles.modalText,
-                  {color: themeColors.titleDefault},
-                ]}></Text>
-              <Pressable
-                style={[
-                  styles.button,
-                  styles.buttonClose,
-                  {backgroundColor: themeColors.background},
-                ]}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Icon name="close" size={20} />
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
-      </View>
+      <Modal
+        children={ParentModal()}
+        visible={modalVisible}
+        onClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      />
     </SafeAreaView>
   );
 };
