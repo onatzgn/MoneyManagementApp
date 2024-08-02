@@ -1,12 +1,11 @@
 import React, {ReactNode} from 'react';
-import {useState} from 'react';
-import {View, Modal as RNModal, Pressable} from 'react-native';
+import {View, Modal as RNModal} from 'react-native';
 import {styles} from './Modal.style';
 import {useSelector} from 'react-redux';
 import {RootState} from '@redux/Store';
 import {getThemeColor} from '@utils/Color';
 
-export interface ModalType {
+interface ModalType {
   children: ReactNode;
   visible: boolean;
   onClose: () => void;

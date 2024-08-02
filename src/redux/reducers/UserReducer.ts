@@ -27,7 +27,6 @@ export interface UserState {
   budget: string;
   hasSeenOnboarding: boolean;
 }
-
 const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
@@ -37,7 +36,6 @@ const initialState: UserState = {
   error: '',
   hasSeenOnboarding: false,
 };
-
 const userReducer = (
   state = initialState,
   action: {type: string; payload?: any},
@@ -67,7 +65,9 @@ const userReducer = (
         error: action.payload,
       };
     case LOGOUT:
-      return {...initialState};
+      return {
+        ...initialState,
+      };
     case UPDATEBUDGETSUCCESS:
       return {
         ...state,
@@ -88,12 +88,12 @@ const userReducer = (
         ...state,
         error: action.payload,
       };
-      case SETONBOARDINGSEEN:
-        return {
-          ...state,
-          hasSeenOnboarding: true,
-        };
-  
+    case SETONBOARDINGSEEN:
+      return {
+        ...state,
+        hasSeenOnboarding: true,
+      };
+
     default:
       return state;
   }

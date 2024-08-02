@@ -5,7 +5,7 @@ import {styles} from './Button.style';
 import {scale} from 'react-native-size-matters';
 import {Text} from 'components/Index';
 
-export interface ButtonType {
+interface ButtonType {
   text: string;
   onPress: () => void;
   backgroundColor?: string;
@@ -42,7 +42,6 @@ export const DefaultButton = ({
 export const LinkButton = ({
   text,
   onPress,
-  backgroundColor,
   textColor,
 }: ButtonType) => {
   return (

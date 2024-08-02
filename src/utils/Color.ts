@@ -21,6 +21,11 @@ export interface ColorTypes {
   onBoardingTextContainer: string;
   onBoardingText: string;
   onBoardingSkip: string;
+  gray: string;
+  activeBackgroundColor: string;
+  inActiveBackgroundColor: string;
+  borderActiveColor: string;
+  borderInActiveColor: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -46,6 +51,11 @@ export const LightTheme: ColorTypes = {
   onBoardingTextContainer: '#00C6AE',
   onBoardingText: 'black',
   onBoardingSkip: '#474A57',
+  gray: 'gray',
+  activeBackgroundColor: '#9ee3fb',
+  inActiveBackgroundColor: '#3c4145',
+  borderActiveColor: '#86c3d7',
+  borderInActiveColor: '#1c1c1c',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -71,6 +81,11 @@ export const DarkTheme: ColorTypes = {
   onBoardingTextContainer: '#638074',
   onBoardingText: '#292929',
   onBoardingSkip: '#ACACAC',
+  gray: 'gray',
+  activeBackgroundColor: '#9ee3fb',
+  inActiveBackgroundColor: '#3c4145',
+  borderActiveColor: '#86c3d7',
+  borderInActiveColor: '#1c1c1c',
 };
 
 const themes = {

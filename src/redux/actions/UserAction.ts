@@ -42,13 +42,14 @@ export const signInFailure = (error: any) => ({
   type: SIGNIN_FAILURE,
   payload: error,
 });
+//Logout Action
 export const logOut = () => ({
-  type: LOGOUT
-})
+  type: LOGOUT,
+});
+//On Boarding Action
 export const setOnboardingSeen = () => ({
   type: SETONBOARDINGSEEN,
 });
-
 //Budgets Actions
 export const updateBudgetSuccess = (budget: number) => ({
   type: UPDATEBUDGETSUCCESS,
@@ -58,6 +59,7 @@ export const updateBudgetFailure = (error: any) => ({
   type: UPDATEBUDGETFAILURE,
   payload: error,
 });
+//Expense Actions
 export const addExpensesSuccess = (expenses: ExpenseListType[]) => ({
   type: ADDEXPENSESSUCCESS,
   payload: expenses,
@@ -66,7 +68,6 @@ export const addExpensesFailure = (error: any) => ({
   type: ADDEXPENSESFAILURE,
   payload: error,
 });
-
 export const addInCome =
   (userId: string | undefined, amount: number) =>
   async (dispatch: AppDispatch) => {
@@ -77,7 +78,6 @@ export const addInCome =
       await axios.patch(`${baseUrl()}/users/${userId}`, {
         budget: updatedBudget,
       });
-
       dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
       dispatch({type: ADDEXPENSESSUCCESS, payload: user.expenses});
     } catch (error) {
@@ -109,7 +109,6 @@ export const addExpense =
       await axios.patch(`${baseUrl()}/users/${userId}`, {
         expenses: newExpenses,
       });
-
       dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
       dispatch({type: ADDEXPENSESSUCCESS, payload: newExpenses});
     } catch (error) {}
@@ -144,14 +143,12 @@ export const signInUser = (user: UserSignInType) => {
             } else {
               dispatch(signInFailure('Kullanıcı bulunamadı.'));
             }
-            console.log('currentuser: ', currentUser);
           })
           .catch(reason => {
             dispatch({type: SIGNIN_FAILURE, payload: reason});
-            console.log('reason: ', reason);
           });
       } catch (error) {
-        console.log('catch: ', error);
+        dispatch({type: SIGNIN_FAILURE, payload: error});
       }
     }
   };

@@ -4,54 +4,44 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {ToggleTheme} from '@redux/actions/ThemeAction';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {View} from 'react-native';
-import {verticalScale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
+import {styles} from './Theme.style';
 
 export const Theme = () => {
   const dispatch = useAppDispatch();
-  const [toggleValue, setToggleValue] = useState(false);
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+  const [toggleValue, setToggleValue] = useState(false);
 
   const ThemeToggle = () => {
     setToggleValue(!toggleValue);
-    if (toggleValue) {
-      dispatch(ToggleTheme('dark'));
-    } else {
-      dispatch(ToggleTheme('light'));
-    }
+    const newTheme = toggleValue ? 'dark' : 'light';
+    dispatch(ToggleTheme(newTheme));
   };
-
+  const ToggleActiveComponent = () => {
+    <Icon name="sunny" size={20} color={themeColors.warning} />;
+  };
+  const ToggleInActiveComponent = () => {
+    <Icon name="moon" size={20} />;
+  };
   return (
-    <View style={{flex: 1, backgroundColor: themeColors.background}}>
-      <View
-        style={{
-          position: 'absolute',
-          marginTop: verticalScale(100),
-          width: '100%',
-          alignItems: 'center',
-          
-        }}>
+    <View
+      style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
+      <View style={styles.container}>
         <Toggle
           value={toggleValue}
-          onPress={() => {
-            ThemeToggle();
-          }}
-          thumbActiveComponent={
-            <Icon name="sunny" size={20} color={'orange'} />
-          }
-          thumbInActiveComponent={<Icon name="moon" size={20} />}
-          thumbButton={{
-            inActiveBackgroundColor: 'gray',
-          }}
+          onPress={ThemeToggle}
+          thumbActiveComponent={ToggleActiveComponent}
+          thumbInActiveComponent={ToggleInActiveComponent}
+          thumbButton={{inActiveBackgroundColor: themeColors.gray}}
           trackBar={{
-            activeBackgroundColor: '#9ee3fb',
-            inActiveBackgroundColor: '#3c4145',
-            borderActiveColor: '#86c3d7',
-            borderInActiveColor: '#1c1c1c',
+            activeBackgroundColor: themeColors.activeBackgroundColor,
+            inActiveBackgroundColor: themeColors.inActiveBackgroundColor,
+            borderActiveColor: themeColors.borderActiveColor,
+            borderInActiveColor: themeColors.borderInActiveColor,
             borderWidth: 3,
             width: 100,
           }}

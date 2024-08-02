@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   Pressable,
   SafeAreaView,
   TouchableOpacity,
@@ -7,7 +6,6 @@ import {
   FlatList,
 } from 'react-native';
 import {styles} from './Budget.style';
-import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {getThemeColor} from '@utils/Color';
@@ -25,6 +23,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {addExpense, addInCome} from '@redux/actions/UserAction';
 import {ExpenseListType} from '@redux/reducers/UserReducer';
 import {Modal} from 'components/modal/Modal';
+
 const data = [
   {
     name: 'Market',
@@ -65,10 +64,7 @@ const chartConfig = {
   legendFontSize: 15,
 };
 
-const screenWidth = Dimensions.get('window').width;
-
 export const Budget = () => {
-  const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const [toggleValue, setToggleValue] = useState(false);
   const [inComeVisible, setInComeVisible] = useState(false);
@@ -88,11 +84,7 @@ export const Budget = () => {
   const expenses = useSelector(
     (state: RootState) => state.persistedReducer.user.expenses,
   );
-  const {
-    control,
-    handleSubmit,
-    formState: {errors},
-  } = useForm({
+  const {control, handleSubmit} = useForm({
     defaultValues: {
       inCome: '',
       expense: '',
@@ -103,12 +95,10 @@ export const Budget = () => {
   const onSubmitInCome = async (data: {inCome: string}) => {
     const numberInCome = parseInt(data.inCome, 10);
     dispatch(addInCome(userId, numberInCome));
-    console.log(data);
-    console.log('expenses: ', expenses);
   };
   const onSubmitExpense = async (data: {expense: string; category: string}) => {
     const numberExpense = parseInt(data.expense, 10);
-    dispatch(addExpense(userId, numberExpense, data.category)); //???????adincome
+    dispatch(addExpense(userId, numberExpense, data.category));
   };
 
   const Graphic = () => {
@@ -139,13 +129,7 @@ export const Budget = () => {
             radius: 25,
           }}
           trackBarStyle={{backgroundColor: themeColors.signInUpButtonTextColor}}
-          containerStyle={{
-            borderColor: 'black',
-            borderWidth: 1,
-            borderRadius: 20,
-            alignSelf: 'center',
-            top: -30,
-          }}
+          containerStyle={styles.containerStyle}
           rightComponent={
             <Icon
               size={20}
@@ -187,36 +171,29 @@ export const Budget = () => {
       color: 'grey',
     };
     return (
-      <View style={styles.flatListItem}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            width: '100%',
-          }}>
-          <Icon
-            name={iconName}
-            size={24}
-            color={color}
-            style={{marginRight: 10}}
-          />
+      <View style={styles.flatListContainer}>
+        <Icon
+          name={iconName}
+          size={24}
+          color={color}
+          style={styles.flatListIcon}
+        />
+        <Text
+          style={[styles.flatListText, {color: themeColors.titleDefault}]}
+          text={category}
+        />
+        <View style={styles.spendTextContainer}>
           <Text
-            style={{color: themeColors.titleDefault, fontWeight: 'bold'}}
-            text={category}
+            style={[styles.spendText, {color: themeColors.titleDefault}]}
+            text={`-${item.amount} ₺`}
           />
-          <View style={styles.spendTextContainer}>
-            <Text
-              style={[styles.spendText, {color: themeColors.titleDefault}]}
-              text={`-${item.amount} ₺`}
-            />
-          </View>
         </View>
       </View>
     );
   };
   const InComeModal = () => {
     return (
-      <View style={{alignItems: 'center'}}>
+      <View style={styles.modalContainer}>
         <Text
           text="Gelir Ekle"
           style={[styles.modalText, {color: themeColors.titleDefault}]}
@@ -264,7 +241,7 @@ export const Budget = () => {
   };
   const ExpenseModal = () => {
     return (
-      <View style={{alignItems: 'center'}}>
+      <View style={styles.modalContainer}>
         <Text
           text="Gider Ekle"
           style={[styles.modalText, {color: themeColors.titleDefault}]}
@@ -275,7 +252,7 @@ export const Budget = () => {
             required: 'Bu alan boş bırakılamaz',
             min: {
               value: 1,
-              message: 'MSG',
+              message: 'En az 1 karakter gerekli',
             },
             minLength: {
               value: 1,
@@ -321,7 +298,6 @@ export const Budget = () => {
           )}
           name="category"
         />
-
         <DefaultButton
           onPress={handleSubmit(onSubmitExpense)}
           text="Ekle"

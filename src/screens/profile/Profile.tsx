@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import {styles} from './Profile.style';
 import {useState} from 'react';
-import {RootState, useAppDispatch} from '@redux/Store';
+import {RootState} from '@redux/Store';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import {useNavigation} from '@react-navigation/native';
@@ -29,10 +29,8 @@ const MenuDatas = [
 ];
 
 export const Profile = () => {
-  const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState(false);
-  const [toggleValue, setToggleValue] = useState(false);
 
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
@@ -42,9 +40,6 @@ export const Profile = () => {
     (state: RootState) => state.persistedReducer.user.signUp,
   );
 
-  const currentUser = useSelector(
-    (state: RootState) => state.persistedReducer.user.signIn,
-  );
   const ParentModal = () => {
     return (
       <View style={{}}>
@@ -77,12 +72,7 @@ export const Profile = () => {
         style={styles.item}>
         <View style={[styles.itemCircle, {backgroundColor: item.color}]}></View>
         <Text
-          style={{
-            fontSize: 18,
-            marginLeft: 15,
-            fontWeight: 'bold',
-            color: themeColors.titleDefault,
-          }}
+          style={[styles.menuText, {color: themeColors.titleDefault}]}
           text={item.title}
         />
         <Icon
@@ -118,7 +108,6 @@ export const Profile = () => {
           style={[styles.fullName, {color: themeColors.profileTitle}]}
           text={user.fullName}
         />
-
         <View style={styles.profileNav}>
           <View>
             <DefaultButton

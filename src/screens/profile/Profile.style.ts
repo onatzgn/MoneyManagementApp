@@ -2,15 +2,15 @@ import {StyleSheet} from 'react-native';
 import {scale, verticalScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   profileContainer: {
     width: '100%',
     height: verticalScale(360),
     borderBottomStartRadius: 30,
     borderBottomEndRadius: 30,
     position: 'absolute',
-  },
-  mainContainer: {
-    flex: 1,
   },
   profileNav: {
     flexDirection: 'row',
@@ -84,11 +84,16 @@ export const styles = StyleSheet.create({
   buttonClose: {
     position: 'absolute',
     right: -60,
-    top: -30
+    top: -30,
   },
   modalText: {
     textAlign: 'center',
     justifyContent: 'center',
     top: 5,
+  },
+  menuText: {
+    fontSize: 18,
+    marginLeft: 15,
+    fontWeight: 'bold',
   },
 });

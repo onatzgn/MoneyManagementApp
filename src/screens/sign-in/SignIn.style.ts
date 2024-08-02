@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  signInContainer: {
+  mainContainer: {
     flex: 1,
   },
   inputContainer: {
@@ -19,10 +19,12 @@ export const styles = StyleSheet.create({
   rememberMeText: {
     alignSelf: 'center',
   },
-  warningIcon: {
-    width: '10%',
-    position: 'absolute',
-    right: 10,
-    bottom: 0,
+  signUpButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: '5%',
+  },
+  rememberMeSwitchContainer: {
+    flexDirection: 'row',
   },
 });

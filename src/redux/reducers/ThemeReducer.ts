@@ -6,7 +6,6 @@ export interface ThemeState {
 export const InitialState: ThemeState = {
   theme: 'light',
 };
-
 const ThemeReducer = (
   state = InitialState,
   action: {type: string; payload?: any},

@@ -4,10 +4,13 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 //Sign In Action Types
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_FAILURE = 'SIGNIN_FAILURE';
+//Logout Action Types
 export const LOGOUT = 'LOGOUT';
-export const SETONBOARDINGSEEN = 'SETONBOARDINGSEEN'
+//On Boarding Seen Action Types
+export const SETONBOARDINGSEEN = 'SETONBOARDINGSEEN';
+//Budget Action Types
 export const UPDATEBUDGETSUCCESS = 'UPDATEBUDGETSUCCESS';
 export const UPDATEBUDGETFAILURE = 'UPDATEBUDGETFAILURE';
-
+//Expense Action Types
 export const ADDEXPENSESSUCCESS = 'ADDEXPENSESFAILURE';
 export const ADDEXPENSESFAILURE = 'ADDEXPENSESFAILURE';
