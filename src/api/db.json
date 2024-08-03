@@ -286,7 +286,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 1000,
+      "budget": 405,
       "expenses": [
         {
           "amount": 29,
@@ -307,6 +307,36 @@
           "amount": 100,
           "category": "Market",
           "id": "4"
+        },
+        {
+          "amount": 5,
+          "category": "Markt",
+          "id": "5"
+        },
+        {
+          "amount": 5,
+          "category": "Market",
+          "id": "6"
+        },
+        {
+          "amount": 5,
+          "category": "Market",
+          "id": "7"
+        },
+        {
+          "amount": 5,
+          "category": "Kitao",
+          "id": "8"
+        },
+        {
+          "amount": 500,
+          "category": "Market",
+          "id": "9"
+        },
+        {
+          "amount": 400,
+          "category": "Market",
+          "id": "10"
         }
       ]
     },
