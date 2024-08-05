@@ -21,6 +21,8 @@ export interface ColorTypes {
   onBoardingTextContainer: string;
   onBoardingText: string;
   onBoardingSkip: string;
+  missionCenterBackground: string;
+  missionCenterTitle: string;
   gray: string;
   activeBackgroundColor: string;
   inActiveBackgroundColor: string;
@@ -51,6 +53,8 @@ export const LightTheme: ColorTypes = {
   onBoardingTextContainer: '#00C6AE',
   onBoardingText: 'black',
   onBoardingSkip: '#474A57',
+  missionCenterBackground: '#FFBD12',
+  missionCenterTitle: 'black',
   gray: 'gray',
   activeBackgroundColor: '#9ee3fb',
   inActiveBackgroundColor: '#3c4145',
@@ -81,6 +85,8 @@ export const DarkTheme: ColorTypes = {
   onBoardingTextContainer: '#638074',
   onBoardingText: '#292929',
   onBoardingSkip: '#ACACAC',
+  missionCenterBackground: '#27282E',
+  missionCenterTitle: '#FFBD12',
   gray: 'gray',
   activeBackgroundColor: '#9ee3fb',
   inActiveBackgroundColor: '#3c4145',
