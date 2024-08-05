@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, View, TouchableOpacity} from 'react-native';
 import {styles} from './Savings.style';
-import {Text, Container} from '@components';
+import {Text, Container, Wishlist, Currency} from '@components';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import {RootState} from '@redux/Store';
@@ -13,10 +13,28 @@ export const Savings = () => {
   );
   const themeColors = getThemeColor(theme);
 
+  const WishlistItems = () => {
+    return (
+      <View style={{marginTop: -30}}>
+        <Wishlist />
+        <Wishlist />
+      </View>
+    );
+  };
+
+  const CurrencyItems = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <Currency />
+        <Currency />
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 100}}>
         <Text
           style={[styles.title, {color: themeColors.budgetTitle}]}
           text="Kumbara"
@@ -39,17 +57,15 @@ export const Savings = () => {
               borderBottomWidth: 4,
               borderColor: themeColors.titleDefault,
             }}>
-            <TouchableOpacity>
-              <Icon
-                name="add-outline"
-                color={themeColors.titleDefault}
-                size={42}
-              />
-            </TouchableOpacity>
+            <Icon
+              name="add-outline"
+              color={themeColors.titleDefault}
+              size={42}
+            />
           </TouchableOpacity>
         </View>
-        <Container children={undefined} />
-        <Container children={undefined} />
+        <Container children={WishlistItems()} />
+        <Container children={CurrencyItems()} />
       </ScrollView>
     </SafeAreaView>
   );

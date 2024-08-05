@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Switch, View} from 'react-native';
+import {Alert, SafeAreaView, Switch, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Controller, useForm} from 'react-hook-form';
 import {getThemeColor} from '@utils/Color';
@@ -36,7 +36,7 @@ const SignIn = () => {
       password: '',
     },
   });
-  const handleSignUp = () => navigation.navigate('SignUn');
+  const handleSignUp = () => navigation.navigate('SignUp');
   const signIn = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn,
   );
@@ -59,19 +59,17 @@ const SignIn = () => {
     } catch (error) {
       dispatch({type: SIGNIN_FAILURE, payload: error});
     }
-    if (signIn) {
-      navigation.navigate('Tabs');
-    }
+    signIn
+      ? navigation.navigate('Tabs')
+      : Alert.alert('Hata', 'Kullanıcı Bulunamadı');
+    console.log(signIn);
   };
   const toggleSwitchRememberMe = (value: boolean) => {
     setRememberMe(value);
   };
   return (
     <SafeAreaView
-      style={[
-        styles.mainContainer,
-        {backgroundColor: themeColors.background},
-      ]}>
+      style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
       <View style={styles.inputContainer}>
         <Logo text="Merhaba" color={themeColors.titleDefault} />
         <View style={styles.formContainer}>
@@ -144,11 +142,11 @@ const SignIn = () => {
       <View style={styles.signUpButton}>
         <Text
           style={[{color: themeColors.titleDefault}]}
-          text="Hesabınız varsa"
+          text="Hesabınız yoksa"
         />
         <LinkButton
           onPress={handleSignUp}
-          text="Giriş Yapın"
+          text="Kayıt Olun"
           backgroundColor={themeColors.signInUpButton}
           textColor={themeColors.titleDefault}
         />

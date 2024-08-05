@@ -11,4 +11,8 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   personalInfoItem: {top: 50},
+  logOutContainer: {
+    marginLeft: 25,
+    marginTop: 30,
+  }
 });

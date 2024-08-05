@@ -22,7 +22,10 @@ export const styles = StyleSheet.create({
   signUpButton: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginVertical: '5%',
+    position: 'absolute',
+    bottom: 200,
+    textAlign: 'center',
+    width: '100%'
   },
   rememberMeSwitchContainer: {
     flexDirection: 'row',

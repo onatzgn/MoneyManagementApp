@@ -7,5 +7,6 @@ export * from './tool-tip/ToolTip';
 export * from './button/Button';
 export * from './container/Container';
 export * from './avatar/Avatar';
-export * from './accordion-button/AccordionButton';
 export * from './wishlist/Wishlist';
+export * from './accordion-button/AccordionButton';
+export * from './currency/Currency';

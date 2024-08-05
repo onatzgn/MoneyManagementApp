@@ -22,4 +22,7 @@ export const styles = StyleSheet.create({
     marginLeft: verticalScale(20),
     marginBottom: verticalScale(10),
   },
+  scrollContainer: {
+    flexGrow: 1,
+  },
 });

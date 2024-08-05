@@ -101,7 +101,7 @@ export const Profile = () => {
         />
         <GenericAvatar
           style={styles.avatar}
-          source={Images.crocodile}
+          source={Images.avatar}
           size={150}
         />
         <Text

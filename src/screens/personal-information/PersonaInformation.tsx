@@ -35,11 +35,13 @@ export const PersonalInformation = () => {
         <TextContainer titleText="Ad Soyad" contentText={user.fullName} />
         <TextContainer titleText="Email" contentText={user.email} />
         <TextContainer titleText="Cep Telefonu" contentText={user.phone} />
-        <LinkButton
-          onPress={HandleLogOut}
-          text="Çıkış Yap"
-          textColor={themeColors.titleDefault}
-        />
+        <View style={styles.logOutContainer}>
+          <LinkButton
+            onPress={HandleLogOut}
+            text="Çıkış Yap"
+            textColor={themeColors.titleDefault}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
