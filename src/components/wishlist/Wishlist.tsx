@@ -1,5 +1,5 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {useState} from 'react';
+import {View, Image} from 'react-native';
 import {Text, AccordionButton} from '@components';
 import {styles} from './Wishlist.style';
 import {RootState} from '@redux/Store';
@@ -7,22 +7,49 @@ import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import * as Progress from 'react-native-progress';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Icons from '@assets/Icons';
 
-export const Wishlist = () => {
+interface WishlistProps {
+  title: string;
+  dailyGoal: number;
+  totalAmount: number;
+  startDate: string;
+  endDate: string;
+  onDelete: () => void;
+}
+
+export const Wishlist = ({
+  title,
+  dailyGoal,
+  totalAmount,
+  startDate,
+  endDate,
+  onDelete,
+}: WishlistProps) => {
+  const [progress, setProgress] = useState(0);
+  const [save, setSave] = useState(0);
+  const progressPercentage = (value: number) => {
+    setProgress(value / totalAmount);
+  };
+
   return (
     <View style={styles.container}>
-      <Text text="Playstation 5" style={styles.title}></Text>
-      <Text text="Günlük Hedef:50₺" style={styles.content}></Text>
-      <Text text="12.000₺" style={styles.totalAmount}></Text>
+      <Text text={title} style={styles.title}></Text>
+      <Text text={`Günlük Hedef: ${dailyGoal}₺`} style={styles.content}></Text>
+      <Text text={`${totalAmount}₺`} style={styles.totalAmount}></Text>
       <View style={styles.deleteButton}>
-        <TouchableOpacity>
-          <Text text="..." style={styles.deleteText}></Text>
+        <TouchableOpacity onPress={onDelete}>
+          <Image
+            source={Icons.deleteIcon}
+            resizeMode="contain"
+            style={styles.deleteIcon}
+          />
         </TouchableOpacity>
       </View>
 
       <View style={styles.progressBar}>
         <Progress.Bar
-          progress={0.3}
+          progress={progress}
           width={290}
           height={10}
           borderRadius={20}
@@ -31,10 +58,17 @@ export const Wishlist = () => {
           borderWidth={0}
         />
       </View>
-      <Text text="Başlangıç Tarihi:12 Mart" style={styles.content}></Text>
-      <Text text="Bitiş Tarihi:24 Aralık" style={styles.content}></Text>
+      <Text
+        text={`Başlangıç Tarihi: ${startDate}`}
+        style={styles.content}></Text>
+      <Text
+        text={`${endDate} tarihinde ${title} sahibi olacaksın 🎉`}
+        style={styles.subContent}></Text>
       <View style={styles.moneyButton}>
-        <AccordionButton />
+        <AccordionButton
+          dailyGoalInput={dailyGoal}
+          onSave={progressPercentage}
+        />
       </View>
     </View>
   );

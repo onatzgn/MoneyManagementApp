@@ -3,9 +3,6 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   container: {
-    borderWidth: 3,
-    borderColor: 'black',
-    borderBottomWidth: 6,
     width: '50%',
     height: verticalScale(120),
     paddingVertical: verticalScale(45),
@@ -17,6 +14,15 @@ export const styles = StyleSheet.create({
     position: 'relative',
     marginBottom: verticalScale(5),
     marginEnd: scale(5),
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   title: {
     fontSize: 25,

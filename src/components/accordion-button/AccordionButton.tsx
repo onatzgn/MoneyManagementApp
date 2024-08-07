@@ -17,11 +17,16 @@ interface AccordionButtonBaseProps {
   insideContent: (toggleOpen: () => void) => React.ReactNode;
 }
 
-const AccordionButtonBase: React.FC<AccordionButtonBaseProps> = ({
+interface AccordionButtonProps {
+  dailyGoalInput: number;
+  onSave: (value: number) => void;
+}
+
+const AccordionButtonBase = ({
   orientation,
   buttonIcon,
   insideContent,
-}) => {
+}: AccordionButtonBaseProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const sizeAnim = useRef(new Animated.Value(50)).current;
 
@@ -73,32 +78,45 @@ const AccordionButtonBase: React.FC<AccordionButtonBaseProps> = ({
   );
 };
 
-export const AccordionButton = () => {
-  const [inputValue, setInputValue] = useState('50');
+export const AccordionButton = ({
+  dailyGoalInput,
+  onSave,
+}: AccordionButtonProps) => {
+  const [inputValue, setInputValue] = useState(dailyGoalInput.toString());
+  const [totalSave, setTotalSave] = useState(0);
 
-  const insideContent = (
-    toggleOpen: ((event: GestureResponderEvent) => void) | undefined,
-  ) => (
-    <>
-      <TextInput
-        style={styles.inputHorizontal}
-        placeholder="Gir"
-        keyboardType="numeric"
-        selectionHandleColor={'black'}
-        value={inputValue}
-        onChangeText={setInputValue}
-      />
-      <TouchableOpacity
-        style={styles.saveButtonHorizontal}
-        onPress={toggleOpen}>
-        <Image
-          source={Icons.moneySave}
-          resizeMode="contain"
-          style={styles.moneySaveIcon}
+  const insideContent = (toggleOpen: (arg0: any) => void) => {
+    const handlePress = (event: any) => {
+      toggleOpen(event);
+      setTotalSave(prevTotalSave => {
+        const newTotal = prevTotalSave + parseFloat(inputValue);
+        onSave(newTotal);
+        return newTotal;
+      });
+    };
+
+    return (
+      <>
+        <TextInput
+          style={styles.inputHorizontal}
+          placeholder="Gir"
+          keyboardType="numeric"
+          selectionHandleColor={'black'}
+          value={inputValue}
+          onChangeText={setInputValue}
         />
-      </TouchableOpacity>
-    </>
-  );
+        <TouchableOpacity
+          style={styles.saveButtonHorizontal}
+          onPress={handlePress}>
+          <Image
+            source={Icons.moneySave}
+            resizeMode="contain"
+            style={styles.moneySaveIcon}
+          />
+        </TouchableOpacity>
+      </>
+    );
+  };
 
   return (
     <AccordionButtonBase
