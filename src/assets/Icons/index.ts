@@ -6,7 +6,8 @@ const Icons = {
     profileTab: require('./profileTabIcon.png'),
     moneySave: require('./moneySave.png'),
     moneyReceive: require('./moneyReceive.png'),
-    currencyCoin: require('./currencyCoin.png')
+    currencyCoin: require('./currencyCoin.png'),
+    deleteIcon: require('./deleteIcon.png'),
   };
   
   export default Icons;

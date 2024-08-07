@@ -25,4 +25,20 @@ export const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
   },
+  addButton: {
+    borderWidth: 1,
+    position: 'absolute',
+    right: 25,
+    borderRadius: 25,
+    borderBottomWidth: 4,
+  },
+  modalContainer: {
+    padding: 20,
+    marginTop: 220,
+  },
+  modalInput: {
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 5,
+  },
 });
