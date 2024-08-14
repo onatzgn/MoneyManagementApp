@@ -316,7 +316,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 363,
+      "budget": 680,
       "wishlists": [
         {
           "id": 195,
@@ -325,7 +325,7 @@
           "totalAmount": 20000,
           "startDate": "15/08/2024",
           "endDate": "19/09/2025",
-          "progress": 2250
+          "progress": 2000
         },
         {
           "id": 201,
@@ -334,7 +334,7 @@
           "totalAmount": 500,
           "startDate": "15/08/2024",
           "endDate": "04/10/2024",
-          "progress": 240
+          "progress": 170
         }
       ],
       "expenses": [
@@ -372,101 +372,6 @@
           "amount": 100,
           "category": "Market",
           "id": "7"
-        },
-        {
-          "amount": 10,
-          "category": "Market",
-          "id": "8"
-        },
-        {
-          "amount": 100,
-          "category": "Market",
-          "id": "9"
-        },
-        {
-          "amount": 100,
-          "category": "Elektronik",
-          "id": "10"
-        },
-        {
-          "amount": 100,
-          "category": "Giyim",
-          "id": "11"
-        },
-        {
-          "amount": 50,
-          "category": "Fatura",
-          "id": "12"
-        },
-        {
-          "amount": 50,
-          "category": "Giyim",
-          "id": "13"
-        },
-        {
-          "amount": 50,
-          "category": "Giyim",
-          "id": "14"
-        },
-        {
-          "amount": 50,
-          "category": "Yemek",
-          "id": "15"
-        },
-        {
-          "amount": 5,
-          "category": "",
-          "id": "16"
-        },
-        {
-          "amount": 5,
-          "category": "Giyim",
-          "id": "17"
-        },
-        {
-          "amount": 50,
-          "category": "Ulaşım",
-          "id": "18"
-        },
-        {
-          "amount": 50,
-          "category": "Seyahat",
-          "id": "19"
-        },
-        {
-          "amount": 5,
-          "category": "Elektronik",
-          "id": "20"
-        },
-        {
-          "amount": 5,
-          "category": "Market",
-          "id": "21"
-        },
-        {
-          "amount": 115,
-          "category": "Oyun",
-          "id": "22"
-        },
-        {
-          "amount": 100,
-          "category": "Market",
-          "id": "23"
-        },
-        {
-          "amount": 1,
-          "category": "Eğitim",
-          "id": "24"
-        },
-        {
-          "amount": 200,
-          "category": "Oyun",
-          "id": "25"
-        },
-        {
-          "amount": 10,
-          "category": "Yemek",
-          "id": "26"
         }
       ]
     },
@@ -545,30 +450,6 @@
           "endDate": "20/08/2024"
         }
       ]
-    },
-    {
-      "id": "e280",
-      "fullName": "w2",
-      "email": "w2@gmail.com",
-      "password": "111111",
-      "phone": "+90-555-555-55-55",
-      "budget": 1475
-    },
-    {
-      "id": "5d5b",
-      "fullName": "w3",
-      "email": "w3@gmail.com",
-      "password": "111111",
-      "phone": "+90-555-555-55-55",
-      "budget": 66,
-      "wishlists": []
-    },
-    {
-      "id": "0125",
-      "fullName": "w4",
-      "email": "w4@gmail.com",
-      "password": "111111",
-      "phone": "+90-555-555-55-55"
     }
   ]
 }
