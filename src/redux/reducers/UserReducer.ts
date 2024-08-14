@@ -17,6 +17,7 @@ import {
   DELETEWISHLISTFAILURE,
   UPDATEWISHLISTSUCCESS
 } from '../types/User.types';
+import { Wishlist } from '@components';
 
 export interface ExpenseListType {
   id: string;

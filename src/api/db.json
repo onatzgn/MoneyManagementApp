@@ -319,22 +319,22 @@
       "budget": 375,
       "wishlists": [
         {
-          "id": 131,
+          "id": 190,
           "title": "",
           "dailyGoal": 2,
           "totalAmount": 8,
           "startDate": "",
           "endDate": "18/08/2024",
-          "progress": 1
+          "progress": 6
         },
         {
-          "id": 135,
+          "id": 192,
           "title": "",
-          "dailyGoal": 2,
-          "totalAmount": 8,
+          "dailyGoal": 3,
+          "totalAmount": 9,
           "startDate": "",
-          "endDate": "18/08/2024",
-          "progress": 1
+          "endDate": "17/08/2024",
+          "progress": 6
         }
       ],
       "expenses": [

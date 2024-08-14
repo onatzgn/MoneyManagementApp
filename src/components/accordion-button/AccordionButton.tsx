@@ -94,18 +94,22 @@ export const AccordionButton = ({
   const userId = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn.id,
   );
+  const currentProgress = useSelector(
+    (state: RootState) =>
+      state.persistedReducer.user.wishlists.find((w) => w.id === wishlistId)?.progress || 0
+  );
   const insideContent = (toggleOpen: (arg0: any) => void) => {
     const handlePress = (event: any) => {
       toggleOpen(event);
       setTotalSave(prevTotalSave => {
-        const newTotal = prevTotalSave + parseFloat(inputValue);
-        onSave(newTotal);
-        const progress = newTotal / dailyGoalInput;
+        const newSave = parseFloat(inputValue);
+        const cumulativeSave = currentProgress + newSave;
+        const progress = cumulativeSave;
         onSave(progress);
-        dispatch(updateWishlist(userId,wishlistId, progress));
-        console.log('Progress Accordion :', progress);
-
-        return newTotal;
+        dispatch(updateWishlist(userId, wishlistId, progress));
+        
+        console.log('Updated Cumulative Progress:', progress);
+        return progress;
       });
     };
 

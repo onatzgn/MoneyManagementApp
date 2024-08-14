@@ -35,6 +35,7 @@ export const Wishlist = ({
     setProgress(value / totalAmount);
   };
   */
+
   console.log('Received ID:', id);
   const progress = useSelector(
     (state: RootState) =>
@@ -51,7 +52,7 @@ export const Wishlist = ({
     return newProgress;
   };
 
-  const newProgress = (progress*dailyGoal)/totalAmount
+  const newProgress = (progress)/totalAmount;
 
   return (
     <View style={styles.container}>
