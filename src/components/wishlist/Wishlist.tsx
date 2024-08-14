@@ -10,7 +10,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icons from '@assets/Icons';
 
 interface WishlistProps {
-  id:number;
+  id: number;
   title: string;
   dailyGoal: number;
   totalAmount: number;
@@ -39,20 +39,18 @@ export const Wishlist = ({
   console.log('Received ID:', id);
   const progress = useSelector(
     (state: RootState) =>
-      state.persistedReducer.user.wishlists.find(
-        (w: any) => w.id === id
-      )?.progress || 0
+      state.persistedReducer.user.wishlists.find((w: any) => w.id === id)
+        ?.progress || 0,
   );
   console.log('Progress Wishlist:', progress);
-  console.log('Wishlist ID:', id); 
-
+  console.log('Wishlist ID:', id);
 
   const progressPercentage = (value: number) => {
-    const newProgress = value/totalAmount;
+    const newProgress = value / totalAmount;
     return newProgress;
   };
 
-  const newProgress = (progress)/totalAmount;
+  const newProgress = progress / totalAmount;
 
   return (
     <View style={styles.container}>
@@ -83,6 +81,7 @@ export const Wishlist = ({
       <Text
         text={`Başlangıç Tarihi: ${startDate}`}
         style={styles.content}></Text>
+      <Text text={`💰${progress}₺`} style={styles.progressContent}></Text>
       <Text
         text={`${endDate} tarihinde ${title} sahibi olacaksın 🎉`}
         style={styles.subContent}></Text>

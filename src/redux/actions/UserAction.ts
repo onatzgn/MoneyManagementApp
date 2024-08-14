@@ -157,7 +157,7 @@ export const deleteWishlist =
     } catch (error) {}
   };
   export const updateWishlist =
-  (userId: string | undefined, id: number, progress: number) =>
+  (userId: string | undefined, id: number, progress: number, dailyGoal:number) =>
   async (dispatch: AppDispatch) => {
     try {
       const response = await axios.get(`${baseUrl()}/users/${userId}`);
@@ -171,6 +171,17 @@ export const deleteWishlist =
       await axios.patch(`${baseUrl()}/users/${userId}`, {
         wishlists: updatedWishlists,
       });
+
+      const currentExtenses: ExpenseListType[] = user.expenses;
+      const updatedBudget = user.budget - dailyGoal;
+      if (updatedBudget < 0) {
+        Alert.alert('Hata', 'Bütçe eksiye düşemez');
+        return;
+      }
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        budget: updatedBudget,
+      });
+      dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
 
       dispatch({ type: UPDATEWISHLISTSUCCESS, payload: { id, progress } });
     } catch (error) {
