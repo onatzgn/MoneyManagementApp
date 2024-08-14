@@ -98,6 +98,7 @@ export const styles = StyleSheet.create({
   },
   modalContainer: {
     alignItems: 'center',
+    height: 450,
   },
   flatListIcon: {
     marginRight: 10,
@@ -111,5 +112,27 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'center',
     top: -30,
+  },
+  categoryItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  categoryText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  selectedCategory: {
+    backgroundColor: '#D3D3D3',
+    borderColor: '#000',
+    borderRadius: 15,
+  },
+  categoryFlatListContainer: {
+    height: 30,
+    marginBottom: 5,
+    flexDirection: 'row',
+    paddingHorizontal: '15%',
+    alignItems: 'center',
+    width: '100%',
   },
 });

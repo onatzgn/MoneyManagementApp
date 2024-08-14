@@ -16,7 +16,11 @@ import {getThemeColor} from '@utils/Color';
 import {RootState, useAppDispatch} from '@redux/Store';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {addWishlist, addWishlistSuccess,deleteWishlist} from '@redux/actions/UserAction';
+import {
+  addWishlist,
+  addWishlistSuccess,
+  deleteWishlist,
+} from '@redux/actions/UserAction';
 import UserReducer from '@redux/reducers/UserReducer';
 import {Controller, useForm} from 'react-hook-form';
 import axios from 'axios';
@@ -61,12 +65,14 @@ export const Savings = () => {
   const budget = useSelector(
     (state: RootState) => state.persistedReducer.user.budget ?? 0,
   );
-  const idCounter = useSelector((state: RootState) => state.persistedReducer.user.idCounter);
-
+  const idCounter = useSelector(
+    (state: RootState) => state.persistedReducer.user.idCounter,
+  );
 
   useEffect(() => {
     if (userId) {
-      axios.get(`${baseUrl()}/users/${userId}`)
+      axios
+        .get(`${baseUrl()}/users/${userId}`)
         .then(response => {
           const userWishlists = response.data.wishlists;
           dispatch(addWishlistSuccess(userWishlists));
@@ -97,7 +103,7 @@ export const Savings = () => {
       endDate: '',
     });
     const handleAddWishlistItem = () => {
-      console.log('handleAddWishListItem',wishlists);
+      console.log('handleAddWishListItem', wishlists);
       const totalDays = Math.ceil(
         wishlistData.totalAmount / wishlistData.dailyGoal,
       );
@@ -120,7 +126,7 @@ export const Savings = () => {
 
       onAdd({...wishlistData, endDate: formattedEndDate});
       setWishlistData({
-        id: idCounter+1,
+        id: idCounter + 1,
         title: '',
         dailyGoal: 0,
         totalAmount: 0,
@@ -168,7 +174,7 @@ export const Savings = () => {
             }
             style={styles.modalInput}
           />
-          <View style={{marginRight: 275, marginTop:10}}>
+          <View style={{marginRight: 275, marginTop: 10}}>
             <DateTimePicker
               value={date}
               mode={'date'}
@@ -191,7 +197,7 @@ export const Savings = () => {
   const addWishlistItem = (item: WishlistItem) => {
     setWishlistItems([...wishlistItems, {...item, id: idCounter}]);
     setModalVisible(false);
-    console.log('addwishlistitem',wishlists);
+    console.log('addwishlistitem', wishlists);
   };
 
   const deleteWishlistItem = (id: number) => {
@@ -201,12 +207,16 @@ export const Savings = () => {
   console.log(wishlists);
   const WishlistItems = () => {
     console.log('WishListItems', wishlists);
+    const emptyWishlistMessage =
+      'Henüz bir şey eklemedin!\nHadi, hayalini kurduğun ürünleri eklemeye başla!';
     if (!wishlists || wishlists.length === 0) {
-      return <Text text='no wishlist items'></Text>;
+      return (
+        <Text text={emptyWishlistMessage} style={{textAlign: 'center'}}></Text>
+      );
     }
     return (
       <View style={{marginTop: -20}}>
-        {wishlists.map((item) => (
+        {wishlists.map(item => (
           <Wishlist
             key={item.id}
             id={item.id}
