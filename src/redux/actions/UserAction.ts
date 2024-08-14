@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {UserSignUpType} from '@utils/types/UserSignUpType';
-import {AppDispatch} from '../Store';
+import {AppDispatch, RootState} from '../Store';
 import {
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
@@ -12,10 +12,15 @@ import {
   ADDEXPENSESFAILURE,
   LOGOUT,
   SETONBOARDINGSEEN,
+  ADDWISHLISTSUCCESS,
+  ADDWISHLISTFAILURE,
+  DELETEWISHLISTSUCCESS,
+  DELETEWISHLISTFAILURE,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
-import {ExpenseListType} from '@redux/reducers/UserReducer';
+import {ExpenseListType, WishListType} from '@redux/reducers/UserReducer';
+import {useState} from 'react';
 
 const baseUrl = () => {
   console.log('os', Platform.OS);
@@ -68,6 +73,84 @@ export const addExpensesFailure = (error: any) => ({
   type: ADDEXPENSESFAILURE,
   payload: error,
 });
+export const addWishlistSuccess = (wishlists: WishListType[]) => ({
+  type: ADDWISHLISTSUCCESS,
+  payload: wishlists,
+});
+export const addWishlistFailure = (error: any) => ({
+  type: ADDWISHLISTFAILURE,
+  payload: error,
+});
+export const deleteWishlistSuccess = (id: number) => ({
+  type: DELETEWISHLISTSUCCESS,
+  payload: id,
+});
+export const deleteWishlistFailure = (error: any) => ({
+  type: DELETEWISHLISTFAILURE,
+  payload: error,
+});
+export const addWishlist =
+  (
+    userId: string | undefined,
+    id: number,
+    title: string,
+    dailyGoal: number,
+    totalAmount: number,
+    startDate: string,
+    endDate: string,
+  ) =>
+  async (dispatch: AppDispatch,getState: () => RootState) => {
+    const { idCounter } = getState().persistedReducer.user;
+    try {
+      console.log(
+        'Before GET request:',
+        id,
+        userId,
+        title,
+        dailyGoal,
+        totalAmount,
+        startDate,
+      );
+      const response = await axios.get(`${baseUrl()}/users/${userId}`);
+      console.log('After GET request:', response.data);
+
+      const user = response.data;
+      const currentWishlists: WishListType[] = user.wishlists;
+
+      const wishlist = {id: idCounter, title, dailyGoal, totalAmount, startDate, endDate};
+      const newWishlist = [...currentWishlists, wishlist];
+      console.log('Before PATCH request:', newWishlist);
+
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        wishlists: newWishlist,
+      });
+      console.log('After PATCH request:', newWishlist);
+
+      dispatch({type: ADDWISHLISTSUCCESS, payload: newWishlist});
+    } catch (error) {
+      console.log('Error occurred:', error);
+      dispatch({type: ADDWISHLISTFAILURE, payload: error});
+    }
+  };
+
+export const deleteWishlist =
+  (userId: string | undefined, id: number) => async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.get(`${baseUrl()}/users/${userId}`);
+      const user = response.data;
+      const currentWishlists: WishListType[] = user.wishlists;
+
+      const updatedWishlists = currentWishlists.filter(
+        wishlist => wishlist.id !== id,
+      );
+
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        wishlists: updatedWishlists,
+      });
+
+      dispatch({type: ADDWISHLISTSUCCESS, payload: updatedWishlists});
+    } catch (error) {}
+  };
 export const addInCome =
   (userId: string | undefined, amount: number) =>
   async (dispatch: AppDispatch) => {

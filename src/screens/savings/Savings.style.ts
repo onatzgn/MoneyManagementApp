@@ -41,4 +41,26 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 5,
   },
+  flatListContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  flatListIcon: {
+    marginRight: 10,
+  },
+  flatListText: {
+    fontSize: 16,
+    flex: 1,
+  },
+  spendTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  spendText: {
+    fontSize: 14,
+    marginRight: 10,
+  },
 });

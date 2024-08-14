@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -7,14 +7,19 @@ import {
   Modal,
   TextInput,
   Button,
+  Platform,
 } from 'react-native';
 import {styles} from './Savings.style';
 import {Text, Container, Wishlist, Currency} from '@components';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
-import {RootState} from '@redux/Store';
+import {RootState, useAppDispatch} from '@redux/Store';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {addWishlist, addWishlistSuccess,deleteWishlist} from '@redux/actions/UserAction';
+import UserReducer from '@redux/reducers/UserReducer';
+import {Controller, useForm} from 'react-hook-form';
+import axios from 'axios';
 
 interface WishlistModalProps {
   visible: boolean;
@@ -31,11 +36,53 @@ interface WishlistItem {
   endDate: string;
 }
 
+const baseUrl = () => {
+  console.log('os', Platform.OS);
+  if (Platform.OS === 'android') {
+    return 'http://10.0.2.2:4000';
+  }
+  return 'http://localhost:4000';
+};
+
 export const Savings = () => {
+  const dispatch = useAppDispatch();
+
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+
+  const wishlists = useSelector(
+    (state: RootState) => state.persistedReducer.user.wishlists,
+  );
+  const userId = useSelector(
+    (state: RootState) => state.persistedReducer.user.signIn.id,
+  );
+  const idCounter = useSelector((state: RootState) => state.persistedReducer.user.idCounter);
+
+
+  useEffect(() => {
+    if (userId) {
+      axios.get(`${baseUrl()}/users/${userId}`)
+        .then(response => {
+          const userWishlists = response.data.wishlists;
+          dispatch(addWishlistSuccess(userWishlists));
+        })
+        .catch(error => {
+          console.log('Error loading wishlists:', error);
+        });
+    }
+  }, [userId]);
+
+  const {control, handleSubmit} = useForm({
+    defaultValues: {
+      title: '',
+      dailyGoal: 0,
+      totalAmount: 0,
+      startDate: '',
+      endDate: '',
+    },
+  });
 
   const WishlistModal = ({visible, onClose, onAdd}: WishlistModalProps) => {
     const [wishlistData, setWishlistData] = useState({
@@ -46,8 +93,8 @@ export const Savings = () => {
       startDate: '',
       endDate: '',
     });
-
     const handleAddWishlistItem = () => {
+      console.log('handleAddWishListItem',wishlists);
       const totalDays = Math.ceil(
         wishlistData.totalAmount / wishlistData.dailyGoal,
       );
@@ -55,15 +102,29 @@ export const Savings = () => {
       const endDate = new Date(startDate);
       endDate.setDate(startDate.getDate() + totalDays);
       const formattedEndDate = endDate.toLocaleDateString('en-GB');
+
+      dispatch(
+        addWishlist(
+          userId,
+          idCounter,
+          wishlistData.title,
+          wishlistData.dailyGoal,
+          wishlistData.totalAmount,
+          wishlistData.startDate,
+          formattedEndDate,
+        ),
+      );
+
       onAdd({...wishlistData, endDate: formattedEndDate});
       setWishlistData({
-        id: idCounter,
+        id: idCounter+1,
         title: '',
         dailyGoal: 0,
         totalAmount: 0,
         startDate: '',
         endDate: '',
       });
+      onClose();
     };
 
     const [date, setDate] = useState(new Date());
@@ -104,54 +165,45 @@ export const Savings = () => {
             }
             style={styles.modalInput}
           />
-          <TextInput
-            placeholder="Start Date"
-            value={wishlistData.startDate}
-            style={styles.modalInput}
-            onFocus={() => setShowDatePicker(true)}
-          />
-          <TextInput
-            placeholder="End Date"
-            value={wishlistData.endDate}
-            editable={false}
-            style={styles.modalInput}
-          />
-
-          <Button title="Add Wishlist Item" onPress={handleAddWishlistItem} />
-          <Button title="Cancel" onPress={onClose} />
-          <Text text={wishlistData.endDate}></Text>
-          {showDatePicker && (
+          <View style={{marginRight: 275, marginTop:10}}>
             <DateTimePicker
               value={date}
               mode={'date'}
               is24Hour={true}
               onChange={onChange}
             />
-          )}
+          </View>
+
+          <Button title="Add Wishlist Item" onPress={handleAddWishlistItem} />
+          <Button title="Cancel" onPress={onClose} />
+          <Text text={wishlistData.endDate}></Text>
         </View>
       </Modal>
     );
   };
-  const [idCounter, setIdCounter] = useState(1);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
 
   const addWishlistItem = (item: WishlistItem) => {
     setWishlistItems([...wishlistItems, {...item, id: idCounter}]);
-    setIdCounter(idCounter + 1);
     setModalVisible(false);
+    console.log('addwishlistitem',wishlists);
   };
 
   const deleteWishlistItem = (id: number) => {
-    setWishlistItems(prevWishlists =>
-      prevWishlists.filter(wishlist => wishlist.id !== id),
-    );
+    dispatch(deleteWishlist(userId, id));
   };
 
+  console.log(wishlists);
   const WishlistItems = () => {
+    console.log('WishListItems', wishlists);
+    if (!wishlists || wishlists.length === 0) {
+      return <Text text='no wishlist items'></Text>;
+    }
     return (
       <View style={{marginTop: -20}}>
-        {wishlistItems.map((item, index) => (
+        {wishlists.map((item) => (
           <Wishlist
             key={item.id}
             title={item.title}

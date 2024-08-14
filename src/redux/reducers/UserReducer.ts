@@ -11,6 +11,10 @@ import {
   UPDATEBUDGETSUCCESS,
   LOGOUT,
   SETONBOARDINGSEEN,
+  ADDWISHLISTSUCCESS,
+  ADDWISHLISTFAILURE,
+  DELETEWISHLISTSUCCESS,
+  DELETEWISHLISTFAILURE
 } from '../types/User.types';
 
 export interface ExpenseListType {
@@ -18,23 +22,35 @@ export interface ExpenseListType {
   category: string;
   amount: number;
 }
+export interface WishListType {
+  id: number;
+  title: string;
+  dailyGoal: number;
+  totalAmount: number;
+  startDate: string;
+  endDate: string;
+}
 export interface UserState {
   signUp: UserSignUpType;
   signIn: UserSignInType;
   isLoggedIn: boolean;
   error: string;
   expenses: ExpenseListType[];
+  wishlists: WishListType[];
   budget: string;
   hasSeenOnboarding: boolean;
+  idCounter:number,
 }
 const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
   expenses: [],
+  wishlists: [],
   budget: '',
   isLoggedIn: false,
   error: '',
   hasSeenOnboarding: false,
+  idCounter: 1,
 };
 const userReducer = (
   state = initialState,
@@ -85,6 +101,31 @@ const userReducer = (
       };
     case ADDEXPENSESFAILURE:
       return {
+        ...state,
+        error: action.payload,
+      };
+    case ADDWISHLISTSUCCESS:
+      console.log(action.payload,'reducer');
+      return{
+        ...state,
+        wishlists: action.payload as WishListType[],
+        idCounter: state.idCounter + 1,
+      };
+    case ADDWISHLISTFAILURE:
+      console.log(action.payload,'failure reducer')
+      return{
+        ...state,
+        error: action.payload,
+      };
+    case DELETEWISHLISTSUCCESS:
+      return{
+        ...state,
+        wishlists: state.wishlists.filter(
+          wishListItem => wishListItem.id !== action.payload
+        ),
+      };
+    case DELETEWISHLISTFAILURE:
+      return{
         ...state,
         error: action.payload,
       };
