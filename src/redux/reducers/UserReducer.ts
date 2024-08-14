@@ -11,12 +11,27 @@ import {
   UPDATEBUDGETSUCCESS,
   LOGOUT,
   SETONBOARDINGSEEN,
+  ADDWISHLISTSUCCESS,
+  ADDWISHLISTFAILURE,
+  DELETEWISHLISTSUCCESS,
+  DELETEWISHLISTFAILURE,
+  UPDATEWISHLISTSUCCESS
 } from '../types/User.types';
+import { Wishlist } from '@components';
 
 export interface ExpenseListType {
   id: string;
   category: string;
   amount: number;
+}
+export interface WishListType {
+  id: number;
+  title: string;
+  dailyGoal: number;
+  totalAmount: number;
+  startDate: string;
+  endDate: string;
+  progress: number;
 }
 export interface UserState {
   signUp: UserSignUpType;
@@ -24,17 +39,21 @@ export interface UserState {
   isLoggedIn: boolean;
   error: string;
   expenses: ExpenseListType[];
+  wishlists: WishListType[];
   budget: string;
   hasSeenOnboarding: boolean;
+  idCounter:number,
 }
 const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
   expenses: [],
+  wishlists: [],
   budget: '',
   isLoggedIn: false,
   error: '',
   hasSeenOnboarding: false,
+  idCounter: 1,
 };
 const userReducer = (
   state = initialState,
@@ -88,6 +107,41 @@ const userReducer = (
         ...state,
         error: action.payload,
       };
+    case ADDWISHLISTSUCCESS:
+      console.log(action.payload,'reducer');
+      return{
+        ...state,
+        wishlists: action.payload as WishListType[],
+        idCounter: state.idCounter + 1,
+      };
+    case ADDWISHLISTFAILURE:
+      console.log(action.payload,'failure reducer')
+      return{
+        ...state,
+        error: action.payload,
+      };
+    case DELETEWISHLISTSUCCESS:
+      return{
+        ...state,
+        wishlists: state.wishlists.filter(
+          wishListItem => wishListItem.id !== action.payload
+        ),
+      };
+    case DELETEWISHLISTFAILURE:
+      return{
+        ...state,
+        error: action.payload,
+      };
+      case UPDATEWISHLISTSUCCESS:
+        return {
+          ...state,
+          wishlists: state.wishlists.map(wishlist =>
+            wishlist.id === action.payload.id
+              ? { ...wishlist, progress: action.payload.progress }
+              : wishlist
+          ),
+        };
+      
     case SETONBOARDINGSEEN:
       return {
         ...state,

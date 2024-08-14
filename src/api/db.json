@@ -7,6 +7,7 @@
       "password": "admin",
       "phone": "+05392424560",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -35,6 +36,7 @@
       "password": "fatma",
       "phone": "+905392424565",
       "budget": 5014,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -83,6 +85,7 @@
       "password": "onat",
       "phone": "+905392424565",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -111,6 +114,7 @@
       "password": "onur",
       "phone": "+05392424561",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -139,6 +143,7 @@
       "password": "nagihan",
       "phone": "+05392424562",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -167,6 +172,7 @@
       "password": "yigit",
       "phone": "+05392424563",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -195,6 +201,7 @@
       "password": "eda",
       "phone": "+05392424564",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -223,6 +230,7 @@
       "password": "tadaa",
       "phone": "+05392424566",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -251,6 +259,7 @@
       "password": "huseyin",
       "phone": "+05392424567",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -279,6 +288,7 @@
       "password": "nuran",
       "phone": "+05392424569",
       "budget": 10000,
+      "wishlists": [],
       "expenses": [
         {
           "id": "1",
@@ -306,7 +316,27 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 405,
+      "budget": 375,
+      "wishlists": [
+        {
+          "id": 190,
+          "title": "",
+          "dailyGoal": 2,
+          "totalAmount": 8,
+          "startDate": "",
+          "endDate": "18/08/2024",
+          "progress": 6
+        },
+        {
+          "id": 192,
+          "title": "",
+          "dailyGoal": 3,
+          "totalAmount": 9,
+          "startDate": "",
+          "endDate": "17/08/2024",
+          "progress": 6
+        }
+      ],
       "expenses": [
         {
           "amount": 29,
@@ -332,6 +362,16 @@
           "amount": 1,
           "category": "Market",
           "id": "5"
+        },
+        {
+          "amount": 5,
+          "category": "G",
+          "id": "6"
+        },
+        {
+          "amount": 100,
+          "category": "Market",
+          "id": "7"
         }
       ]
     },
@@ -376,6 +416,40 @@
       "email": "onatzgn@gmail.com",
       "password": "onatonat",
       "phone": "+90-538-950-88-99"
+    },
+    {
+      "id": "0767",
+      "fullName": "wishlist deneme",
+      "email": "w1@gmail.com",
+      "password": "111111",
+      "phone": "+90-555-555-55-55",
+      "budget": 14,
+      "wishlists": [
+        {
+          "id": 1,
+          "title": "",
+          "dailyGoal": 0,
+          "totalAmount": 0,
+          "startDate": "",
+          "endDate": "Invalid Date"
+        },
+        {
+          "id": 2,
+          "title": "Oyuncak",
+          "dailyGoal": 1,
+          "totalAmount": 100,
+          "startDate": "14/08/2024",
+          "endDate": "22/11/2024"
+        },
+        {
+          "id": 1,
+          "title": "W1 deneme",
+          "dailyGoal": 1,
+          "totalAmount": 5,
+          "startDate": "15/08/2024",
+          "endDate": "20/08/2024"
+        }
+      ]
     }
   ]
 }
