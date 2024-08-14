@@ -35,6 +35,14 @@ export const styles = StyleSheet.create({
     left: scale(10),
     fontWeight: '600',
     marginVertical: verticalScale(3),
+    color:'#474A57'
+  },
+  progressContent: {
+    fontWeight: 'bold',
+    color:'#474A57',
+    fontSize:25,
+    left:10,
+    top:5
   },
   subContent: {
     left: scale(22),
@@ -52,7 +60,6 @@ export const styles = StyleSheet.create({
   },
   moneyButton: {
     left: scale(215),
-    top: verticalScale(25),
     marginVertical: verticalScale(-20),
     marginBottom: scale(10),
   },

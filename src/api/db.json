@@ -316,25 +316,25 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 375,
+      "budget": 680,
       "wishlists": [
         {
-          "id": 190,
-          "title": "",
-          "dailyGoal": 2,
-          "totalAmount": 8,
-          "startDate": "",
-          "endDate": "18/08/2024",
-          "progress": 6
+          "id": 195,
+          "title": "Playstation",
+          "dailyGoal": 50,
+          "totalAmount": 20000,
+          "startDate": "15/08/2024",
+          "endDate": "19/09/2025",
+          "progress": 2000
         },
         {
-          "id": 192,
-          "title": "",
-          "dailyGoal": 3,
-          "totalAmount": 9,
-          "startDate": "",
-          "endDate": "17/08/2024",
-          "progress": 6
+          "id": 201,
+          "title": "Oyuncak Araba",
+          "dailyGoal": 10,
+          "totalAmount": 500,
+          "startDate": "15/08/2024",
+          "endDate": "04/10/2024",
+          "progress": 170
         }
       ],
       "expenses": [

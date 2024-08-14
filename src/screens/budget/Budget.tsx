@@ -325,7 +325,7 @@ export const Budget = () => {
       />
       <Text
         style={[styles.staticTitle, {color: themeColors.titleDefault}]}
-        text="Aylık Toplam Gelir"
+        text="Toplam Para"
       />
       <View style={{flexDirection: 'row'}}>
         <Text

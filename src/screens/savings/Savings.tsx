@@ -58,6 +58,9 @@ export const Savings = () => {
   const userId = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn.id,
   );
+  const budget = useSelector(
+    (state: RootState) => state.persistedReducer.user.budget ?? 0,
+  );
   const idCounter = useSelector((state: RootState) => state.persistedReducer.user.idCounter);
 
 
@@ -238,12 +241,12 @@ export const Savings = () => {
         />
         <Text
           style={[styles.staticTitle, {color: themeColors.titleDefault}]}
-          text="Biriken Tasarruf"
+          text="Toplam Para"
         />
         <View style={{flexDirection: 'row'}}>
           <Text
             style={[styles.budgetsTitle, {color: themeColors.titleDefault}]}
-            text="1000₺"
+            text={`${budget}₺`}
           />
           <TouchableOpacity
             style={[styles.addButton, {borderColor: themeColors.titleDefault}]}
