@@ -10,6 +10,10 @@ import {
 import {styles} from './AccordionButton.style';
 import Icons from '@assets/Icons';
 import {Text} from '@components';
+import {useSelector, useDispatch} from 'react-redux';
+import { RootState, useAppDispatch } from '@redux/Store';
+import {updateWishlist, updateWishlistSuccess} from '@redux/actions/UserAction';
+
 
 interface AccordionButtonBaseProps {
   orientation: 'horizontal' | 'vertical';
@@ -20,6 +24,7 @@ interface AccordionButtonBaseProps {
 interface AccordionButtonProps {
   dailyGoalInput: number;
   onSave: (value: number) => void;
+  wishlistId: number;
 }
 
 const AccordionButtonBase = ({
@@ -81,16 +86,25 @@ const AccordionButtonBase = ({
 export const AccordionButton = ({
   dailyGoalInput,
   onSave,
+  wishlistId,
 }: AccordionButtonProps) => {
   const [inputValue, setInputValue] = useState(dailyGoalInput.toString());
   const [totalSave, setTotalSave] = useState(0);
-
+  const dispatch = useAppDispatch();
+  const userId = useSelector(
+    (state: RootState) => state.persistedReducer.user.signIn.id,
+  );
   const insideContent = (toggleOpen: (arg0: any) => void) => {
     const handlePress = (event: any) => {
       toggleOpen(event);
       setTotalSave(prevTotalSave => {
         const newTotal = prevTotalSave + parseFloat(inputValue);
         onSave(newTotal);
+        const progress = newTotal / dailyGoalInput;
+        onSave(progress);
+        dispatch(updateWishlist(userId,wishlistId, progress));
+        console.log('Progress Accordion :', progress);
+
         return newTotal;
       });
     };

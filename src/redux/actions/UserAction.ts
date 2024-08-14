@@ -16,6 +16,7 @@ import {
   ADDWISHLISTFAILURE,
   DELETEWISHLISTSUCCESS,
   DELETEWISHLISTFAILURE,
+  UPDATEWISHLISTSUCCESS,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
@@ -89,6 +90,10 @@ export const deleteWishlistFailure = (error: any) => ({
   type: DELETEWISHLISTFAILURE,
   payload: error,
 });
+export const updateWishlistSuccess = (id:number, progress:number) => ({
+  type: UPDATEWISHLISTSUCCESS,
+  payload: {id,progress},
+});
 export const addWishlist =
   (
     userId: string | undefined,
@@ -151,6 +156,27 @@ export const deleteWishlist =
       dispatch({type: ADDWISHLISTSUCCESS, payload: updatedWishlists});
     } catch (error) {}
   };
+  export const updateWishlist =
+  (userId: string | undefined, id: number, progress: number) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.get(`${baseUrl()}/users/${userId}`);
+      const user = response.data;
+      const currentWishlists: WishListType[] = user.wishlists;
+
+      const updatedWishlists = currentWishlists.map(wishlist =>
+        wishlist.id === id ? { ...wishlist, progress } : wishlist
+      );
+
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        wishlists: updatedWishlists,
+      });
+
+      dispatch({ type: UPDATEWISHLISTSUCCESS, payload: { id, progress } });
+    } catch (error) {
+    }
+  };
+
 export const addInCome =
   (userId: string | undefined, amount: number) =>
   async (dispatch: AppDispatch) => {

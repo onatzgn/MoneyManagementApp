@@ -14,7 +14,8 @@ import {
   ADDWISHLISTSUCCESS,
   ADDWISHLISTFAILURE,
   DELETEWISHLISTSUCCESS,
-  DELETEWISHLISTFAILURE
+  DELETEWISHLISTFAILURE,
+  UPDATEWISHLISTSUCCESS
 } from '../types/User.types';
 
 export interface ExpenseListType {
@@ -29,6 +30,7 @@ export interface WishListType {
   totalAmount: number;
   startDate: string;
   endDate: string;
+  progress: number;
 }
 export interface UserState {
   signUp: UserSignUpType;
@@ -129,6 +131,16 @@ const userReducer = (
         ...state,
         error: action.payload,
       };
+      case UPDATEWISHLISTSUCCESS:
+        return {
+          ...state,
+          wishlists: state.wishlists.map(wishlist =>
+            wishlist.id === action.payload.id
+              ? { ...wishlist, progress: action.payload.progress }
+              : wishlist
+          ),
+        };
+      
     case SETONBOARDINGSEEN:
       return {
         ...state,

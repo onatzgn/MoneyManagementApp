@@ -206,6 +206,7 @@ export const Savings = () => {
         {wishlists.map((item) => (
           <Wishlist
             key={item.id}
+            id={item.id}
             title={item.title}
             dailyGoal={item.dailyGoal}
             totalAmount={item.totalAmount}

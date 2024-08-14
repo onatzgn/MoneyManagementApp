@@ -10,6 +10,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icons from '@assets/Icons';
 
 interface WishlistProps {
+  id:number;
   title: string;
   dailyGoal: number;
   totalAmount: number;
@@ -19,6 +20,7 @@ interface WishlistProps {
 }
 
 export const Wishlist = ({
+  id,
   title,
   dailyGoal,
   totalAmount,
@@ -26,11 +28,30 @@ export const Wishlist = ({
   endDate,
   onDelete,
 }: WishlistProps) => {
+  /*
   const [progress, setProgress] = useState(0);
   const [save, setSave] = useState(0);
   const progressPercentage = (value: number) => {
     setProgress(value / totalAmount);
   };
+  */
+  console.log('Received ID:', id);
+  const progress = useSelector(
+    (state: RootState) =>
+      state.persistedReducer.user.wishlists.find(
+        (w: any) => w.id === id
+      )?.progress || 0
+  );
+  console.log('Progress Wishlist:', progress);
+  console.log('Wishlist ID:', id); 
+
+
+  const progressPercentage = (value: number) => {
+    const newProgress = value/totalAmount;
+    return newProgress;
+  };
+
+  const newProgress = (progress*dailyGoal)/totalAmount
 
   return (
     <View style={styles.container}>
@@ -49,7 +70,7 @@ export const Wishlist = ({
 
       <View style={styles.progressBar}>
         <Progress.Bar
-          progress={progress}
+          progress={newProgress}
           width={290}
           height={10}
           borderRadius={20}
@@ -68,6 +89,7 @@ export const Wishlist = ({
         <AccordionButton
           dailyGoalInput={dailyGoal}
           onSave={progressPercentage}
+          wishlistId={id}
         />
       </View>
     </View>
