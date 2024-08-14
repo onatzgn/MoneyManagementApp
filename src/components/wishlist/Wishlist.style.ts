@@ -35,14 +35,14 @@ export const styles = StyleSheet.create({
     left: scale(10),
     fontWeight: '600',
     marginVertical: verticalScale(3),
-    color:'#474A57'
+    color: '#474A57',
   },
   progressContent: {
     fontWeight: 'bold',
-    color:'#474A57',
-    fontSize:25,
-    left:10,
-    top:5
+    color: '#474A57',
+    fontSize: 25,
+    left: 10,
+    top: 5,
   },
   subContent: {
     left: scale(22),
