@@ -316,7 +316,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 303,
+      "budget": 680,
       "wishlists": [
         {
           "id": 195,
@@ -334,7 +334,7 @@
           "totalAmount": 500,
           "startDate": "15/08/2024",
           "endDate": "04/10/2024",
-          "progress": 240
+          "progress": 170
         }
       ],
       "expenses": [
@@ -565,30 +565,6 @@
           "endDate": "20/08/2024"
         }
       ]
-    },
-    {
-      "id": "e280",
-      "fullName": "w2",
-      "email": "w2@gmail.com",
-      "password": "111111",
-      "phone": "+90-555-555-55-55",
-      "budget": 1475
-    },
-    {
-      "id": "5d5b",
-      "fullName": "w3",
-      "email": "w3@gmail.com",
-      "password": "111111",
-      "phone": "+90-555-555-55-55",
-      "budget": 66,
-      "wishlists": []
-    },
-    {
-      "id": "0125",
-      "fullName": "w4",
-      "email": "w4@gmail.com",
-      "password": "111111",
-      "phone": "+90-555-555-55-55"
     }
   ]
 }
