@@ -215,7 +215,7 @@ export const Savings = () => {
       );
     }
     return (
-      <View style={{marginTop: -20}}>
+      <View style={{marginTop: -20, marginBottom: -40}}>
         {wishlists.map(item => (
           <Wishlist
             key={item.id}
@@ -268,8 +268,33 @@ export const Savings = () => {
             />
           </TouchableOpacity>
         </View>
-        <Container>{WishlistItems()}</Container>
-        <Container>{CurrencyItems()}</Container>
+        <Container>
+          <Text
+            text="Hayal Kumbarası "
+            style={{
+              marginTop: -30,
+              marginBottom: 20,
+              fontSize: 20,
+              fontWeight: 'bold',
+              left: 10,
+            }}></Text>
+          {WishlistItems()}
+        </Container>
+        <Container>
+          <Text
+            text="Dünya Kumbarası"
+            style={{
+              marginTop: -30,
+              marginBottom: 20,
+              fontSize: 20,
+              fontWeight: 'bold',
+              left: 10,
+            }}></Text>
+          {CurrencyItems()}
+          <Text
+            text="Farklı ülkelerin paralarını biriktir ve ne kadar biriktirdiğini buradan gör! Küresel birikimcinin kim olduğunu herkese göster!"
+            style={{marginTop: 20, marginBottom: -20, fontSize: 12}}></Text>
+        </Container>
         <WishlistModal
           visible={modalVisible}
           onClose={() => setModalVisible(false)}

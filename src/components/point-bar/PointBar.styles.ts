@@ -26,4 +26,21 @@ export const styles = StyleSheet.create({
     height: verticalScale(16),
     top: '5%',
   },
+  logoHorizontal: {
+    width: scale(22),
+    height: verticalScale(16),
+    marginRight: 0,
+    position: 'absolute',
+    right: 30,
+  },
+  pointTextHorizontal: {
+    fontSize: scale(10),
+    textAlign: 'center',
+    marginTop: verticalScale(2),
+    fontWeight: '800',
+    marginRight: 12,
+    bottom: 2,
+    position: 'absolute',
+    left: 22,
+  },
 });

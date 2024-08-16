@@ -28,13 +28,15 @@ const categoryData: {[key: string]: {iconName: string; color: string}} = {
   Market: {iconName: 'bag-handle', color: '#61E4C5'},
   Elektronik: {iconName: 'headset', color: '#FF9692'},
   Yemek: {iconName: 'fast-food', color: '#2B87E3'},
-  Giyim: {iconName: 'cart', color: '#FFD465'},
+  Giyim: {iconName: 'shirt', color: '#FFD465'},
   Fatura: {iconName: 'receipt', color: '#7743DB'},
   Ulaşım: {iconName: 'bus', color: '#A9A9A9'},
-  Eğitim: {iconName: 'library', color: '#000000'},
+  Eğitim: {iconName: 'school', color: '#000000'},
   Oyun: {iconName: 'game-controller', color: '#FF8A00'},
   Seyahat: {iconName: 'airplane', color: '#FF89BB'},
   Sağlık: {iconName: 'fitness', color: '#F95A2B'},
+  Hobi: {iconName: 'american-football', color: '#624D3B'},
+  Oyuncak: {iconName: 'rocket', color: '#00A86B'},
 };
 
 const chartConfig = {
@@ -147,7 +149,7 @@ export const Budget = () => {
       <View>
         <Text
           style={[styles.budgetTitle, {color: themeColors.titleDefault}]}
-          text="Harcamalar"
+          text="Toplam Harcama"
         />
         <PieChart
           data={pieChartData}
@@ -158,6 +160,17 @@ export const Budget = () => {
           backgroundColor={'transparent'}
           paddingLeft={'0'}
           center={[0, 0]}
+        />
+        <View
+          style={{
+            position: 'absolute',
+            top: '35%',
+            left: '10%',
+            width: 80,
+            height: 80,
+            borderRadius: 40,
+            backgroundColor: 'white',
+          }}
         />
       </View>
     );
@@ -177,6 +190,14 @@ export const Budget = () => {
         data={sortedExpenses}
         keyExtractor={item => item.id}
         renderItem={ExpenseList}
+        style={{marginTop: -30, marginBottom: -30}}
+        ListHeaderComponent={
+          <View style={{padding: 10, marginBottom: 20}}>
+            <Text
+              text="Son Harcamalar"
+              style={{fontSize: 18, fontWeight: 'bold'}}></Text>
+          </View>
+        }
       />
     );
   };
@@ -296,11 +317,15 @@ export const Budget = () => {
           }}>
           <Text
             text="Gider Kategorisi Ekle"
-            style={[styles.modalText, {color: themeColors.titleDefault}]}
+            style={[
+              styles.modalText,
+              {color: themeColors.titleDefault, marginBottom: 20},
+            ]}
           />
           <FlatList
             data={Object.keys(categoryData)}
             keyExtractor={item => item}
+            showsVerticalScrollIndicator={false}
             renderItem={({item}) => (
               <Pressable
                 style={[
@@ -376,11 +401,7 @@ export const Budget = () => {
               alignItems: 'center',
             }}>
             <TouchableOpacity onPress={() => setInComeVisible(true)}>
-              <Icon
-                name="trending-up"
-                color={themeColors.titleDefault}
-                size={35}
-              />
+              <Icon name="trending-up" color="#00C6AE" size={35} />
             </TouchableOpacity>
           </TouchableOpacity>
           <TouchableOpacity
@@ -400,11 +421,7 @@ export const Budget = () => {
               onPress={() => {
                 setExpenseVisible(true);
               }}>
-              <Icon
-                name="trending-down"
-                color={themeColors.titleDefault}
-                size={35}
-              />
+              <Icon name="trending-down" color="#F95A2B" size={35} />
             </TouchableOpacity>
           </TouchableOpacity>
         </View>

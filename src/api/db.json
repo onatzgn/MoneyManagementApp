@@ -316,7 +316,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 363,
+      "budget": 303,
       "wishlists": [
         {
           "id": 195,
@@ -325,7 +325,7 @@
           "totalAmount": 20000,
           "startDate": "15/08/2024",
           "endDate": "19/09/2025",
-          "progress": 2250
+          "progress": 2550
         },
         {
           "id": 201,
@@ -467,6 +467,26 @@
           "amount": 10,
           "category": "Yemek",
           "id": "26"
+        },
+        {
+          "amount": 10,
+          "category": "Giyim",
+          "id": "27"
+        },
+        {
+          "amount": 100,
+          "category": "Giyim",
+          "id": "28"
+        },
+        {
+          "amount": 100,
+          "category": "Oyun",
+          "id": "29"
+        },
+        {
+          "amount": 50,
+          "category": "Market",
+          "id": "30"
         }
       ]
     },

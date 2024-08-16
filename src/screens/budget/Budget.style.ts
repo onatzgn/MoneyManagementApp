@@ -98,7 +98,6 @@ export const styles = StyleSheet.create({
   },
   modalContainer: {
     alignItems: 'center',
-    height: 450,
   },
   flatListIcon: {
     marginRight: 10,
