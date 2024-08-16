@@ -12,4 +12,11 @@ export const styles = StyleSheet.create({
     marginLeft: verticalScale(20),
     marginBottom: verticalScale(10),
   },
+  subTitle: {
+    fontSize: 25,
+    marginTop: verticalScale(40),
+    fontWeight: 'bold',
+    marginLeft: verticalScale(20),
+    marginBottom: verticalScale(10),
+  },
 });

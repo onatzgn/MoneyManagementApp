@@ -9,7 +9,7 @@ interface PointBarProps {
   containerStyle?: object;
 }
 
-export const PointBar: React.FC<PointBarProps> = ({text, containerStyle}) => {
+export const PointBar = ({text, containerStyle}: PointBarProps) => {
   return (
     <View style={[styles.logoContainer, containerStyle]}>
       <Image
@@ -18,6 +18,19 @@ export const PointBar: React.FC<PointBarProps> = ({text, containerStyle}) => {
         resizeMode="contain"
       />
       <Text text={text} style={styles.pointText}></Text>
+    </View>
+  );
+};
+
+export const PointBarHorizontal = ({text, containerStyle}: PointBarProps) => {
+  return (
+    <View style={[styles.logoContainer, containerStyle]}>
+      <Image
+        source={Images.starIcon}
+        style={styles.logoHorizontal}
+        resizeMode="contain"
+      />
+      <Text text={text} style={styles.pointTextHorizontal}></Text>
     </View>
   );
 };

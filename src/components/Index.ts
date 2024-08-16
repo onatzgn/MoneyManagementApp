@@ -10,3 +10,6 @@ export * from './avatar/Avatar';
 export * from './wishlist/Wishlist';
 export * from './accordion-button/AccordionButton';
 export * from './currency/Currency';
+export * from './top-boards/TopBoards';
+export * from './missions/Missions';
+export * from './badge/Badge';

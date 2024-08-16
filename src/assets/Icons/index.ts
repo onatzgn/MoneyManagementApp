@@ -8,6 +8,7 @@ const Icons = {
     moneyReceive: require('./moneyReceive.png'),
     currencyCoin: require('./currencyCoin.png'),
     deleteIcon: require('./deleteIcon.png'),
+    awardIcon: require('./awardIcon.png')
   };
   
   export default Icons;
