@@ -17,6 +17,9 @@ import {
   DELETEWISHLISTSUCCESS,
   DELETEWISHLISTFAILURE,
   UPDATEWISHLISTSUCCESS,
+  SETEXPENSEADDED,
+  UPDATESCORE,
+  RESETSTORE
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
@@ -94,6 +97,25 @@ export const updateWishlistSuccess = (id: number, progress: number) => ({
   type: UPDATEWISHLISTSUCCESS,
   payload: {id, progress},
 });
+export const setExpenseAdded = () => ({
+  type: SETEXPENSEADDED,
+});
+export const resetStore = () => ({
+  type: RESETSTORE,
+});
+export const updateScore =
+  (userId: string | undefined, score: number) => async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.get(`${baseUrl()}/users/${userId}`);
+      const user = response.data;
+      const updateScore = user.score + score;
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        score: updateScore,
+      });
+      dispatch({type: UPDATESCORE, payload: updateScore});
+    } catch (error) {
+    }
+  };
 export const addWishlist =
   (
     userId: string | undefined,

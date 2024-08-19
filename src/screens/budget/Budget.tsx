@@ -20,9 +20,10 @@ import {
   DefaultButton,
 } from 'components/Index';
 import {Controller, useForm} from 'react-hook-form';
-import {addExpense, addInCome} from '@redux/actions/UserAction';
+import {addExpense, addInCome, resetStore} from '@redux/actions/UserAction';
 import {ExpenseListType} from '@redux/reducers/UserReducer';
 import {Modal} from 'components/modal/Modal';
+import {setExpenseAdded} from '@redux/actions/UserAction';
 
 const categoryData: {[key: string]: {iconName: string; color: string}} = {
   Market: {iconName: 'bag-handle', color: '#61E4C5'},
@@ -88,6 +89,7 @@ export const Budget = () => {
   const onSubmitExpense = async (data: {expense: string; category: string}) => {
     const numberExpense = parseInt(data.expense, 10);
     dispatch(addExpense(userId, numberExpense, selectedCategory));
+    dispatch(setExpenseAdded());
     setExpenseVisible(false);
   };
   const calculateCategorySpendings = () => {

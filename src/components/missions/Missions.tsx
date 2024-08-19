@@ -1,11 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image} from 'react-native';
 import {Text, Container, PointBarHorizontal, Badge} from '@components';
 import {styles} from './Missions.style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Images from '@assets/Images';
+import {useSelector} from 'react-redux';
+import {RootState, useAppDispatch} from '@redux/Store';
+import {setExpenseAdded, updateScore} from '@redux/actions/UserAction';
 
 interface MissionProps {
+  id: number;
   name: string;
   description: string;
   badgeColor: string;
@@ -13,18 +17,48 @@ interface MissionProps {
 }
 
 export const Missions = ({
+  id,
   name,
   description,
   badgeColor,
   point,
 }: MissionProps) => {
-  const [buttonState, setButtonState] = useState(1);
+  const dispatch = useAppDispatch();
+
+  const [buttonState, setButtonState] = useState(0);
+  const expenseAdded = useSelector(
+    (state: RootState) => state.persistedReducer.user.hasExpenseAdded,
+  );
+  const userId = useSelector(
+    (state: RootState) => state.persistedReducer.user.signIn.id,
+  );
+  const score = useSelector(
+    (state: RootState) => state.persistedReducer.user.score,
+  );
+
+  useEffect(() => {
+    if (id === 1) {
+      if (expenseAdded >= 2) {
+        setButtonState(2);
+      } else if (expenseAdded > 0) {
+        setButtonState(1);
+      } else {
+        setButtonState(0);
+      }
+    }
+  }, [expenseAdded, id]);
+  
 
   const handleButtonPress = () => {
     if (buttonState === 1) {
+      dispatch(setExpenseAdded());
       setButtonState(2);
+      dispatch(updateScore(userId, point));
     }
   };
+  useEffect(() => {
+    console.log('Updated buttonState:', buttonState);
+  }, [buttonState]);
   return (
     <View style={styles.container}>
       <Badge backgroundColor={badgeColor} textVisible={false}></Badge>
@@ -32,14 +66,16 @@ export const Missions = ({
         <Text text={name} style={styles.name}></Text>
         <Text text={description} style={styles.description}></Text>
       </View>
-      {buttonState === 0 ? (
+      {buttonState === 0 && (
         <View style={styles.pointsContainer2}>
           <PointBarHorizontal
             text={point.toString()}
             containerStyle={styles.pointBarStyle}
           />
         </View>
-      ) : (
+      )}
+
+      {buttonState === 1 && (
         <View style={styles.pointsContainer}>
           <PointBarHorizontal
             text={point.toString()}
