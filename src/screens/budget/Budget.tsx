@@ -81,7 +81,7 @@ export const Budget = () => {
       category: '',
     },
   });
-
+//CONFLICT CHECK
   const onSubmitInCome = async (data: {inCome: string}) => {
     const numberInCome = parseInt(data.inCome, 10);
     dispatch(addInCome(userId, numberInCome));
