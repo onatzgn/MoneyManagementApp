@@ -112,26 +112,4 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     top: -30,
   },
-  categoryItem: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  categoryText: {
-    fontSize: 16,
-    color: '#333',
-  },
-  selectedCategory: {
-    backgroundColor: '#D3D3D3',
-    borderColor: '#000',
-    borderRadius: 15,
-  },
-  categoryFlatListContainer: {
-    height: 30,
-    marginBottom: 5,
-    flexDirection: 'row',
-    paddingHorizontal: '15%',
-    alignItems: 'center',
-    width: '100%',
-  },
 });

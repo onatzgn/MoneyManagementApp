@@ -93,9 +93,9 @@ export const deleteWishlistFailure = (error: any) => ({
   type: DELETEWISHLISTFAILURE,
   payload: error,
 });
-export const updateWishlistSuccess = (id: number, progress: number) => ({
+export const updateWishlistSuccess = (id:number, progress:number) => ({
   type: UPDATEWISHLISTSUCCESS,
-  payload: {id, progress},
+  payload: {id,progress},
 });
 export const setExpenseAdded = () => ({
   type: SETEXPENSEADDED,
@@ -126,8 +126,8 @@ export const addWishlist =
     startDate: string,
     endDate: string,
   ) =>
-  async (dispatch: AppDispatch, getState: () => RootState) => {
-    const {idCounter} = getState().persistedReducer.user;
+  async (dispatch: AppDispatch,getState: () => RootState) => {
+    const { idCounter } = getState().persistedReducer.user;
     try {
       console.log(
         'Before GET request:',
@@ -144,14 +144,7 @@ export const addWishlist =
       const user = response.data;
       const currentWishlists: WishListType[] = user.wishlists;
 
-      const wishlist = {
-        id: idCounter,
-        title,
-        dailyGoal,
-        totalAmount,
-        startDate,
-        endDate,
-      };
+      const wishlist = {id: idCounter, title, dailyGoal, totalAmount, startDate, endDate};
       const newWishlist = [...currentWishlists, wishlist];
       console.log('Before PATCH request:', newWishlist);
 
@@ -185,13 +178,8 @@ export const deleteWishlist =
       dispatch({type: ADDWISHLISTSUCCESS, payload: updatedWishlists});
     } catch (error) {}
   };
-export const updateWishlist =
-  (
-    userId: string | undefined,
-    id: number,
-    progress: number,
-    dailyGoal: number,
-  ) =>
+  export const updateWishlist =
+  (userId: string | undefined, id: number, progress: number, dailyGoal:number) =>
   async (dispatch: AppDispatch) => {
     try {
       const response = await axios.get(`${baseUrl()}/users/${userId}`);
@@ -199,13 +187,14 @@ export const updateWishlist =
       const currentWishlists: WishListType[] = user.wishlists;
 
       const updatedWishlists = currentWishlists.map(wishlist =>
-        wishlist.id === id ? {...wishlist, progress} : wishlist,
+        wishlist.id === id ? { ...wishlist, progress } : wishlist
       );
 
       await axios.patch(`${baseUrl()}/users/${userId}`, {
         wishlists: updatedWishlists,
       });
 
+      const currentExtenses: ExpenseListType[] = user.expenses;
       const updatedBudget = user.budget - dailyGoal;
       if (updatedBudget < 0) {
         Alert.alert('Hata', 'Bütçe eksiye düşemez');
@@ -215,8 +204,10 @@ export const updateWishlist =
         budget: updatedBudget,
       });
       dispatch({type: UPDATEBUDGETSUCCESS, payload: updatedBudget});
-      dispatch({type: UPDATEWISHLISTSUCCESS, payload: {id, progress}});
-    } catch (error) {}
+
+      dispatch({ type: UPDATEWISHLISTSUCCESS, payload: { id, progress } });
+    } catch (error) {
+    }
   };
 
 export const addInCome =
