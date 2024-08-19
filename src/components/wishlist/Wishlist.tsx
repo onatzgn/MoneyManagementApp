@@ -28,14 +28,6 @@ export const Wishlist = ({
   endDate,
   onDelete,
 }: WishlistProps) => {
-  /*
-  const [progress, setProgress] = useState(0);
-  const [save, setSave] = useState(0);
-  const progressPercentage = (value: number) => {
-    setProgress(value / totalAmount);
-  };
-  */
-
   console.log('Received ID:', id);
   const progress = useSelector(
     (state: RootState) =>
@@ -82,9 +74,17 @@ export const Wishlist = ({
         text={`Başlangıç Tarihi: ${startDate}`}
         style={styles.content}></Text>
       <Text text={`💰${progress}₺`} style={styles.progressContent}></Text>
-      <Text
-        text={`${endDate} tarihinde ${title} sahibi olacaksın 🎉`}
-        style={styles.subContent}></Text>
+      {newProgress < 1 ? (
+        <Text
+          text={`${endDate} tarihinde ${title} sahibi olacaksın 🎉`}
+          style={styles.subContent}
+        />
+      ) : (
+        <Text
+          text="Tebrikler! Hedefinize ulaştınız 👏"
+          style={styles.subContent}
+        />
+      )}
       <View style={styles.moneyButton}>
         <AccordionButton
           dailyGoalInput={dailyGoal}

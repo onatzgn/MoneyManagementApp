@@ -73,24 +73,28 @@ export const MissionCenter = () => {
         </View>
         <Text text="Görevler" style={styles.subTitle}></Text>
         <Missions
+          id={1}
           name="Hesap Uzmanı"
           description="Bütçe sayfasına bir harcama ekle"
           badgeColor="#E9E7FC"
           point={50}
         />
         <Missions
+          id={2}
           name="Sadık Birikimci"
           description="Uygulamaya günlük giriş yap"
           badgeColor="#FFBD12"
           point={20}
         />
         <Missions
+          id={3}
           name="Dünya Kaşifi"
           description="Dünya kumbarana yabancı para ekle"
           badgeColor="#8696BB"
           point={50}
         />
         <Missions
+          id={4}
           name="Hedef Avcısı"
           description="Hayal kumbarandaki bir hedefine ulaş"
           badgeColor="#D6FCF7"

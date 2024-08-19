@@ -15,7 +15,10 @@ import {
   ADDWISHLISTFAILURE,
   DELETEWISHLISTSUCCESS,
   DELETEWISHLISTFAILURE,
-  UPDATEWISHLISTSUCCESS
+  UPDATEWISHLISTSUCCESS,
+  SETEXPENSEADDED,
+  UPDATESCORE,
+  RESETSTORE,
 } from '../types/User.types';
 import { Wishlist } from '@components';
 
@@ -42,7 +45,9 @@ export interface UserState {
   wishlists: WishListType[];
   budget: string;
   hasSeenOnboarding: boolean;
-  idCounter:number,
+  idCounter: number;
+  hasExpenseAdded: number;
+  score: number;
 }
 const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
@@ -54,6 +59,8 @@ const initialState: UserState = {
   error: '',
   hasSeenOnboarding: false,
   idCounter: 1,
+  hasExpenseAdded: 0,
+  score: 0,
 };
 const userReducer = (
   state = initialState,
@@ -147,7 +154,21 @@ const userReducer = (
         ...state,
         hasSeenOnboarding: true,
       };
+    case SETEXPENSEADDED:
+      return {
+        ...state,
+        hasExpenseAdded: state.hasExpenseAdded +1,
+      };
+    case UPDATESCORE:
+      return {
+        ...state,
+        score: action.payload,
+      };
 
+      case RESETSTORE:
+        return{
+          ...initialState,
+        };
     default:
       return state;
   }
