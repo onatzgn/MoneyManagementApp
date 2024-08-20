@@ -46,8 +46,8 @@ export const styles = StyleSheet.create({
     marginTop:8, 
     fontSize: 10, 
     fontWeight: 'bold', 
-    color: '#333', 
+    color: 'white', 
     textAlign: 'center', 
-    marginRight:5
+    marginRight:5,
   },
 });

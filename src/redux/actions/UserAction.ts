@@ -19,7 +19,8 @@ import {
   UPDATEWISHLISTSUCCESS,
   SETEXPENSEADDED,
   UPDATESCORE,
-  RESETSTORE
+  RESETSTORE,
+  UPDATEEXPENSEADDED
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
@@ -103,6 +104,27 @@ export const setExpenseAdded = () => ({
 export const resetStore = () => ({
   type: RESETSTORE,
 });
+export const updateScoreSuccess = (score:number) => ({
+  type: UPDATESCORE,
+  payload: score,
+});
+export const updateExpenseAdded = (hasExpense:number) => ({
+  type: UPDATEEXPENSEADDED,
+  payload: hasExpense,
+});
+export const expenseAddMission = (userId: string| undefined) => async (dispatch: AppDispatch, getState: () => RootState) => {
+  const { hasExpenseAdded } = getState().persistedReducer.user;
+
+  try {
+    await axios.patch(`${baseUrl()}/users/${userId}`, {
+      hasExpenseAdded: hasExpenseAdded + 1,
+    });
+    dispatch(setExpenseAdded());
+  } catch (error) {
+    console.error('Error updating hasExpenseAdded in the database:', error);
+  }
+};
+
 export const updateScore =
   (userId: string | undefined, score: number) => async (dispatch: AppDispatch) => {
     try {

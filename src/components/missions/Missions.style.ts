@@ -19,6 +19,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     marginBottom: 10,
+    borderWidth:2,
+    borderBottomWidth:5,
   },
   badge: {
     width: 40,
@@ -39,10 +41,11 @@ export const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: 'bold',
+    color:'black'
   },
   description: {
     fontSize: 12,
-    color: '#666',
+    color: '#474A57',
   },
   pointsContainer: {
     alignItems: 'flex-end',

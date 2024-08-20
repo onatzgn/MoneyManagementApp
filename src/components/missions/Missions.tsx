@@ -6,7 +6,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Images from '@assets/Images';
 import {useSelector} from 'react-redux';
 import {RootState, useAppDispatch} from '@redux/Store';
-import {setExpenseAdded, updateScore} from '@redux/actions/UserAction';
+import {expenseAddMission, setExpenseAdded, updateScore} from '@redux/actions/UserAction';
 
 interface MissionProps {
   id: number;
@@ -51,7 +51,7 @@ export const Missions = ({
 
   const handleButtonPress = () => {
     if (buttonState === 1) {
-      dispatch(setExpenseAdded());
+      dispatch(expenseAddMission(userId));
       setButtonState(2);
       dispatch(updateScore(userId, point));
     }

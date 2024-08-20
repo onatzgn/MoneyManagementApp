@@ -5,13 +5,14 @@ import {
   View,
   FlatList,
   ScrollView,
+  Platform,
 } from 'react-native';
 import {styles} from './Budget.style';
 import {useSelector} from 'react-redux';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {getThemeColor} from '@utils/Color';
 import {PieChart} from 'react-native-chart-kit';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   Text,
@@ -20,10 +21,11 @@ import {
   DefaultButton,
 } from 'components/Index';
 import {Controller, useForm} from 'react-hook-form';
-import {addExpense, addInCome, resetStore} from '@redux/actions/UserAction';
+import {addExpense, addExpensesSuccess, addInCome, expenseAddMission, resetStore, updateBudgetSuccess} from '@redux/actions/UserAction';
 import {ExpenseListType} from '@redux/reducers/UserReducer';
 import {Modal} from 'components/modal/Modal';
 import {setExpenseAdded} from '@redux/actions/UserAction';
+import axios from 'axios';
 
 const categoryData: {[key: string]: {iconName: string; color: string}} = {
   Market: {iconName: 'bag-handle', color: '#61E4C5'},
@@ -63,17 +65,39 @@ export const Budget = () => {
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
-
   const budget = useSelector(
     (state: RootState) => state.persistedReducer.user.budget ?? 0,
   );
-
+  //dispatch(resetStore())
   const userId = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn.id,
   );
   const expenses = useSelector(
     (state: RootState) => state.persistedReducer.user.expenses,
   );
+  const baseUrl = () => {
+    console.log('os', Platform.OS);
+    if (Platform.OS === 'android') {
+      return 'http://10.0.2.2:4000';
+    }
+    return 'http://localhost:4000';
+  };
+  useEffect(() => {
+    if (userId) {
+      axios
+        .get(`${baseUrl()}/users/${userId}`)
+        .then(response => {
+          const userExpenses = response.data.expenses;
+          const userBudget = response.data.budget;
+          dispatch(addExpensesSuccess(userExpenses));
+          dispatch(updateBudgetSuccess(userBudget));
+        })
+        .catch(error => {
+          console.log('Error:', error);
+        });
+    }
+  }, [userId]);
+
   const {control, handleSubmit} = useForm({
     defaultValues: {
       inCome: '',
@@ -81,8 +105,7 @@ export const Budget = () => {
       category: '',
     },
   });
-//CONFLICT CHECK 
-//CONFLICT CHECK
+
   const onSubmitInCome = async (data: {inCome: string}) => {
     const numberInCome = parseInt(data.inCome, 10);
     dispatch(addInCome(userId, numberInCome));
@@ -90,7 +113,7 @@ export const Budget = () => {
   const onSubmitExpense = async (data: {expense: string; category: string}) => {
     const numberExpense = parseInt(data.expense, 10);
     dispatch(addExpense(userId, numberExpense, selectedCategory));
-    dispatch(setExpenseAdded());
+    dispatch(expenseAddMission(userId));
     setExpenseVisible(false);
   };
   const calculateCategorySpendings = () => {
