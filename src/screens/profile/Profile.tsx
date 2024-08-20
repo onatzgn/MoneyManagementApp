@@ -25,7 +25,7 @@ const MenuDatas = [
     onPress: 'PersonalInformation',
   },
   {id: '2', title: 'Tema', color: '#62E4C6', onPress: 'Theme'},
-  {id: '3', title: 'Item 3', color: '#FF9692', onPress: 'PersonalInformation'},
+  {id: '3', title: 'SSS', color: '#FF9692', onPress: 'PersonalInformation'},
 ];
 
 export const Profile = () => {

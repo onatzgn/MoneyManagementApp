@@ -1,23 +1,52 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, View, TouchableOpacity} from 'react-native';
+import React, { useEffect } from 'react';
+import {SafeAreaView, ScrollView, View, TouchableOpacity, Platform} from 'react-native';
 import {styles} from './MissionCenter.style';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
-import {RootState} from '@redux/Store';
+import {RootState, useAppDispatch} from '@redux/Store';
 import {Text, Container, TopBoards, Missions, Badge} from '@components';
+import axios from 'axios';
+import { addExpensesSuccess, setExpenseAdded, updateExpenseAdded, updateScoreSuccess } from '@redux/actions/UserAction';
 
 export const MissionCenter = () => {
+  const dispatch = useAppDispatch();
+
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+  const userId = useSelector(
+    (state: RootState) => state.persistedReducer.user.signIn.id,
+  );
+  const baseUrl = () => {
+    console.log('os', Platform.OS);
+    if (Platform.OS === 'android') {
+      return 'http://10.0.2.2:4000';
+    }
+    return 'http://localhost:4000';
+  };
+  useEffect(() => {
+    if (userId) {
+      axios
+        .get(`${baseUrl()}/users/${userId}`)
+        .then(response => {
+          const userScore = response.data.score;
+          const userHasExpenseAdded = response.data.hasExpenseAdded;
+          dispatch(updateScoreSuccess(userScore));
+          dispatch(updateExpenseAdded(userHasExpenseAdded));
+        })
+        .catch(error => {
+          console.log('Error:', error);
+        });
+    }
+  }, [userId]);
 
   const BadgeCollection = () => {
     return (
       <View
         style={{
           flexDirection: 'row',
-          marginHorizontal: 15,
+          marginHorizontal: 0,
           justifyContent: 'space-evenly',
         }}>
         <Badge
@@ -59,14 +88,15 @@ export const MissionCenter = () => {
           <TopBoards></TopBoards>
         </View>
         <View style={{marginBottom: -30}}>
-          <Container>
+          <Container containerStyle={styles.badgeContainer}>
             <Text
               text="Rozet Koleksiyonu"
               style={{
                 top: -30,
-                fontSize: 20,
+                fontSize: 22,
                 left: 10,
                 fontWeight: 'bold',
+                color:'white'
               }}></Text>
             {BadgeCollection()}
           </Container>

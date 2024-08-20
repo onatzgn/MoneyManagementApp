@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   pointBox: {
     flex: 1,
-    backgroundColor: '#91E4D0',
+    backgroundColor: '#61E4C5',
     padding: 5,
     borderRadius: 10,
     alignItems: 'center',
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   leaderBoardBox: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#91E4D0',
+    backgroundColor: '#61E4C5',
     padding: 0,
     borderRadius: 10,
     alignItems: 'center',

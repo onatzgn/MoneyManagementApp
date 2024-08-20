@@ -19,4 +19,11 @@ export const styles = StyleSheet.create({
     marginLeft: verticalScale(20),
     marginBottom: verticalScale(10),
   },
+  badgeContainer:{
+    borderWidth:12,
+    borderColor:'#543417',
+    backgroundColor:'#299657',
+    shadowColor:'black',
+
+  },
 });

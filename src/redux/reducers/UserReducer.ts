@@ -19,6 +19,7 @@ import {
   SETEXPENSEADDED,
   UPDATESCORE,
   RESETSTORE,
+  UPDATEEXPENSEADDED,
 } from '../types/User.types';
 import { Wishlist } from '@components';
 
@@ -159,6 +160,11 @@ const userReducer = (
         ...state,
         hasExpenseAdded: state.hasExpenseAdded +1,
       };
+      case UPDATEEXPENSEADDED:
+        return {
+          ...state,
+          hasExpenseAdded: action.payload,
+        };
     case UPDATESCORE:
       return {
         ...state,
