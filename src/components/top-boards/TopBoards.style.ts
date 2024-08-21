@@ -5,11 +5,11 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 12,
+    padding: scale(13),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: verticalScale(1),
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
@@ -18,11 +18,11 @@ export const styles = StyleSheet.create({
   pointBox: {
     flex: 1,
     backgroundColor: '#61E4C5',
-    padding: 5,
+    padding: scale(5),
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 8,
+    marginHorizontal: scale(8),
   },
   leaderBoardBox: {
     flex: 1,
@@ -32,13 +32,13 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 8,
+    marginHorizontal: scale(8),
   },
   text: {
     fontSize: 25,
     fontWeight: '700',
     color: 'black',
-    marginTop: 5,
+    marginTop: verticalScale(5),
   },
   score: {
     fontSize: 24,
@@ -58,9 +58,9 @@ export const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5,
-    marginBottom: 5,
-    right: 32,
-    marginHorizontal: 10,
+    marginTop: verticalScale(4),
+    marginBottom: verticalScale(4),
+    right: scale(22),
+    marginHorizontal: scale(10),
   },
 });

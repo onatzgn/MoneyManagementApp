@@ -148,7 +148,8 @@ export const Savings = () => {
     };
 
     return (
-      <Modal visible={visible} animationType="slide">
+      <Modal visible={visible} animationType="slide" transparent={true}>
+          <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
           <TextInput
             placeholder="Title"
@@ -174,18 +175,30 @@ export const Savings = () => {
             }
             style={styles.modalInput}
           />
-          <View style={{marginRight: 275, marginTop: 10}}>
+          <View style={styles.dateStyle}>
             <DateTimePicker
               value={date}
               mode={'date'}
               is24Hour={true}
               onChange={onChange}
+              display="default"
             />
           </View>
+          <TouchableOpacity
+            style={styles.modalButton}
+            onPress={handleAddWishlistItem}>
+            <Text
+              text="Ekle"
+              style={styles.modalButtonText}></Text>
+          </TouchableOpacity>
 
-          <Button title="Add Wishlist Item" onPress={handleAddWishlistItem} />
-          <Button title="Cancel" onPress={onClose} />
+          <TouchableOpacity
+            style={[styles.modalButton, {backgroundColor: '#F44336'}]}
+            onPress={onClose}>
+            <Text text="Çık" style={styles.modalButtonText}></Text>
+          </TouchableOpacity>
           <Text text={wishlistData.endDate}></Text>
+        </View>
         </View>
       </Modal>
     );
@@ -211,11 +224,11 @@ export const Savings = () => {
       'Henüz bir şey eklemedin!\nHadi, hayalini kurduğun ürünleri eklemeye başla!';
     if (!wishlists || wishlists.length === 0) {
       return (
-        <Text text={emptyWishlistMessage} style={{textAlign: 'center'}}></Text>
+        <Text text={emptyWishlistMessage} style={styles.emptyWishlistText}></Text>
       );
     }
     return (
-      <View style={{marginTop: -20, marginBottom: -40}}>
+      <View style={styles.wishlistMap}>
         {wishlists.map(item => (
           <Wishlist
             key={item.id}
@@ -235,8 +248,8 @@ export const Savings = () => {
   const CurrencyItems = () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        <Currency />
-        <Currency />
+        <Currency title="Euro" color="#FFBD12" unit="€" />
+        <Currency title="Dolar" color="#F95A2B" unit="$" />
       </View>
     );
   };
@@ -244,7 +257,7 @@ export const Savings = () => {
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
-      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 100}}>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <Text
           style={[styles.title, {color: themeColors.budgetTitle}]}
           text="Kumbara"
@@ -271,29 +284,17 @@ export const Savings = () => {
         <Container>
           <Text
             text="Hayal Kumbarası "
-            style={{
-              marginTop: -30,
-              marginBottom: 20,
-              fontSize: 20,
-              fontWeight: 'bold',
-              left: 10,
-            }}></Text>
+            style={styles.dreamBoxText}></Text>
           {WishlistItems()}
         </Container>
         <Container>
           <Text
             text="Dünya Kumbarası"
-            style={{
-              marginTop: -30,
-              marginBottom: 20,
-              fontSize: 20,
-              fontWeight: 'bold',
-              left: 10,
-            }}></Text>
+            style={styles.worldBoxText}></Text>
           {CurrencyItems()}
           <Text
             text="Farklı ülkelerin paralarını biriktir ve ne kadar biriktirdiğini buradan gör! Küresel birikimcinin kim olduğunu herkese göster!"
-            style={{marginTop: 20, marginBottom: -20, fontSize: 12}}></Text>
+            style={styles.worldBoxInfo}></Text>
         </Container>
         <WishlistModal
           visible={modalVisible}

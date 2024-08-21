@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {verticalScale} from 'react-native-size-matters';
+import {verticalScale,scale,moderateScale, s} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   mainContainer: {
@@ -40,80 +40,44 @@ export const styles = StyleSheet.create({
     alignContent: 'center',
   },
   flatListContainer: {
-    height: 50,
-    marginBottom: 10,
+    height: verticalScale(40),
+    marginBottom: verticalScale(10),
     flexDirection: 'row',
     paddingHorizontal: '5%',
     alignItems: 'center',
     width: '100%',
   },
-  iconContainer: {
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 12,
-    padding: 5,
-    marginRight: 10,
-  },
   spendText: {
-    marginLeft: 10,
+    marginLeft: scale(10),
     fontWeight: 'bold',
   },
   spendTextContainer: {
     position: 'absolute',
-    right: 20,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    borderColor: 'black',
-    borderWidth: 2,
+    right: scale(20),
   },
   button: {
-    padding: 10,
+    padding: scale(10),
   },
   buttonClose: {
     position: 'absolute',
-    right: 5,
-    top: 5,
+    right: scale(5),
+    top: verticalScale(5),
   },
   modalText: {
-    top: 5,
-    left: 0,
+    top: verticalScale(5),
+    marginBottom: verticalScale(10)
   },
   modalContainer: {
     alignItems: 'center',
   },
   flatListIcon: {
-    marginRight: 10,
+    marginRight: scale(10),
   },
   flatListText: {
     fontWeight: 'bold',
   },
-  containerStyle: {
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 20,
-    alignSelf: 'center',
-    top: -30,
-  },
   categoryItem: {
-    padding: 10,
+    padding: scale(10),
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
@@ -127,11 +91,67 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
   },
   categoryFlatListContainer: {
-    height: 30,
-    marginBottom: 5,
+    height: verticalScale(20),
+    marginBottom: verticalScale(5),
     flexDirection: 'row',
     paddingHorizontal: '15%',
     alignItems: 'center',
     width: '100%',
+  },
+  graphicStyle: {
+    position: 'absolute',
+    top: '35%',
+    left: '10%',
+    width: verticalScale(60),
+    height: verticalScale(60),
+    borderRadius: 40,
+    backgroundColor: 'white',
+  },
+  spendFlatList: {
+    marginTop: verticalScale(-25),
+    marginBottom: verticalScale(-30),
+  },
+  spendListView: {
+    padding: verticalScale(10),
+    marginBottom: verticalScale(15),
+  },
+  spendListText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  categoryView:{
+    paddingVertical: verticalScale(70),
+    height: verticalScale(330),
+    marginTop: verticalScale(-50),
+    width: scale(210),
+  },
+  modalButton:{
+    marginTop: verticalScale(-60)
+  },
+  contentContainerStyle:{
+    flexGrow: 1, 
+    paddingBottom: verticalScale(80)
+  },
+  touchableViewUp:{
+    borderWidth: 1,
+    position: 'absolute',
+    right: scale(20),
+    borderRadius: 25,
+    borderBottomWidth: 4,
+    width: scale(40),
+    height: scale(40),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  touchableViewDown:{
+    borderWidth: 1,
+    position: 'absolute',
+    right: scale(70),
+    borderRadius: 25,
+    borderBottomWidth: 4,
+    width: scale(40),
+    height: scale(40),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -25,6 +25,7 @@ export const MissionCenter = () => {
     }
     return 'http://localhost:4000';
   };
+  
   useEffect(() => {
     if (userId) {
       axios
@@ -44,11 +45,7 @@ export const MissionCenter = () => {
   const BadgeCollection = () => {
     return (
       <View
-        style={{
-          flexDirection: 'row',
-          marginHorizontal: 0,
-          justifyContent: 'space-evenly',
-        }}>
+        style={styles.badgeCollection}>
         <Badge
           textVisible={true}
           backgroundColor={'#E9E7FC'}
@@ -79,7 +76,7 @@ export const MissionCenter = () => {
         styles.mainContainer,
         {backgroundColor: themeColors.missionCenterBackground},
       ]}>
-      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 100}}>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <Text
           style={[styles.title, {color: themeColors.missionCenterTitle}]}
           text="Görev Merkezi"
@@ -87,17 +84,11 @@ export const MissionCenter = () => {
         <View>
           <TopBoards></TopBoards>
         </View>
-        <View style={{marginBottom: -30}}>
+        <View style={styles.containerView}>
           <Container containerStyle={styles.badgeContainer}>
             <Text
               text="Rozet Koleksiyonu"
-              style={{
-                top: -30,
-                fontSize: 22,
-                left: 10,
-                fontWeight: 'bold',
-                color:'white'
-              }}></Text>
+              style={styles.badgeText}></Text>
             {BadgeCollection()}
           </Container>
         </View>

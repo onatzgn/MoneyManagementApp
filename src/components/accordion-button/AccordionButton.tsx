@@ -108,7 +108,6 @@ export const AccordionButton = ({
         onSave(progress);
         dispatch(updateWishlist(userId, wishlistId, progress, dailyGoalInput));
 
-        console.log('Updated Cumulative Progress:', progress);
         return progress;
       });
     };

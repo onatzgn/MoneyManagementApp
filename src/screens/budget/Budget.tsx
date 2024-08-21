@@ -21,7 +21,14 @@ import {
   DefaultButton,
 } from 'components/Index';
 import {Controller, useForm} from 'react-hook-form';
-import {addExpense, addExpensesSuccess, addInCome, expenseAddMission, resetStore, updateBudgetSuccess} from '@redux/actions/UserAction';
+import {
+  addExpense,
+  addExpensesSuccess,
+  addInCome,
+  expenseAddMission,
+  resetStore,
+  updateBudgetSuccess,
+} from '@redux/actions/UserAction';
 import {ExpenseListType} from '@redux/reducers/UserReducer';
 import {Modal} from 'components/modal/Modal';
 import {setExpenseAdded} from '@redux/actions/UserAction';
@@ -75,6 +82,7 @@ export const Budget = () => {
   const expenses = useSelector(
     (state: RootState) => state.persistedReducer.user.expenses,
   );
+  console.log('expenses2', expenses);
   const baseUrl = () => {
     console.log('os', Platform.OS);
     if (Platform.OS === 'android') {
@@ -82,6 +90,7 @@ export const Budget = () => {
     }
     return 'http://localhost:4000';
   };
+  
   useEffect(() => {
     if (userId) {
       axios
@@ -90,6 +99,7 @@ export const Budget = () => {
           const userExpenses = response.data.expenses;
           const userBudget = response.data.budget;
           dispatch(addExpensesSuccess(userExpenses));
+          console.log('userexpenses',userExpenses)
           dispatch(updateBudgetSuccess(userBudget));
         })
         .catch(error => {
@@ -118,8 +128,8 @@ export const Budget = () => {
   };
   const calculateCategorySpendings = () => {
     const categoryTotals: {[key: string]: number} = {};
-
-    expenses.forEach(expense => {
+    console.log('expenses', expenses);
+    expenses?.forEach(expense => {
       if (categoryTotals[expense.category]) {
         categoryTotals[expense.category] += expense.amount;
       } else {
@@ -131,7 +141,7 @@ export const Budget = () => {
   };
   const getPieChartData = () => {
     const categorySpendings = calculateCategorySpendings();
-
+    console.log('categorySpendings', categorySpendings);
     const sortedCategories = Object.keys(categorySpendings)
       .map(category => ({
         name: category,
@@ -187,24 +197,14 @@ export const Budget = () => {
           paddingLeft={'0'}
           center={[0, 0]}
         />
-        <View
-          style={{
-            position: 'absolute',
-            top: '35%',
-            left: '10%',
-            width: 80,
-            height: 80,
-            borderRadius: 40,
-            backgroundColor: 'white',
-          }}
-        />
+        <View style={[styles.graphicStyle,{backgroundColor:themeColors.containerBackground}]} />
       </View>
     );
   };
 
   const SpendList = () => {
     const sortedExpenses = expenses
-      .map(expense => ({
+      ?.map(expense => ({
         ...expense,
         id: expense.id,
       }))
@@ -216,12 +216,10 @@ export const Budget = () => {
         data={sortedExpenses}
         keyExtractor={item => item.id}
         renderItem={ExpenseList}
-        style={{marginTop: -30, marginBottom: -30}}
+        style={styles.spendFlatList}
         ListHeaderComponent={
-          <View style={{padding: 10, marginBottom: 20}}>
-            <Text
-              text="Son Harcamalar"
-              style={{fontSize: 18, fontWeight: 'bold'}}></Text>
+          <View style={styles.spendListView}>
+            <Text text="Son Harcamalar" style={[styles.spendListText,{color: themeColors.titleDefault}]}></Text>
           </View>
         }
       />
@@ -248,7 +246,7 @@ export const Budget = () => {
         />
         <View style={styles.spendTextContainer}>
           <Text
-            style={[styles.spendText, {color: 'themeColors.titleDefault'}]}
+            style={[styles.spendText, {color: themeColors.titleDefault}]}
             text={`-${item.amount} ₺`}
           />
         </View>
@@ -334,19 +332,10 @@ export const Budget = () => {
           )}
           name="expense"
         />
-        <View
-          style={{
-            paddingVertical: 100,
-            height: 440,
-            marginTop: -60,
-            width: 250,
-          }}>
+        <View style={styles.categoryView}>
           <Text
             text="Gider Kategorisi Ekle"
-            style={[
-              styles.modalText,
-              {color: themeColors.titleDefault, marginBottom: 20},
-            ]}
+            style={[styles.modalText, {color: themeColors.titleDefault}]}
           />
           <FlatList
             data={Object.keys(categoryData)}
@@ -375,7 +364,7 @@ export const Budget = () => {
             )}
           />
         </View>
-        <View style={{marginTop: -80}}>
+        <View style={styles.modalButton}>
           <DefaultButton
             onPress={handleSubmit(onSubmitExpense)}
             text="Ekle"
@@ -396,10 +385,11 @@ export const Budget = () => {
       </View>
     );
   };
+  console.log('budget',budget)
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
-      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 100}}>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <Text
           style={[styles.title, {color: themeColors.budgetTitle}]}
           text="Bütçe"
@@ -414,35 +404,19 @@ export const Budget = () => {
             text={`${budget}₺`}
           />
           <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              position: 'absolute',
-              right: 25,
-              borderRadius: 25,
-              borderBottomWidth: 4,
-              borderColor: themeColors.titleDefault,
-              width: 48,
-              height: 48,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+            style={[
+              styles.touchableViewUp,
+              {borderColor: themeColors.titleDefault},
+            ]}>
             <TouchableOpacity onPress={() => setInComeVisible(true)}>
               <Icon name="trending-up" color="#00C6AE" size={35} />
             </TouchableOpacity>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              position: 'absolute',
-              right: 90,
-              borderRadius: 25,
-              borderBottomWidth: 4,
-              borderColor: themeColors.titleDefault,
-              width: 48,
-              height: 48,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+            style={[
+              styles.touchableViewDown,
+              {borderColor: themeColors.titleDefault},
+            ]}>
             <TouchableOpacity
               onPress={() => {
                 setExpenseVisible(true);

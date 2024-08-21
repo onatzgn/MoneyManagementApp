@@ -55,7 +55,9 @@ const SignIn = () => {
   }, [navigation, signIn]);
   const onSubmit = async (data: UserSignInType) => {
     try {
+      console.log('data',data)
       dispatch(signInUser(data));
+
     } catch (error) {
       dispatch({type: SIGNIN_FAILURE, payload: error});
     }

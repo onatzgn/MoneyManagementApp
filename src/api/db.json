@@ -317,7 +317,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 964,
+      "budget": 836,
       "wishlists": [
         {
           "id": 195,
@@ -326,7 +326,7 @@
           "totalAmount": 20000,
           "startDate": "15/08/2024",
           "endDate": "19/09/2025",
-          "progress": 2750
+          "progress": 2850
         },
         {
           "id": 201,
@@ -335,7 +335,7 @@
           "totalAmount": 500,
           "startDate": "15/08/2024",
           "endDate": "04/10/2024",
-          "progress": 240
+          "progress": 260
         }
       ],
       "expenses": [
@@ -714,6 +714,75 @@
       "email": "w4@gmail.com",
       "password": "111111",
       "phone": "+90-555-555-55-55"
+    },
+    {
+      "id": "8d8a",
+      "fullName": "o1",
+      "email": "o1@gmail.com",
+      "password": "111111",
+      "phone": "+90-555-555-55-55"
+    },
+    {
+      "id": "2eeb",
+      "fullName": "ab",
+      "email": "ab@gmail.com",
+      "password": "111111",
+      "phone": "+90-555-555-55-55"
+    },
+    {
+      "id": "ff9f",
+      "fullName": "bc",
+      "email": "bc@gmail.com",
+      "password": "111111",
+      "phone": "+90-555-555-55-55",
+      "wishlists": [
+        {
+          "id": 1,
+          "title": "Aa",
+          "dailyGoal": 2,
+          "totalAmount": 8,
+          "startDate": "",
+          "endDate": "25/08/2024",
+          "progress": 2
+        }
+      ],
+      "expenses": [
+        {
+          "amount": 5,
+          "category": "Market",
+          "id": "1"
+        }
+      ],
+      "hasExpenseAdded": 1,
+      "budget": 555
+    },
+    {
+      "id": "f5af",
+      "fullName": "cd",
+      "email": "cd@gmail.com",
+      "password": "111111",
+      "phone": "+90-555-555-55-55",
+      "wishlists": [
+        {
+          "id": 3,
+          "title": "",
+          "dailyGoal": 50,
+          "totalAmount": 200,
+          "startDate": "",
+          "endDate": "25/08/2024",
+          "progress": 50
+        }
+      ],
+      "expenses": [
+        {
+          "amount": 5,
+          "category": "Elektronik",
+          "id": "1"
+        }
+      ],
+      "budget": 49,
+      "hasExpenseAdded": 2,
+      "score": null
     }
   ]
 }

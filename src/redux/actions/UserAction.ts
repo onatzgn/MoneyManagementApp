@@ -20,7 +20,8 @@ import {
   SETEXPENSEADDED,
   UPDATESCORE,
   RESETSTORE,
-  UPDATEEXPENSEADDED
+  UPDATEEXPENSEADDED,
+  WISHLISTCOMPLETED
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
@@ -28,7 +29,6 @@ import {ExpenseListType, WishListType} from '@redux/reducers/UserReducer';
 import {useState} from 'react';
 
 const baseUrl = () => {
-  console.log('os', Platform.OS);
   if (Platform.OS === 'android') {
     return 'http://10.0.2.2:4000';
   }
@@ -112,6 +112,9 @@ export const updateExpenseAdded = (hasExpense:number) => ({
   type: UPDATEEXPENSEADDED,
   payload: hasExpense,
 });
+export const wishlistCompleted = () => ({
+  type: WISHLISTCOMPLETED,
+});
 export const expenseAddMission = (userId: string| undefined) => async (dispatch: AppDispatch, getState: () => RootState) => {
   const { hasExpenseAdded } = getState().persistedReducer.user;
 
@@ -151,17 +154,7 @@ export const addWishlist =
   async (dispatch: AppDispatch, getState: () => RootState) => {
     const {idCounter} = getState().persistedReducer.user;
     try {
-      console.log(
-        'Before GET request:',
-        id,
-        userId,
-        title,
-        dailyGoal,
-        totalAmount,
-        startDate,
-      );
       const response = await axios.get(`${baseUrl()}/users/${userId}`);
-      console.log('After GET request:', response.data);
 
       const user = response.data;
       const currentWishlists: WishListType[] = user.wishlists;
@@ -175,16 +168,13 @@ export const addWishlist =
         endDate,
       };
       const newWishlist = [...currentWishlists, wishlist];
-      console.log('Before PATCH request:', newWishlist);
 
       await axios.patch(`${baseUrl()}/users/${userId}`, {
         wishlists: newWishlist,
       });
-      console.log('After PATCH request:', newWishlist);
 
       dispatch({type: ADDWISHLISTSUCCESS, payload: newWishlist});
     } catch (error) {
-      console.log('Error occurred:', error);
       dispatch({type: ADDWISHLISTFAILURE, payload: error});
     }
   };
@@ -272,10 +262,8 @@ export const addExpense =
       await axios.patch(`${baseUrl()}/users/${userId}`, {
         budget: updatedBudget,
       });
-      console.log(currentExtenses);
       const max =
         Math.max(...currentExtenses.map(x => parseInt(x.id, 10)), 0) + 1;
-      console.log('1', max);
 
       const expense = {amount, category, id: max.toString()};
       const newExpenses = [...currentExtenses, expense];
@@ -301,7 +289,6 @@ export const signInUser = (user: UserSignInType) => {
   return async (dispatch: AppDispatch) => {
     {
       try {
-        console.log('user: ', user);
         axios
           .get(`${baseUrl()}/users`)
           .then(response => {

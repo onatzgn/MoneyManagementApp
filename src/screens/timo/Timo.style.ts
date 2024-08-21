@@ -4,7 +4,7 @@ import {scale, verticalScale} from 'react-native-size-matters';
 export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 16,
+    padding: scale(16),
   },
   title: {
     fontSize: 30,
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     marginLeft: verticalScale(20),
     fontWeight: 'bold',
     fontSize: 20,
-    marginBottom:40
+    marginBottom:verticalScale(30)
   },
   postContainer: {
     marginVertical: '2%',
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: verticalScale(2),
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
@@ -48,27 +48,22 @@ export const styles = StyleSheet.create({
   },
   iconContainer: {
     position: 'absolute',
-    top: 16,
-    left: 16,
-  },
-  infoText: {
-    color: '#000',
-    fontSize: 16,
-    marginLeft: 40,
+    top: verticalScale(13),
+    left: scale(13),
   },
   contentTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#000',
-    marginLeft: 60,
-    marginTop:-25
+    marginLeft: scale(45),
+    marginTop:verticalScale(-20)
   },
   button: {
     backgroundColor: '#1947E5',
     borderRadius: 15,
-    padding: 15,
+    padding: verticalScale(12),
     alignItems: 'center',
-    marginTop:20,
+    marginTop:verticalScale(20),
     borderWidth:2,
     borderBottomWidth:6
   },
@@ -78,7 +73,7 @@ export const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   contentText: {
-    marginTop: 10,
+    marginTop: verticalScale(10),
     fontSize: 16,
     color: '#000',
   },
@@ -91,10 +86,10 @@ export const styles = StyleSheet.create({
   },
   quizOption: {
     backgroundColor: '#E0E0E0',
-    padding: 10,
-    marginVertical: 5,
+    padding: verticalScale(8),
+    marginVertical: verticalScale(4),
     borderRadius: 15,
-    marginLeft: 40,
+    marginLeft: scale(35),
     borderWidth:2,
     borderBottomWidth:6
   },
@@ -106,16 +101,16 @@ export const styles = StyleSheet.create({
     color: '#000',
   },
   successMessage: {
-    marginTop: 10,
+    marginTop: verticalScale(10),
     fontSize: 16,
     color: '#228B22',
     fontWeight: 'bold',
-    marginLeft: 40,
+    marginLeft: scale(40),
   },
   categoryIconContainer:{
     position:'absolute',
-    left:340,
-    top:10
+    left:scale(290),
+    top:verticalScale(10)
   },
   wrongOption: {
     backgroundColor: '#ffe6e6',  
@@ -126,9 +121,13 @@ export const styles = StyleSheet.create({
     borderColor: '#2ecc71',     
   },
   errorMessage: {
-    marginTop: 10,
+    marginTop: verticalScale(10),
     fontSize: 16,
     color: '#ff4d4d', 
     fontWeight: 'bold',
   },
+  contentContainerStyle:{
+    flexGrow: 1, 
+    paddingBottom: verticalScale(80)
+  }
 });

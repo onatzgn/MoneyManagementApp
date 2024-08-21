@@ -10,7 +10,6 @@ export const TopBoards = () => {
     const score = useSelector(
         (state: RootState) => state.persistedReducer.user.score,
       );
-    console.log('score',score);
   return (
     <View style={styles.container}>
       <View style={styles.pointBox}>
