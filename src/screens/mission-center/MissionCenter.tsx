@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
-import {SafeAreaView, ScrollView, View, TouchableOpacity, Platform} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import {styles} from './MissionCenter.style';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {Text, Container, TopBoards, Missions, Badge} from '@components';
 import axios from 'axios';
-import { addExpensesSuccess, setExpenseAdded, updateExpenseAdded, updateScoreSuccess } from '@redux/actions/UserAction';
+import {
+  addExpensesSuccess,
+  setExpenseAdded,
+  updateExpenseAdded,
+  updateScoreSuccess,
+} from '@redux/actions/UserAction';
 
 export const MissionCenter = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +36,7 @@ export const MissionCenter = () => {
     }
     return 'http://localhost:4000';
   };
-  
+
   useEffect(() => {
     if (userId) {
       axios
@@ -44,8 +55,7 @@ export const MissionCenter = () => {
 
   const BadgeCollection = () => {
     return (
-      <View
-        style={styles.badgeCollection}>
+      <View style={styles.badgeCollection}>
         <Badge
           textVisible={true}
           backgroundColor={'#E9E7FC'}
@@ -85,14 +95,18 @@ export const MissionCenter = () => {
           <TopBoards></TopBoards>
         </View>
         <View style={styles.containerView}>
-          <Container containerStyle={styles.badgeContainer}>
-            <Text
-              text="Rozet Koleksiyonu"
-              style={styles.badgeText}></Text>
+          <Container
+            containerStyle={[
+              styles.badgeContainer,
+              {backgroundColor: themeColors.badgeCollectionBackground},
+            ]}>
+            <Text text="Rozet Koleksiyonu" style={styles.badgeText}></Text>
             {BadgeCollection()}
           </Container>
         </View>
-        <Text text="Görevler" style={styles.subTitle}></Text>
+        <Text
+          text="Görevler"
+          style={[styles.subTitle, {color: themeColors.titleDefault}]}></Text>
         <Missions
           id={1}
           name="Hesap Uzmanı"

@@ -14,5 +14,5 @@ export const styles = StyleSheet.create({
   logOutContainer: {
     marginLeft: 25,
     marginTop: 30,
-  }
+  },
 });

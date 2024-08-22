@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { Badge } from 'react-native-paper';
+import {Badge} from 'react-native-paper';
 import {scale, verticalScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
@@ -32,17 +32,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   contentContainerStyle: {
-    flexGrow: 1, 
-    paddingBottom: verticalScale(80)
+    flexGrow: 1,
+    paddingBottom: verticalScale(80),
   },
-  containerView:{
-    marginBottom:verticalScale(-20)
+  containerView: {
+    marginBottom: verticalScale(-20),
   },
-  badgeText:{
+  badgeText: {
     top: verticalScale(-25),
     fontSize: 22,
     left: scale(10),
     fontWeight: 'bold',
-    color:'white'
-  }
+    color: 'white',
+  },
 });

@@ -86,7 +86,7 @@ export const Timo = () => {
     if (quizCompleted) return;
 
     setSelectedOption(option);
-    setQuizCompleted(true); 
+    setQuizCompleted(true);
 
     if (option === correctAnswer) {
       setShowSuccessMessage(true);
@@ -114,11 +114,14 @@ export const Timo = () => {
             style={[
               styles.postContainer,
               post.type === 'info'
-                ? styles.infoCard
+                ? [styles.infoCard, {backgroundColor: themeColors.infoCard}]
                 : post.type === 'content'
-                ? styles.contentCard
+                ? [
+                    styles.contentCard,
+                    {backgroundColor: themeColors.contentCard},
+                  ]
                 : post.type === 'quiz'
-                ? styles.quizCard
+                ? [styles.quizCard, {backgroundColor: themeColors.quizCard}]
                 : null,
             ]}>
             <View style={styles.iconContainer}>
@@ -186,18 +189,18 @@ export const Timo = () => {
                     onPress={() =>
                       handleOptionSelect(option, post.correctAnswer)
                     }
-                    disabled={quizCompleted} 
-                  >
+                    disabled={quizCompleted}>
                     <Text text="" style={styles.optionText}>
                       {option}
                     </Text>
                   </TouchableOpacity>
                 ))}
-                {showSuccessMessage && selectedOption === post.correctAnswer && (
-                  <Text text="" style={styles.successMessage}>
-                    {post.successMessage}
-                  </Text>
-                )}
+                {showSuccessMessage &&
+                  selectedOption === post.correctAnswer && (
+                    <Text text="" style={styles.successMessage}>
+                      {post.successMessage}
+                    </Text>
+                  )}
                 {!showSuccessMessage && quizCompleted && (
                   <Text text="" style={styles.errorMessage}>
                     Doğru cevap: {post.correctAnswer}

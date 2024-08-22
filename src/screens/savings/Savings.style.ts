@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
   modalContainer: {
     width: '80%',
     padding: verticalScale(20),
-    backgroundColor: 'white',
     borderRadius: 10,
     elevation: 10,
     shadowColor: '#000',
@@ -94,34 +93,34 @@ export const styles = StyleSheet.create({
     marginBottom: verticalScale(30),
     alignSelf: 'center',
   },
-  emptyWishlistText:{
-    textAlign: 'center'
+  emptyWishlistText: {
+    textAlign: 'center',
   },
-  wishlistMap:{
-    marginTop: verticalScale(-15), 
-    marginBottom: verticalScale(-30)
+  wishlistMap: {
+    marginTop: verticalScale(-15),
+    marginBottom: verticalScale(-30),
   },
-  contentContainerStyle:{
-    flexGrow: 1, 
-    paddingBottom: verticalScale(80)
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingBottom: verticalScale(80),
   },
-  dreamBoxText:{
+  dreamBoxText: {
     marginTop: verticalScale(-20),
     marginBottom: verticalScale(20),
     fontSize: 20,
     fontWeight: 'bold',
     left: scale(5),
   },
-  worldBoxText:{
+  worldBoxText: {
     marginTop: verticalScale(-25),
     marginBottom: verticalScale(15),
     fontSize: 20,
     fontWeight: 'bold',
     left: scale(5),
   },
-  worldBoxInfo:{
-    marginTop: verticalScale(15), 
-    marginBottom: verticalScale(-20), 
-    fontSize: 12
-  }
+  worldBoxInfo: {
+    marginTop: verticalScale(15),
+    marginBottom: verticalScale(-20),
+    fontSize: 12,
+  },
 });

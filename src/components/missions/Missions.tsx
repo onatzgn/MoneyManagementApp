@@ -6,7 +6,12 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Images from '@assets/Images';
 import {useSelector} from 'react-redux';
 import {RootState, useAppDispatch} from '@redux/Store';
-import {expenseAddMission, setExpenseAdded, updateScore} from '@redux/actions/UserAction';
+import {
+  expenseAddMission,
+  setExpenseAdded,
+  updateScore,
+} from '@redux/actions/UserAction';
+import {getThemeColor} from '@utils/Color';
 
 interface MissionProps {
   id: number;
@@ -35,6 +40,10 @@ export const Missions = ({
   const score = useSelector(
     (state: RootState) => state.persistedReducer.user.score,
   );
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
 
   useEffect(() => {
     if (id === 1) {
@@ -47,7 +56,6 @@ export const Missions = ({
       }
     }
   }, [expenseAdded, id]);
-  
 
   const handleButtonPress = () => {
     if (buttonState === 1) {
@@ -58,11 +66,25 @@ export const Missions = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: themeColors.containerBackground},
+      ]}>
       <Badge backgroundColor={badgeColor} textVisible={false}></Badge>
       <View style={styles.textContainer}>
-        <Text text={name} style={styles.name}></Text>
-        <Text text={description} style={styles.description}></Text>
+        <Text
+          text={name}
+          style={[
+            styles.name,
+            {color: themeColors.misssionContentText},
+          ]}></Text>
+        <Text
+          text={description}
+          style={[
+            styles.description,
+            {color: themeColors.misssionContentText},
+          ]}></Text>
       </View>
       {buttonState === 0 && (
         <View style={styles.pointsContainer2}>

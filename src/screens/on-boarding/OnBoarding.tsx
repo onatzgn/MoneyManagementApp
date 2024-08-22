@@ -9,7 +9,7 @@ import {TextAnimation, PointBar, Text} from 'components/Index';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import {RootState, useAppDispatch} from '@redux/Store';
-import { setOnboardingSeen } from '@redux/actions/UserAction';
+import {setOnboardingSeen} from '@redux/actions/UserAction';
 
 export default function OnBoarding() {
   const dispatch = useAppDispatch();
@@ -24,7 +24,7 @@ export default function OnBoarding() {
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
-  
+
   useEffect(() => {
     dispatch(setOnboardingSeen());
   }, [dispatch]);

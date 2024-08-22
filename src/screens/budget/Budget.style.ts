@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {verticalScale,scale,moderateScale, s} from 'react-native-size-matters';
+import {
+  verticalScale,
+  scale,
+  moderateScale,
+  s,
+} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   mainContainer: {
@@ -65,7 +70,7 @@ export const styles = StyleSheet.create({
   },
   modalText: {
     top: verticalScale(5),
-    marginBottom: verticalScale(10)
+    marginBottom: verticalScale(10),
   },
   modalContainer: {
     alignItems: 'center',
@@ -119,20 +124,20 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  categoryView:{
+  categoryView: {
     paddingVertical: verticalScale(70),
     height: verticalScale(330),
     marginTop: verticalScale(-50),
     width: scale(210),
   },
-  modalButton:{
-    marginTop: verticalScale(-60)
+  modalButton: {
+    marginTop: verticalScale(-60),
   },
-  contentContainerStyle:{
-    flexGrow: 1, 
-    paddingBottom: verticalScale(80)
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingBottom: verticalScale(80),
   },
-  touchableViewUp:{
+  touchableViewUp: {
     borderWidth: 1,
     position: 'absolute',
     right: scale(20),
@@ -143,7 +148,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  touchableViewDown:{
+  touchableViewDown: {
     borderWidth: 1,
     position: 'absolute',
     right: scale(70),

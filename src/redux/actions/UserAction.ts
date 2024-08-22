@@ -21,7 +21,7 @@ import {
   UPDATESCORE,
   RESETSTORE,
   UPDATEEXPENSEADDED,
-  WISHLISTCOMPLETED
+  WISHLISTCOMPLETED,
 } from '../types/User.types';
 import {UserSignInType} from '@utils/types/UserSignInType';
 import {Alert, Platform} from 'react-native';
@@ -104,32 +104,35 @@ export const setExpenseAdded = () => ({
 export const resetStore = () => ({
   type: RESETSTORE,
 });
-export const updateScoreSuccess = (score:number) => ({
+export const updateScoreSuccess = (score: number) => ({
   type: UPDATESCORE,
   payload: score,
 });
-export const updateExpenseAdded = (hasExpense:number) => ({
+export const updateExpenseAdded = (hasExpense: number) => ({
   type: UPDATEEXPENSEADDED,
   payload: hasExpense,
 });
 export const wishlistCompleted = () => ({
   type: WISHLISTCOMPLETED,
 });
-export const expenseAddMission = (userId: string| undefined) => async (dispatch: AppDispatch, getState: () => RootState) => {
-  const { hasExpenseAdded } = getState().persistedReducer.user;
+export const expenseAddMission =
+  (userId: string | undefined) =>
+  async (dispatch: AppDispatch, getState: () => RootState) => {
+    const {hasExpenseAdded} = getState().persistedReducer.user;
 
-  try {
-    await axios.patch(`${baseUrl()}/users/${userId}`, {
-      hasExpenseAdded: hasExpenseAdded + 1,
-    });
-    dispatch(setExpenseAdded());
-  } catch (error) {
-    console.error('Error updating hasExpenseAdded in the database:', error);
-  }
-};
+    try {
+      await axios.patch(`${baseUrl()}/users/${userId}`, {
+        hasExpenseAdded: hasExpenseAdded + 1,
+      });
+      dispatch(setExpenseAdded());
+    } catch (error) {
+      console.error('Error updating hasExpenseAdded in the database:', error);
+    }
+  };
 
 export const updateScore =
-  (userId: string | undefined, score: number) => async (dispatch: AppDispatch) => {
+  (userId: string | undefined, score: number) =>
+  async (dispatch: AppDispatch) => {
     try {
       const response = await axios.get(`${baseUrl()}/users/${userId}`);
       const user = response.data;
@@ -138,8 +141,7 @@ export const updateScore =
         score: updateScore,
       });
       dispatch({type: UPDATESCORE, payload: updateScore});
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 export const addWishlist =
   (

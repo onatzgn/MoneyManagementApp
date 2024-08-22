@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 200,
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
   },
   rememberMeSwitchContainer: {
     flexDirection: 'row',
