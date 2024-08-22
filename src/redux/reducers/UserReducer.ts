@@ -22,10 +22,9 @@ import {
   UPDATEEXPENSEADDED,
   WISHLISTCOMPLETED,
 } from '../types/User.types';
-import {Wishlist} from '@components';
+import { Wishlist } from '@components';
 
 export interface ExpenseListType {
-  date: string | number | Date;
   id: string;
   category: string;
   amount: number;
@@ -131,27 +130,27 @@ const userReducer = (
         error: action.payload,
       };
     case DELETEWISHLISTSUCCESS:
-      return {
+      return{
         ...state,
         wishlists: state.wishlists.filter(
-          wishListItem => wishListItem.id !== action.payload,
+          wishListItem => wishListItem.id !== action.payload
         ),
       };
     case DELETEWISHLISTFAILURE:
-      return {
+      return{
         ...state,
         error: action.payload,
       };
-    case UPDATEWISHLISTSUCCESS:
-      return {
-        ...state,
-        wishlists: state.wishlists.map(wishlist =>
-          wishlist.id === action.payload.id
-            ? {...wishlist, progress: action.payload.progress}
-            : wishlist,
-        ),
-      };
-
+      case UPDATEWISHLISTSUCCESS:
+        return {
+          ...state,
+          wishlists: state.wishlists.map(wishlist =>
+            wishlist.id === action.payload.id
+              ? { ...wishlist, progress: action.payload.progress }
+              : wishlist
+          ),
+        };
+      
     case SETONBOARDINGSEEN:
       return {
         ...state,

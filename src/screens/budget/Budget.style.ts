@@ -158,5 +158,11 @@ export const styles = StyleSheet.create({
     height: scale(40),
     justifyContent: 'center',
     alignItems: 'center',
+  containerStyle: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 20,
+    alignSelf: 'center',
+    top: -30,
   },
 });

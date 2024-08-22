@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     left: scale(10),
     fontWeight: '600',
     marginVertical: verticalScale(3),
-    color: '#474A57',
+    color:'#474A57'
   },
   progressContent: {
     fontWeight: 'bold',
