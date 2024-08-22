@@ -11,8 +11,9 @@ import {styles} from './AccordionButton.style';
 import Icons from '@assets/Icons';
 import {Text} from '@components';
 import {useSelector, useDispatch} from 'react-redux';
-import {RootState, useAppDispatch} from '@redux/Store';
+import { RootState, useAppDispatch } from '@redux/Store';
 import {updateWishlist, updateWishlistSuccess} from '@redux/actions/UserAction';
+
 
 interface AccordionButtonBaseProps {
   orientation: 'horizontal' | 'vertical';
@@ -95,8 +96,7 @@ export const AccordionButton = ({
   );
   const currentProgress = useSelector(
     (state: RootState) =>
-      state.persistedReducer.user.wishlists.find(w => w.id === wishlistId)
-        ?.progress || 0,
+      state.persistedReducer.user.wishlists.find((w) => w.id === wishlistId)?.progress || 0
   );
   const insideContent = (toggleOpen: (arg0: any) => void) => {
     const handlePress = (event: any) => {
@@ -107,7 +107,6 @@ export const AccordionButton = ({
         const progress = cumulativeSave;
         onSave(progress);
         dispatch(updateWishlist(userId, wishlistId, progress, dailyGoalInput));
-
         return progress;
       });
     };
