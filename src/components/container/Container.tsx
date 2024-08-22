@@ -10,7 +10,7 @@ interface ContainerType {
   children: ReactNode;
   containerStyle?: object;
 }
-export const Container = ({children,containerStyle}: ContainerType) => {
+export const Container = ({children, containerStyle}: ContainerType) => {
   const theme = useSelector(
     (state: RootState) => state.persistedReducer.theme.theme,
   );
@@ -21,7 +21,7 @@ export const Container = ({children,containerStyle}: ContainerType) => {
       style={[
         styles.contentContainer,
         {backgroundColor: themeColors.profileContainer},
-        containerStyle
+        containerStyle,
       ]}>
       {children}
     </View>

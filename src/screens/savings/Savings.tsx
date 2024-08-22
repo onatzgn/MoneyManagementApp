@@ -103,7 +103,6 @@ export const Savings = () => {
       endDate: '',
     });
     const handleAddWishlistItem = () => {
-      console.log('handleAddWishListItem', wishlists);
       const totalDays = Math.ceil(
         wishlistData.totalAmount / wishlistData.dailyGoal,
       );
@@ -149,56 +148,61 @@ export const Savings = () => {
 
     return (
       <Modal visible={visible} animationType="slide" transparent={true}>
-          <View style={styles.modalOverlay}>
-        <View style={styles.modalContainer}>
-          <TextInput
-            placeholder="Title"
-            value={wishlistData.title}
-            onChangeText={text =>
-              setWishlistData({...wishlistData, title: text})
-            }
-            style={styles.modalInput}
-          />
-          <TextInput
-            placeholder="Daily Goal"
-            value={wishlistData.dailyGoal.toString()}
-            onChangeText={text =>
-              setWishlistData({...wishlistData, dailyGoal: parseFloat(text)})
-            }
-            style={styles.modalInput}
-          />
-          <TextInput
-            placeholder="Total Amount"
-            value={wishlistData.totalAmount.toString()}
-            onChangeText={text =>
-              setWishlistData({...wishlistData, totalAmount: parseFloat(text)})
-            }
-            style={styles.modalInput}
-          />
-          <View style={styles.dateStyle}>
-            <DateTimePicker
-              value={date}
-              mode={'date'}
-              is24Hour={true}
-              onChange={onChange}
-              display="default"
+        <View style={styles.modalOverlay}>
+          <View
+            style={[
+              styles.modalContainer,
+              {backgroundColor: themeColors.containerBackground},
+            ]}>
+            <TextInput
+              placeholder="Title"
+              value={wishlistData.title}
+              onChangeText={text =>
+                setWishlistData({...wishlistData, title: text})
+              }
+              style={styles.modalInput}
             />
-          </View>
-          <TouchableOpacity
-            style={styles.modalButton}
-            onPress={handleAddWishlistItem}>
-            <Text
-              text="Ekle"
-              style={styles.modalButtonText}></Text>
-          </TouchableOpacity>
+            <TextInput
+              placeholder="Daily Goal"
+              value={wishlistData.dailyGoal.toString()}
+              onChangeText={text =>
+                setWishlistData({...wishlistData, dailyGoal: parseFloat(text)})
+              }
+              style={styles.modalInput}
+            />
+            <TextInput
+              placeholder="Total Amount"
+              value={wishlistData.totalAmount.toString()}
+              onChangeText={text =>
+                setWishlistData({
+                  ...wishlistData,
+                  totalAmount: parseFloat(text),
+                })
+              }
+              style={styles.modalInput}
+            />
+            <View style={styles.dateStyle}>
+              <DateTimePicker
+                value={date}
+                mode={'date'}
+                is24Hour={true}
+                onChange={onChange}
+                display="default"
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={handleAddWishlistItem}>
+              <Text text="Ekle" style={styles.modalButtonText}></Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.modalButton, {backgroundColor: '#F44336'}]}
-            onPress={onClose}>
-            <Text text="Çık" style={styles.modalButtonText}></Text>
-          </TouchableOpacity>
-          <Text text={wishlistData.endDate}></Text>
-        </View>
+            <TouchableOpacity
+              style={[styles.modalButton, {backgroundColor: '#F44336'}]}
+              onPress={onClose}>
+              <Text text="Çık" style={styles.modalButtonText}></Text>
+            </TouchableOpacity>
+            <Text text={wishlistData.endDate}></Text>
+          </View>
         </View>
       </Modal>
     );
@@ -210,21 +214,20 @@ export const Savings = () => {
   const addWishlistItem = (item: WishlistItem) => {
     setWishlistItems([...wishlistItems, {...item, id: idCounter}]);
     setModalVisible(false);
-    console.log('addwishlistitem', wishlists);
   };
 
   const deleteWishlistItem = (id: number) => {
     dispatch(deleteWishlist(userId, id));
   };
 
-  console.log(wishlists);
   const WishlistItems = () => {
-    console.log('WishListItems', wishlists);
     const emptyWishlistMessage =
       'Henüz bir şey eklemedin!\nHadi, hayalini kurduğun ürünleri eklemeye başla!';
     if (!wishlists || wishlists.length === 0) {
       return (
-        <Text text={emptyWishlistMessage} style={styles.emptyWishlistText}></Text>
+        <Text
+          text={emptyWishlistMessage}
+          style={styles.emptyWishlistText}></Text>
       );
     }
     return (
@@ -248,8 +251,8 @@ export const Savings = () => {
   const CurrencyItems = () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        <Currency title="Euro" color="#FFBD12" unit="€" />
-        <Currency title="Dolar" color="#F95A2B" unit="$" />
+        <Currency title="Euro" color={themeColors.currencyEuro} unit="€" />
+        <Currency title="Dolar" color={themeColors.currenyDolar} unit="$" />
       </View>
     );
   };
@@ -284,17 +287,20 @@ export const Savings = () => {
         <Container>
           <Text
             text="Hayal Kumbarası "
-            style={styles.dreamBoxText}></Text>
+            style={[
+              styles.dreamBoxText,
+              {color: themeColors.titleDefault},
+            ]}></Text>
           {WishlistItems()}
         </Container>
         <Container>
           <Text
-            text="Dünya Kumbarası"
-            style={styles.worldBoxText}></Text>
+            text="Birikim Kumbarası"
+            style={[
+              styles.worldBoxText,
+              {color: themeColors.titleDefault},
+            ]}></Text>
           {CurrencyItems()}
-          <Text
-            text="Farklı ülkelerin paralarını biriktir ve ne kadar biriktirdiğini buradan gör! Küresel birikimcinin kim olduğunu herkese göster!"
-            style={styles.worldBoxInfo}></Text>
         </Container>
         <WishlistModal
           visible={modalVisible}

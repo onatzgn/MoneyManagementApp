@@ -13,10 +13,19 @@ interface CurrencyProps {
 }
 
 export const Currency = ({title, color, unit}: CurrencyProps) => {
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
+
   return (
-    <View style={[styles.container,{backgroundColor: color}]}>
-      <Text text={title} style={styles.title}></Text>
-      <Text text={unit} style={styles.content}></Text>
+    <View style={[styles.container, {backgroundColor: color}]}>
+      <Text
+        text={title}
+        style={[styles.title, {color: themeColors.currencyTitle}]}></Text>
+      <Text
+        text={unit}
+        style={[styles.content, {color: themeColors.currencyTitle}]}></Text>
       <View style={styles.moneyButton}>
         <AccordionButtonVertical />
       </View>

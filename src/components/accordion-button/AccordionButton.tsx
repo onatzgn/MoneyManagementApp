@@ -13,6 +13,7 @@ import {Text} from '@components';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState, useAppDispatch} from '@redux/Store';
 import {updateWishlist, updateWishlistSuccess} from '@redux/actions/UserAction';
+import {getThemeColor} from '@utils/Color';
 
 interface AccordionButtonBaseProps {
   orientation: 'horizontal' | 'vertical';
@@ -33,6 +34,10 @@ const AccordionButtonBase = ({
 }: AccordionButtonBaseProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const sizeAnim = useRef(new Animated.Value(50)).current;
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
 
   const containerStyle =
     orientation === 'horizontal'
@@ -61,10 +66,14 @@ const AccordionButtonBase = ({
       <Animated.View
         style={[
           buttonContainerStyle,
+          {backgroundColor: themeColors.roundButtonContainer},
           {[orientation === 'horizontal' ? 'width' : 'height']: sizeAnim},
         ]}>
         <TouchableOpacity
-          style={styles.roundButton}
+          style={[
+            styles.roundButton,
+            {backgroundColor: themeColors.roundButton},
+          ]}
           onPress={toggleOpen}
           activeOpacity={0.8}>
           <Image
@@ -93,6 +102,10 @@ export const AccordionButton = ({
   const userId = useSelector(
     (state: RootState) => state.persistedReducer.user.signIn.id,
   );
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
   const currentProgress = useSelector(
     (state: RootState) =>
       state.persistedReducer.user.wishlists.find(w => w.id === wishlistId)
@@ -115,7 +128,10 @@ export const AccordionButton = ({
     return (
       <>
         <TextInput
-          style={styles.inputHorizontal}
+          style={[
+            styles.inputHorizontal,
+            {backgroundColor: themeColors.roundButton},
+          ]}
           placeholder="Gir"
           keyboardType="numeric"
           selectionHandleColor={'black'}
@@ -123,12 +139,16 @@ export const AccordionButton = ({
           onChangeText={setInputValue}
         />
         <TouchableOpacity
-          style={styles.saveButtonHorizontal}
+          style={[
+            styles.saveButtonHorizontal,
+            {backgroundColor: themeColors.roundButtonSave},
+          ]}
           onPress={handlePress}>
           <Image
             source={Icons.moneySave}
             resizeMode="contain"
             style={styles.moneySaveIcon}
+            tintColor={themeColors.roundButtonApprove}
           />
         </TouchableOpacity>
       </>

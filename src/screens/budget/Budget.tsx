@@ -82,15 +82,14 @@ export const Budget = () => {
   const expenses = useSelector(
     (state: RootState) => state.persistedReducer.user.expenses,
   );
-  console.log('expenses2', expenses);
+
   const baseUrl = () => {
-    console.log('os', Platform.OS);
     if (Platform.OS === 'android') {
       return 'http://10.0.2.2:4000';
     }
     return 'http://localhost:4000';
   };
-  
+
   useEffect(() => {
     if (userId) {
       axios
@@ -99,7 +98,7 @@ export const Budget = () => {
           const userExpenses = response.data.expenses;
           const userBudget = response.data.budget;
           dispatch(addExpensesSuccess(userExpenses));
-          console.log('userexpenses',userExpenses)
+
           dispatch(updateBudgetSuccess(userBudget));
         })
         .catch(error => {
@@ -128,7 +127,7 @@ export const Budget = () => {
   };
   const calculateCategorySpendings = () => {
     const categoryTotals: {[key: string]: number} = {};
-    console.log('expenses', expenses);
+
     expenses?.forEach(expense => {
       if (categoryTotals[expense.category]) {
         categoryTotals[expense.category] += expense.amount;
@@ -141,7 +140,7 @@ export const Budget = () => {
   };
   const getPieChartData = () => {
     const categorySpendings = calculateCategorySpendings();
-    console.log('categorySpendings', categorySpendings);
+
     const sortedCategories = Object.keys(categorySpendings)
       .map(category => ({
         name: category,
@@ -197,7 +196,12 @@ export const Budget = () => {
           paddingLeft={'0'}
           center={[0, 0]}
         />
-        <View style={[styles.graphicStyle,{backgroundColor:themeColors.containerBackground}]} />
+        <View
+          style={[
+            styles.graphicStyle,
+            {backgroundColor: themeColors.containerBackground},
+          ]}
+        />
       </View>
     );
   };
@@ -219,7 +223,12 @@ export const Budget = () => {
         style={styles.spendFlatList}
         ListHeaderComponent={
           <View style={styles.spendListView}>
-            <Text text="Son Harcamalar" style={[styles.spendListText,{color: themeColors.titleDefault}]}></Text>
+            <Text
+              text="Son Harcamalar"
+              style={[
+                styles.spendListText,
+                {color: themeColors.titleDefault},
+              ]}></Text>
           </View>
         }
       />
@@ -358,7 +367,13 @@ export const Budget = () => {
                     color={categoryData[item]?.color || 'grey'}
                     style={styles.flatListIcon}
                   />
-                  <Text style={styles.categoryText} text={item} />
+                  <Text
+                    style={[
+                      styles.categoryText,
+                      {color: themeColors.categoryText},
+                    ]}
+                    text={item}
+                  />
                 </View>
               </Pressable>
             )}
@@ -385,7 +400,7 @@ export const Budget = () => {
       </View>
     );
   };
-  console.log('budget',budget)
+
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>

@@ -317,7 +317,7 @@
       "email": "deneme@gmail.com",
       "password": "deneme",
       "phone": "05392424565",
-      "budget": 836,
+      "budget": 626,
       "wishlists": [
         {
           "id": 195,
@@ -326,16 +326,16 @@
           "totalAmount": 20000,
           "startDate": "15/08/2024",
           "endDate": "19/09/2025",
-          "progress": 2850
+          "progress": 3000
         },
         {
-          "id": 201,
+          "id": 81,
           "title": "Oyuncak Araba",
           "dailyGoal": 10,
           "totalAmount": 500,
-          "startDate": "15/08/2024",
-          "endDate": "04/10/2024",
-          "progress": 260
+          "startDate": "23/08/2024",
+          "endDate": "12/10/2024",
+          "progress": 60
         }
       ],
       "expenses": [

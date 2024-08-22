@@ -28,6 +28,25 @@ export interface ColorTypes {
   inActiveBackgroundColor: string;
   borderActiveColor: string;
   borderInActiveColor: string;
+  wishlistBackground: string;
+  wishlistTitle: string;
+  wishlistProgressBar: string;
+  wishlistUnfilledProgress: string;
+  wishlistSubcontent: string;
+  roundButtonContainer: string;
+  roundButton: string;
+  roundButtonSave: string;
+  roundButtonApprove: string;
+  topBoardItems: string;
+  misssionContentText: string;
+  categoryText: string;
+  badgeCollectionBackground: string;
+  infoCard: string;
+  contentCard: string;
+  quizCard: string;
+  currencyEuro: string;
+  currenyDolar: string;
+  currencyTitle: string;
 }
 
 export const LightTheme: ColorTypes = {
@@ -60,6 +79,25 @@ export const LightTheme: ColorTypes = {
   inActiveBackgroundColor: '#3c4145',
   borderActiveColor: '#86c3d7',
   borderInActiveColor: '#1c1c1c',
+  wishlistBackground: '#D6FCF7',
+  wishlistTitle: 'black',
+  wishlistProgressBar: '#32FC65',
+  wishlistUnfilledProgress: '#A5FCCB',
+  wishlistSubcontent: 'black',
+  roundButtonContainer: 'white',
+  roundButton: '#FFD956',
+  roundButtonSave: '#18191F',
+  roundButtonApprove: '#FFD956',
+  topBoardItems: '#61E4C5',
+  misssionContentText: 'black',
+  categoryText: '#333',
+  badgeCollectionBackground: '#299657',
+  infoCard: '#B0E3CF',
+  contentCard: '#90BEFF',
+  quizCard: '#FCB351',
+  currencyEuro: '#FFBD12',
+  currenyDolar: '#F95A2B',
+  currencyTitle: 'white',
 };
 
 export const DarkTheme: ColorTypes = {
@@ -92,6 +130,25 @@ export const DarkTheme: ColorTypes = {
   inActiveBackgroundColor: '#3c4145',
   borderActiveColor: '#86c3d7',
   borderInActiveColor: '#1c1c1c',
+  wishlistBackground: '#18191F',
+  wishlistTitle: '#A9A9A9',
+  wishlistProgressBar: '#4E4F53',
+  wishlistUnfilledProgress: '#333439',
+  wishlistSubcontent: '#D2D2D2',
+  roundButtonContainer: '#A9A9A9',
+  roundButton: '#A9A9A9',
+  roundButtonSave: '#D2D2D2',
+  roundButtonApprove: '#A9A9A9',
+  topBoardItems: '#FFBD12',
+  misssionContentText: '#DADADA',
+  categoryText: 'white',
+  badgeCollectionBackground: '#18191F',
+  infoCard: '#617D72',
+  contentCard: '#5C7AA3',
+  quizCard: '#AC7B37',
+  currencyEuro: '#18191F',
+  currenyDolar: '#18191F',
+  currencyTitle: '#A9A9A9',
 };
 
 const themes = {

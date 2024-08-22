@@ -29,7 +29,10 @@ export const Wishlist = ({
   onDelete,
 }: WishlistProps) => {
   const dispatch = useAppDispatch();
-
+  const theme = useSelector(
+    (state: RootState) => state.persistedReducer.theme.theme,
+  );
+  const themeColors = getThemeColor(theme);
   const progress = useSelector(
     (state: RootState) =>
       state.persistedReducer.user.wishlists.find((w: any) => w.id === id)
@@ -47,16 +50,28 @@ export const Wishlist = ({
   const newProgress = progress / totalAmount;
 
   return (
-    <View style={styles.container}>
-      <Text text={title} style={styles.title}></Text>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: themeColors.wishlistBackground},
+      ]}>
+      <Text
+        text={title}
+        style={[styles.title, {color: themeColors.wishlistTitle}]}></Text>
       <Text text={`Günlük Hedef: ${dailyGoal}₺`} style={styles.content}></Text>
-      <Text text={`${totalAmount}₺`} style={styles.totalAmount}></Text>
+      <Text
+        text={`${totalAmount}₺`}
+        style={[
+          styles.totalAmount,
+          {color: themeColors.wishlistProgressBar},
+        ]}></Text>
       <View style={styles.deleteButton}>
         <TouchableOpacity onPress={onDelete}>
           <Image
             source={Icons.deleteIcon}
             resizeMode="contain"
             style={styles.deleteIcon}
+            tintColor="gray"
           />
         </TouchableOpacity>
       </View>
@@ -67,8 +82,8 @@ export const Wishlist = ({
           width={290}
           height={10}
           borderRadius={20}
-          color="#32FC65"
-          unfilledColor="#A5FCCB"
+          color={themeColors.wishlistProgressBar}
+          unfilledColor={themeColors.wishlistUnfilledProgress}
           borderWidth={0}
         />
       </View>
@@ -79,7 +94,7 @@ export const Wishlist = ({
       {newProgress < 1 ? (
         <Text
           text={`${endDate} tarihinde ${title} sahibi olacaksın 🎉`}
-          style={styles.subContent}
+          style={[styles.subContent, {color: themeColors.wishlistSubcontent}]}
         />
       ) : (
         <Text

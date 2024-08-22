@@ -19,8 +19,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     marginBottom: verticalScale(8),
-    borderWidth:2,
-    borderBottomWidth:5,
+    borderWidth: 2,
+    borderBottomWidth: 5,
   },
   star: {
     color: '#fff',
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: 'bold',
-    color:'black'
+    color: 'black',
   },
   description: {
     fontSize: 12,

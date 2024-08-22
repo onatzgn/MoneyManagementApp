@@ -3,7 +3,6 @@ import {verticalScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   contentContainer: {
-
     marginVertical: '2%',
     width: '90%',
     paddingVertical: verticalScale(40),
@@ -11,7 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     alignSelf: 'center',
     alignContent: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,
