@@ -6,11 +6,17 @@ import {RootState} from '@redux/Store';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 
-export const Currency = () => {
+interface CurrencyProps {
+  title: string;
+  color: string;
+  unit: string;
+}
+
+export const Currency = ({title, color, unit}: CurrencyProps) => {
   return (
-    <View style={styles.container}>
-      <Text text="Euro" style={styles.title}></Text>
-      <Text text="0€" style={styles.content}></Text>
+    <View style={[styles.container,{backgroundColor: color}]}>
+      <Text text={title} style={styles.title}></Text>
+      <Text text={unit} style={styles.content}></Text>
       <View style={styles.moneyButton}>
         <AccordionButtonVertical />
       </View>

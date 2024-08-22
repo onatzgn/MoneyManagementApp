@@ -24,6 +24,7 @@ export default function OnBoarding() {
     (state: RootState) => state.persistedReducer.theme.theme,
   );
   const themeColors = getThemeColor(theme);
+  
   useEffect(() => {
     dispatch(setOnboardingSeen());
   }, [dispatch]);

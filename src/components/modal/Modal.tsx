@@ -19,7 +19,7 @@ export const Modal = ({children, visible, onClose}: ModalType) => {
   return (
     <View style={styles.centeredView}>
       <RNModal
-        animationType="fade"
+        animationType="slide"
         transparent={true}
         visible={visible}
         onRequestClose={onClose}>

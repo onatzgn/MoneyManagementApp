@@ -35,6 +35,8 @@ const SignUp = () => {
       email: '',
       password: '',
       phone: '',
+      wishlists: [],
+      expenses: [],
     },
   });
   const handleSignIn = () => navigation.navigate('SignIn');

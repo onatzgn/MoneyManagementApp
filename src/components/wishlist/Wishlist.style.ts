@@ -6,12 +6,12 @@ export const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: verticalScale(1),
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    marginVertical: 20,
+    marginVertical: verticalScale(15),
     width: '100%',
     height: verticalScale(150),
     paddingVertical: verticalScale(45),
@@ -39,10 +39,10 @@ export const styles = StyleSheet.create({
   },
   progressContent: {
     fontWeight: 'bold',
-    color:'#474A57',
-    fontSize:25,
-    left:10,
-    top:5
+    color: '#474A57',
+    fontSize: 25,
+    left: scale(7),
+    top: verticalScale(4),
   },
   subContent: {
     left: scale(22),
@@ -67,23 +67,16 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: verticalScale(12),
     left: scale(260),
-    width: 35,
-    height: 20,
+    width: scale(35),
+    height: verticalScale(20),
     borderRadius: 50,
-  },
-  deleteText: {
-    fontWeight: '600',
-    fontSize: 30,
-    color: '#18191F',
-    textAlign: 'center',
-    marginTop: -14,
   },
   progressBar: {
     left: scale(10),
     top: verticalScale(0),
   },
   deleteIcon: {
-    width: 20,
-    height: 30,
+    width: scale(15),
+    height: verticalScale(30),
   },
 });

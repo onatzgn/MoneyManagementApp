@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Image} from 'react-native';
 import {Text, AccordionButton} from '@components';
 import {styles} from './Wishlist.style';
-import {RootState} from '@redux/Store';
+import {RootState, useAppDispatch} from '@redux/Store';
 import {useSelector} from 'react-redux';
 import {getThemeColor} from '@utils/Color';
 import * as Progress from 'react-native-progress';
@@ -28,14 +28,16 @@ export const Wishlist = ({
   endDate,
   onDelete,
 }: WishlistProps) => {
-  console.log('Received ID:', id);
+  const dispatch = useAppDispatch();
+
   const progress = useSelector(
     (state: RootState) =>
       state.persistedReducer.user.wishlists.find((w: any) => w.id === id)
         ?.progress || 0,
   );
-  console.log('Progress Wishlist:', progress);
-  console.log('Wishlist ID:', id);
+  const wishlistCompleted = useSelector(
+    (state: RootState) => state.persistedReducer.user.wishlistCompleted,
+  );
 
   const progressPercentage = (value: number) => {
     const newProgress = value / totalAmount;

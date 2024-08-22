@@ -98,7 +98,7 @@ export const Timo = () => {
   return (
     <SafeAreaView
       style={[styles.mainContainer, {backgroundColor: themeColors.background}]}>
-      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 100}}>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <Text
           style={[styles.title, {color: themeColors.budgetTitle}]}
           text="Timo"

@@ -56,9 +56,7 @@ export const Missions = ({
       dispatch(updateScore(userId, point));
     }
   };
-  useEffect(() => {
-    console.log('Updated buttonState:', buttonState);
-  }, [buttonState]);
+
   return (
     <View style={styles.container}>
       <Badge backgroundColor={badgeColor} textVisible={false}></Badge>

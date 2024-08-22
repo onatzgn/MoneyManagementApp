@@ -20,6 +20,7 @@ import {
   UPDATESCORE,
   RESETSTORE,
   UPDATEEXPENSEADDED,
+  WISHLISTCOMPLETED,
 } from '../types/User.types';
 import { Wishlist } from '@components';
 
@@ -44,24 +45,26 @@ export interface UserState {
   error: string;
   expenses: ExpenseListType[];
   wishlists: WishListType[];
-  budget: string;
+  budget: number;
   hasSeenOnboarding: boolean;
   idCounter: number;
   hasExpenseAdded: number;
   score: number;
+  wishlistCompleted: boolean;
 }
 const initialState: UserState = {
   signUp: {fullName: '', email: '', password: '', phone: ''},
   signIn: {email: '', password: ''},
   expenses: [],
   wishlists: [],
-  budget: '',
+  budget: 0,
   isLoggedIn: false,
   error: '',
   hasSeenOnboarding: false,
   idCounter: 1,
   hasExpenseAdded: 0,
   score: 0,
+  wishlistCompleted: false,
 };
 const userReducer = (
   state = initialState,
@@ -116,15 +119,13 @@ const userReducer = (
         error: action.payload,
       };
     case ADDWISHLISTSUCCESS:
-      console.log(action.payload,'reducer');
-      return{
+      return {
         ...state,
         wishlists: action.payload as WishListType[],
         idCounter: state.idCounter + 1,
       };
     case ADDWISHLISTFAILURE:
-      console.log(action.payload,'failure reducer')
-      return{
+      return {
         ...state,
         error: action.payload,
       };
@@ -158,23 +159,28 @@ const userReducer = (
     case SETEXPENSEADDED:
       return {
         ...state,
-        hasExpenseAdded: state.hasExpenseAdded +1,
+        hasExpenseAdded: state.hasExpenseAdded + 1,
       };
-      case UPDATEEXPENSEADDED:
-        return {
-          ...state,
-          hasExpenseAdded: action.payload,
-        };
+    case UPDATEEXPENSEADDED:
+      return {
+        ...state,
+        hasExpenseAdded: action.payload,
+      };
     case UPDATESCORE:
       return {
         ...state,
         score: action.payload,
       };
+    case WISHLISTCOMPLETED:
+      return {
+        ...state,
+        wishlistCompleted: true,
+      };
 
-      case RESETSTORE:
-        return{
-          ...initialState,
-        };
+    case RESETSTORE:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }
