@@ -1,4 +1,4 @@
-<img width="509" alt="Ekran Resmi 2024-08-26 11 43 45" src="https://github.com/user-attachments/assets/dd1ff754-297a-4619-b424-3c4cb3d5c8d1"># BUDGET MANAGEMENT FOR CHILDREN
+# BUDGET MANAGEMENT FOR CHILDREN
 
 The Budget Management for Children app helps kids track their budget and raises awareness about budget management for users.
 
@@ -41,7 +41,6 @@ The Budget Management for Children app helps kids track their budget and raises 
     <img src="./src/assets/Images/outputs/Sign-up-validation2-light.png" alt="Sign Up Validation-Light" width="200">
     <img src="./src/assets/Images/outputs/Sign-in-screen-light.png" alt="Sign In Screen-Light" width="200">
     <img src="./src/assets/Images/outputs/Sign-in-validation-light.png" alt="Sign In Validation-Light" width="200">
-    <img src="./src/assets/Images/outputs/Sign-in-validation2-light.png" alt="Sign In Validation-Light" width="200">
     <img width="509" alt="Ekran Resmi 2024-08-26 11 38 50" src="https://github.com/user-attachments/assets/a9d3a1b3-0067-4562-ac26-be5fb787c521">
     <img width="509" alt="Ekran Resmi 2024-08-26 11 38 56" src="https://github.com/user-attachments/assets/6c395d63-7e79-42ca-9db2-7977d948d3b6">
     <img width="509" alt="Ekran Resmi 2024-08-26 11 39 01" src="https://github.com/user-attachments/assets/d36fa01b-f736-4d01-9d6e-d7e72c455823">
